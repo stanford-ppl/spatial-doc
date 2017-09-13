@@ -6,31 +6,31 @@ Prerequisites
 
 First, make sure to download and install the following prerequisites:
 
-- `Python (2 or 3) <https://www.python.org/downloads/>`_
-- `Scala SBT <http://www.scala-sbt.org>`_
+- `Scala SBT <http://www.scala-sbt.org>`_ ** NOTE: You must use version 0.13.15 **
 - `Java JDK <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_
 
-While it's not necessarily required, it may be easier to learn to use Spatial if you've had experience with Scala
-or a similar functional programming language in the past.
+While it's not at all required, it may be easier to learn to use Spatial if you've had experience with Scala
+or a similar functional programming language in the past.  Knowledge of Scala will allow you to use
+meta-programming to assist your Spatial designs.
 
-If you'd like, check out a `Scala tutorial <https://www.tutorialspoint.com/scala/>`_ like the one linked here for general info on programming in Scala.
+If you'd like, check out this `Scala tutorial <https://www.tutorialspoint.com/scala/>`_ .
 
 Finally, please sign up for the `Spatial users google group <https://groups.google.com/forum/#!forum/spatial-lang-users>`_ if you have any questions. 
 
 
-Installation (From Binary)
---------------------------
+.. Installation (From Binary)
+.. --------------------------
 
-Run the following command to clone the quickstart repository::
+.. Run the following command to clone the quickstart repository::
 
-    git clone https://github.com/stanford-ppl/spatial-quickstart.git
+..     git clone https://github.com/stanford-ppl/spatial-quickstart.git
     
-To test to make sure it's working::
+.. To test to make sure it's working::
 
-    bin/spatial HelloSpatial
-    ./HelloSpatial.sim 32
+..     bin/spatial HelloSpatial
+..     ./HelloSpatial.sim 32
 
-That's it! You're ready to create and run Spatial programs!
+.. That's it! You're ready to create and run Spatial programs!
 
 
 
