@@ -31,6 +31,7 @@ The animation below shows the basic idea on how we will implement Dot Product.  
 will show the hardware we generate to perform the computation, and how we can use the code to 
 tradeoff complexity and resources for performance by adding pipelining and parallelization.
 
+
 Let's look at how to write it in Spatial. Let's start with the application's template. We'll first create a method which
 takes two Arrays, `a` and `b`::
 
