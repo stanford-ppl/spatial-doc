@@ -59,7 +59,7 @@ an application that is called `HelloSpatial`::
       }
     }
 
-
+More to be written on 09/13/2017
 
 .. Because Spatial is a DSL for programming reconfigurable *hardware*, we will begin with the hardware equivalent of "Hello, World."
 .. In this app, the hardware reads some numeric argument from an off-chip source and then echoes it back to an off-chip destination.
