@@ -44,12 +44,7 @@ Run the following (bash) commands to clone and update the spatial-lang repositor
     git clone https://github.com/stanford-ppl/spatial-lang.git
     git submodule update --init
 
-This will pull Spatial's submodules `argon` and `scala-virtualized`.
-If you'd like to track the most recent stable updates::
-    
-    cd spatial-lang && git checkout master
-    cd argon && git checkout master
-    cd ../scala-virtualized && git checkout argon
+This will pull Spatial's submodules `argon`, `apps`, and `scala-virtualized`.
 
 You may need to export your JAVA_HOME environment variable to point to your Java installation (usually /usr/bin)
 
@@ -75,4 +70,73 @@ You are now ready to compile the language.  Run the following::
 A good habit would be to pull from these repositories often and run ``sbt compile`` in your spatial-lang directory.
 
 
-That's it! Up next, :doc:`learn how to build a basic Spatial program <helloworld>`.  
+That's it! Up next, you will learn how to use the language by working through a series of examples.
+The concepts you will learn in these tutorials are listed below.  Feel free to skip around the apps as
+you find convenient:
+
+- :doc:`Hello, World! <helloworld>`
+
+- - Application skeleton (import statements, application creation, accel scope, host scope)
+
+- - ArgIn
+ 
+- - ArgOut
+ 
+- - HostIO
+ 
+- - DRAM
+ 
+- - SRAM
+ 
+- - Reg
+ 
+- - Typing system
+
+- - Data transfer between host and accel (setArg, setMem, getArg, getMem, load, store, gather, scatter)
+ 
+- - Basic debugging hooks
+ 
+- - Compiling an app
+
+
+- :doc:`Dot Product <dotproduct>`
+
+- - Reduce and Fold
+
+- - Sequential execution and Coarse-grain pipelining
+ 
+- - Parallelization
+ 
+- - Basic buffering and banking
+
+
+- :doc:`General Matrix Multiply (GEMM) <gemm>`
+
+- - MemReduce and MemFold
+
+- - Debugging with instrumentation 
+ 
+- - Advanced banking
+ 
+
+- :doc:`Convolution <convolution>`
+
+- - Foreach
+
+- - LineBuffer 
+ 
+- - ShiftRegister
+ 
+- - LUT
+
+- - Branching
+
+
+- :doc:`Needleman-Wunsch <nw>`
+
+- - FSM
+
+- - FIFO 
+ 
+- - File IO and text management
+ 

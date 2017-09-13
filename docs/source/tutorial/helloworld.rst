@@ -6,15 +6,25 @@ Catalog of Features
 -------------------
 
 In this section, you will learn about the following components in Spatial:
+
 - Application skeleton (import statements, application creation, accel scope, host scope)
+
 - ArgIn
+
 - ArgOut
+
 - HostIO
+
 - DRAM
+
 - SRAM
+
 - Reg
+
 - Data transfer between host and accel
+
 - Basic debugging hooks
+
 - Compiling an app
 
 Application Overview
