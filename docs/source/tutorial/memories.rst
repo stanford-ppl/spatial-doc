@@ -1,4 +1,4 @@
-3. Memory Templates
+6. Memory Templates
 ===================
 
 On-Chip Memories

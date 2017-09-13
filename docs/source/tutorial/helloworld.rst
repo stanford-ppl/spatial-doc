@@ -1,89 +1,100 @@
 
 1. Hello, Spatial!
 ==================
-Now that you have cloned all of the code and set all of your environment variables, let's look at how to write, build, and run your first Spatial app! Yay
 
-Spatial App Structure
+Catalog of Features
+-------------------
+
+In this section, you will learn about the following components in Spatial:
+- Application skeleton (import statements, application creation, accel scope, host scope)
+- ArgIn
+- ArgOut
+- HostIO
+- DRAM
+- SRAM
+- Reg
+- Data transfer between host and accel
+- Basic debugging hooks
+- Compiling an app
+
+Application Overview
+--------------------
+
+In this section, you will see how to put together the bare-minimum Spatial application.  While the
+code does not do any "meaningful" work, it demonstrates the basic primitives that almost all applications 
+have and is intended to be the "Hello, world!" program for hardware.  You will start by generating input and
+output registers to get the accelerator and host to interact with each other, and then add tile transfers
+between the off-chip DRAM and on-chip SRAM.  Finally, you will learn the basic compilation flows for testing the
+functionality of the algorithm, cycle-accurate simulation of the generated RTL, and bitstream generation to
+deploy to a supported FPGA or architecture.
+
+Application Template
 ---------------------
 
-All Spatial programs have a few basic components. The following code example shows each of those components::
+All Spatial programs have a few basic components. The following code example shows each of those components for
+an application that is called `HelloSpatial`::
 
     // 1. Imports
+    import spatial.dsl._
     import org.virtualized._
-    import spatial._
 
     // 2. The Scala object which can be compiled and staged
-    object ArgInOut extends SpatialApp {
-      import IR._
+    object HelloSpatial extends SpatialApp {
 
       // 3. This method, main, is called on program startup.
       // Spatial apps are required to use the "@virtualize" macro
       @virtualize
       def main() {
 
-        // 4. Declare command line input arguments
-        val N = args(0).to[Int]
+        // 4. Code to be deployed to the host device, generally
+        // consisting of setting up data and reading files
 
-        // 5. Declare the interface between host and accelerator
-        val x = ArgIn[Int]
-        val y = ArgOut[Int]
-
-        // 6. Explicitly communicate the input to the hardware
-        setArg(x, N)
-
-        // 7. Specify algorithm to be done on hardware
+        // 5. Algorithm to be accelerated in hardware
         Accel {
-          y := x + 4
+
         }
 
-        // 8. Explicitly pull data off of the hardware
-        val result = getArg(y)
-
-        // 9. Specify algorithm to be done in software
-        val gold = N + 4
-        println("expected: " + gold)
-        println("result: " + result)
+        // 6. More code to be deployed to the host device, generally
+        // consisting of validation checks
       }
     }
 
 
-This code can be found in: ``$SPATIAL_HOME/apps/src/ArgInOutTest.scala``
+
+.. Because Spatial is a DSL for programming reconfigurable *hardware*, we will begin with the hardware equivalent of "Hello, World."
+.. In this app, the hardware reads some numeric argument from an off-chip source and then echoes it back to an off-chip destination.
+
+.. Spatial apps are always divided into two parts: the portion of code that runs on the host CPU and the portion of code that gets generated as an accelerator.
+.. In this example, the entirety of the app exists inside of **(3)** ``main()``, and the subset of code inside of the scope prefixed with **(7)** ``Accel`` is the hardware part of the app.
+
+.. In the ArgInOut app, we start with three declarations above the ``Accel`` scope:
+
+.. **(4)** We first declare *N* to be one of the command-line input arguments at run-time by setting it equal to ``args(0)``.
+.. We must also explicitly cast this :doc:`../cpu/string` argument to a Spatial type by appending ``.to[Int]``.
+
+.. **(5)** We then, declare *x* to be an :doc:`ArgIn <../accel/memories/reg>` of type :doc:`Int <../common/fixpt>` and
+.. *y* to be an :doc:`ArgOut <../accel/memories/reg>` of type :doc:`Int <../common/fixpt>`.
+
+.. In addition to ArgIns and ArgOuts, Spatial offers :doc:`../accel/memories/dram`, which represents an off-chip memory that
+.. both the host and the accelerator can read from and write to.
 
 
-Because Spatial is a DSL for programming reconfigurable *hardware*, we will begin with the hardware equivalent of "Hello, World."
-In this app, the hardware reads some numeric argument from an off-chip source and then echoes it back to an off-chip destination.
+.. **(6)** Now that we have both a value that represents an ArgIn and another value which reads some value from the command-line at runtime,
+.. we must connect the two with ``setArg(<HW val>, <SW val>)``.
+.. Similarly, we can connect a DRAM to an array with ``setMem(<HW array>, <SW array>)``.
 
-Spatial apps are always divided into two parts: the portion of code that runs on the host CPU and the portion of code that gets generated as an accelerator.
-In this example, the entirety of the app exists inside of **(3)** ``main()``, and the subset of code inside of the scope prefixed with **(7)** ``Accel`` is the hardware part of the app.
-
-In the ArgInOut app, we start with three declarations above the ``Accel`` scope:
-
-**(4)** We first declare *N* to be one of the command-line input arguments at run-time by setting it equal to ``args(0)``.
-We must also explicitly cast this :doc:`../cpu/string` argument to a Spatial type by appending ``.to[Int]``.
-
-**(5)** We then, declare *x* to be an :doc:`ArgIn <../accel/memories/reg>` of type :doc:`Int <../common/fixpt>` and
-*y* to be an :doc:`ArgOut <../accel/memories/reg>` of type :doc:`Int <../common/fixpt>`.
-
-In addition to ArgIns and ArgOuts, Spatial offers :doc:`../accel/memories/dram`, which represents an off-chip memory that
-both the host and the accelerator can read from and write to.
+.. **(7)** Next, we specify the ``Accel`` block.
+.. In this particular app, we simply want to add the number `4` to whatever input argument is read in.
+.. To do this, we just use the Reg ``:=`` operation to write our ArgOut register with ``x + 4``.
+.. In later sections, you will learn what other operations and building blocks Spatial exposes to the developer.
 
 
-**(6)** Now that we have both a value that represents an ArgIn and another value which reads some value from the command-line at runtime,
-we must connect the two with ``setArg(<HW val>, <SW val>)``.
-Similarly, we can connect a DRAM to an array with ``setMem(<HW array>, <SW array>)``.
+.. **(8)**  After the ``Accel`` block, we return to the host code section of an app that will interact with the result generated by the hardware.
+.. Specifically, we start by assigning the ArgOut register to a software variable with ``getArg(<HW val>)``.
+.. Similarly, we can assign a DRAM to a software array with ``getMem(<HW array>)``.
 
-**(7)** Next, we specify the ``Accel`` block.
-In this particular app, we simply want to add the number `4` to whatever input argument is read in.
-To do this, we just use the Reg ``:=`` operation to write our ArgOut register with ``x + 4``.
-In later sections, you will learn what other operations and building blocks Spatial exposes to the developer.
-
-
-**(8)**  After the ``Accel`` block, we return to the host code section of an app that will interact with the result generated by the hardware.
-Specifically, we start by assigning the ArgOut register to a software variable with ``getArg(<HW val>)``.
-Similarly, we can assign a DRAM to a software array with ``getMem(<HW array>)``.
-
-**(9)** Finally, we add any debug and validation code to check if the accelerator is performing as expected.
-In this example, we compute the result we expect the hardware to give, and then :doc:`print <../cpu/debug>` both this number and the number we actually got.
+.. **(9)** Finally, we add any debug and validation code to check if the accelerator is performing as expected.
+.. In this example, we compute the result we expect the hardware to give, and then :doc:`print <../cpu/debug>` both this number and the number we actually got.
 
 ----------------
 

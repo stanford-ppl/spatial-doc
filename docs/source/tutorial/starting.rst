@@ -51,26 +51,28 @@ If you'd like to track the most recent stable updates::
     cd argon && git checkout master
     cd ../scala-virtualized && git checkout argon
 
-Running automated tests requires a few environment variables to be set.  If you are using the recommended
-directory structure in this tutorial, then you can simply run the following command::
+You may need to export your JAVA_HOME environment variable to point to your Java installation (usually /usr/bin)
 
-    cd ${HOME}/spatial-lang
-    source ./init-env.sh
+.. Running automated tests requires a few environment variables to be set.  If you are using the recommended
+.. directory structure in this tutorial, then you can simply run the following command::
 
-If you have some other structure, you need to set the following variables manually.
-It may be easiest to set them in your terminal startup script (e.g. bashrc) so all future sessions have them::
+..     cd ${HOME}/spatial-lang
+..     source ./init-env.sh
 
-    export JAVA_HOME = ### Directory Java is installed, usually /usr/bin
-    export ARGON_HOME = ### Top directory of argon
-    export SPATIAL_HOME = ### Top directory of spatial-lang
-    export VIRTUALIZED_HOME = ### Top directory of scala-virtualized
+.. If you have some other structure, you need to set the following variables manually.
+.. It may be easiest to set them in your terminal startup script (e.g. bashrc) so all future sessions have them::
 
-Once these are all set, you are ready to compile the language.  Run the following::
+..     export JAVA_HOME = ### Directory Java is installed, usually /usr/bin
+..     export ARGON_HOME = ### Top directory of argon
+..     export SPATIAL_HOME = ### Top directory of spatial-lang
+..     export VIRTUALIZED_HOME = ### Top directory of scala-virtualized
 
-    cd ${SPATIAL_HOME}
+You are now ready to compile the language.  Run the following::
+
+    cd spatial-lang # Navigate to root of spatial-lang repository
     sbt compile
 
-A good habit would be to pull from these repositories often and run ``sbt compile`` in ``SPATIAL_HOME``.
+A good habit would be to pull from these repositories often and run ``sbt compile`` in your spatial-lang directory.
 
 
-That's it! Up next, :doc:`learn how to build a basic Spatial program <helloworld>`.
+That's it! Up next, :doc:`learn how to build a basic Spatial program <helloworld>`.  

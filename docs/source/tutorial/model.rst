@@ -1,4 +1,4 @@
-2. The Spatial Programming Model
+5. The Spatial Programming Model
 ================================
 An application in Spatial always has two components: the portion of code that runs on the CPU or host machine and the
 portion of code that runs on the FPGA or other dataflow accelerator.

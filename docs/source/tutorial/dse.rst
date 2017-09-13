@@ -1,4 +1,4 @@
-6. Design Space Exploration with Spatial
+9. Design Space Exploration with Spatial
 ========================================
 
 Coming Soon!

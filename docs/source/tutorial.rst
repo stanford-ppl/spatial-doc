@@ -12,6 +12,9 @@ in Spatial.
 
     tutorial/starting
     tutorial/helloworld
+    tutorial/dotproduct
+    tutorial/gemm
+    tutorial/convolution
     tutorial/model
     tutorial/memories
     tutorial/controllers
