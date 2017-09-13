@@ -10,21 +10,23 @@ In this section, you will learn about the following components in Spatial:
 - Application skeleton (import statements, application creation, accel scope, host scope)
 
 - ArgIn
-
+ 
 - ArgOut
-
+ 
 - HostIO
-
+ 
 - DRAM
-
+ 
 - SRAM
-
+ 
 - Reg
+ 
+- Typing system
 
-- Data transfer between host and accel
-
+- Data transfer between host and accel (setArg, setMem, getArg, getMem, load, store, gather, scatter)
+ 
 - Basic debugging hooks
-
+ 
 - Compiling an app
 
 Application Overview
@@ -34,7 +36,8 @@ In this section, you will see how to put together the bare-minimum Spatial appli
 code does not do any "meaningful" work, it demonstrates the basic primitives that almost all applications 
 have and is intended to be the "Hello, world!" program for hardware.  You will start by generating input and
 output registers to get the accelerator and host to interact with each other, and then add tile transfers
-between the off-chip DRAM and on-chip SRAM.  Finally, you will learn the basic compilation flows for testing the
+between the off-chip DRAM and on-chip SRAM.  You will then learn what functions are provided to test
+functionality and utilize the host.  Finally, you will learn the basic compilation flows for testing the
 functionality of the algorithm, cycle-accurate simulation of the generated RTL, and bitstream generation to
 deploy to a supported FPGA or architecture.
 
@@ -69,7 +72,7 @@ an application that is called `HelloSpatial`::
       }
     }
 
-More to be written on 09/13/2017
+image:: accel_layout.gif
 
 .. Because Spatial is a DSL for programming reconfigurable *hardware*, we will begin with the hardware equivalent of "Hello, World."
 .. In this app, the hardware reads some numeric argument from an off-chip source and then echoes it back to an off-chip destination.
