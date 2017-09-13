@@ -9,16 +9,16 @@ In this section, you will learn about the following components in Spatial:
 
 - Application skeleton (import statements, application creation, accel scope, host scope)
 
+- DRAM
+ 
+- SRAM
+
 - ArgIn
  
 - ArgOut
  
 - HostIO
- 
-- DRAM
- 
-- SRAM
- 
+  
 - Reg
  
 - Typing system
@@ -39,7 +39,17 @@ output registers to get the accelerator and host to interact with each other, an
 between the off-chip DRAM and on-chip SRAM.  You will then learn what functions are provided to test
 functionality and utilize the host.  Finally, you will learn the basic compilation flows for testing the
 functionality of the algorithm, cycle-accurate simulation of the generated RTL, and bitstream generation to
-deploy to a supported FPGA or architecture.
+deploy to a supported FPGA or architecture.  
+
+Below is a visualization of what we will be doing in this tutorial.  We start with a host and an FPGA, both 
+connected to DRAM.  We will then instantiate all of the different ways you can get the two processors to interact
+with each other.  We will create an RTL that will sit inside the FPGA, as well as some C++ code that will sit inside
+the host.  Spatial automatically instantiates a box called "Fringe," which is an FPGA-agnostic hardware design
+that allows the RTL to interact with peripherals, DRAM, PCIe buses, and whatever else is available on a given
+SoC or FPGA board.
+
+.. image:: layout.gif
+
 
 Application Template
 ---------------------
@@ -72,8 +82,42 @@ an application that is called `HelloSpatial`::
       }
     }
 
-.. image:: layout.gif
+DRAM Transfers
+--------------
 
+We will now add the code that will allow us to **1)** create data inside the host, **2)** transfer
+this data to DRAM where it can be acessed by the FPGA, **3)** load the data, **4)** interact with the data
+in on-chip SRAM, and **5)** store the data back to DRAM where it can be accessed by the host.
+
+First, let's create a few data structures inside `main`, above the `Accel` block::
+    
+        val data1D        = Array.tabulate(64){i => i * 3} // Create 1D array with 64 elements, each element being index * 3
+        val data1D_longer = Array.tabulate(1024){i => i} // Create 1D array with 1024 elements
+        val data2D        = (0::64, 0::64){(i,j) => i*100 + j} // Create 64x64 2D, where each element is row * 100 + col
+        val data5D        = (0::2, 0::2, 0::2, 0::2, 0::16){(i,j,k,l,m) => random[Int](5)} // Create 5D tensor, the highest dimension tensor currently supported in Spatial, with each element a random Int between 0 and 5
+
+Now, let's allocate space in DRAM to memcpy this data to, so that the FPGA can read it later::
+
+        val dram1D        = DRAM[Int](64)
+        val dram1D_longer = DRAM[Int](1024)
+        val dram2D        = DRAM[Int](64,64)
+        val data5D        = DRAM[Int](2,2,2,2,16)
+
+Next, we can transfer our generated data into these DRAM allocations::
+
+        setMem(dram1D, data1D)
+        setMem(dram1D_longer, data1D_longer)
+        setMem(dram2D, data2D)
+        setMem(data5D, data5D)
+
+We can also create a few DRAMs that will be written to by the Accel::
+        
+        val dram_result2D = DRAM[Int](64,64)
+        val dram_scatter1D = DRAM[Int](1024)
+
+Now we can move into the Accel block to create some SRAMs to catch and hold data on-chip::
+        
+        
 .. Because Spatial is a DSL for programming reconfigurable *hardware*, we will begin with the hardware equivalent of "Hello, World."
 .. In this app, the hardware reads some numeric argument from an off-chip source and then echoes it back to an off-chip destination.
 
