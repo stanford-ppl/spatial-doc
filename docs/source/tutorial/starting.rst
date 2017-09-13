@@ -102,6 +102,8 @@ you find convenient:
 
 - :doc:`Dot Product <dotproduct>`
 
+ - Tiling
+ 
  - Reduce and Fold
 
  - Sequential execution and Coarse-grain pipelining

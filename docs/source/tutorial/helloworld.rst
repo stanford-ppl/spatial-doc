@@ -527,5 +527,5 @@ the DE1SoC::
 More on stream interfaces TBA.
 
 
-Next, :doc:`learn how to build a more complicated Spatial app, GEMM <gemm>`.
+Next, :doc:`learn how to build a more complicated Spatial app, Dot Product <dotproduct>`.
 
