@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Range &mdash; Spatial 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Spatial 0.1 documentation" href="../index.html"/>
+        <link rel="up" title="Data Structures" href="datastructs.html"/>
+        <link rel="next" title="Tup2" href="tup2.html"/>
+        <link rel="prev" title="Data Structures" href="datastructs.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Spatial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../common.html">Common</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="datastructs.html">Data Structures</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Range</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tup2.html">Tup2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../primitives.html">Primitive Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../typeclasses.html">Type Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html">Math</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../software.html">Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hardware.html">Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory.html">Theory</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Spatial</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../common.html">Common</a> &raquo;</li>
+        
+          <li><a href="datastructs.html">Data Structures</a> &raquo;</li>
+        
+      <li>Range</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/common/range.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="range">
+<span id="id1"></span><h1>Range<a class="headerlink" href="#range" title="Permalink to this headline">¶</a></h1>
+<p>Range represents a sequence of 32b integer values from a given <em>start</em> (inclusive) to <em>end</em> (exclusive) with a non-zero step size.
+Range also has an optional parallelization factor, which is used to determine physical unrolling in hardware.</p>
+<p>In Accel scopes, Range instances can be implicitly converted to <a class="reference internal" href="../accel/memories/counter.html"><span class="doc">Counter</span></a></p>
+<p>Ranges can be created using two different syntax flavors. When unspecified, the default value for <cite>start</cite> is 0, and
+the default value for <cite>step</cite> and <cite>par</cite> are both 1.</p>
+<p>Form 1:</p>
+<div class="highlight-Scala"><div class="highlight"><pre><span></span><span class="k">val</span> <span class="n">range1</span> <span class="k">=</span> <span class="n">max</span> <span class="n">by</span> <span class="n">step</span>        <span class="c1">// start of 0, step by 1, parallelization of 1</span>
+<span class="k">val</span> <span class="n">range2</span> <span class="k">=</span> <span class="n">start</span> <span class="n">until</span> <span class="n">max</span>    <span class="c1">// start of 0, step by 1, parallelization of 1</span>
+<span class="k">val</span> <span class="n">range3</span> <span class="k">=</span> <span class="n">start</span> <span class="n">until</span> <span class="n">max</span> <span class="n">by</span> <span class="n">step</span> <span class="n">par</span> <span class="n">p</span>
+</pre></div>
+</div>
+<p>Form 2:</p>
+<div class="highlight-Scala"><div class="highlight"><pre><span></span><span class="k">val</span> <span class="n">range4</span> <span class="k">=</span> <span class="n">start</span> <span class="o">::</span> <span class="n">end</span>       <span class="c1">// Step of 1, parallelization of 1</span>
+<span class="k">val</span> <span class="n">range5</span> <span class="k">=</span> <span class="n">start</span> <span class="o">::</span> <span class="n">step</span> <span class="o">::</span> <span class="n">end</span> <span class="n">par</span> <span class="n">p</span>
+</pre></div>
+</div>
+<p><strong>Form 1</strong> is typically used for specifying the domain of a loop, while <strong>Form 2</strong> is used
+for Matlab-like syntax when selecting a range of elements from a memory.</p>
+<p>Ranges can also be used to create Scala-like for loops on the CPU::</p>
+<div class="highlight-Scala"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="k">&lt;-</span> <span class="mi">0</span> <span class="n">until</span> <span class="n">max</span> <span class="n">by</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">..</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>This loop will run for all even integers from [0, max). Note that this syntax is only usable on the CPU or in simulation.</p>
+<hr class="docutils" />
+<p><strong>Infix methods</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><cite>class</cite>          <strong>Range</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>::</strong>(end: <a class="reference internal" href="fixpt.html"><span class="doc">Int</span></a>): <a class="reference internal" href="#"><span class="doc">Range</span></a></div>
+<div class="line-block">
+<div class="line">Creates a Range with this Range&#8217;s start, this end as the step size, and the given end</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>by</strong>(step: <a class="reference internal" href="fixpt.html"><span class="doc">Int</span></a>): <a class="reference internal" href="#"><span class="doc">Range</span></a></div>
+<div class="line-block">
+<div class="line">Creates a copy of this range with the same start and end but with the given step size</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>par</strong>(p: <a class="reference internal" href="fixpt.html"><span class="doc">Int</span></a>): <a class="reference internal" href="#"><span class="doc">Range</span></a></div>
+<div class="line-block">
+<div class="line">Creates a copy of this range with the same start, end, and step but with parallelization <strong>p</strong></div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>foreach</strong>(func: <a class="reference internal" href="fixpt.html"><span class="doc">Int</span></a> =&gt; Unit): Unit</div>
+<div class="line-block">
+<div class="line">Iterates over all integers in this range, calling <strong>func</strong> on each</div>
+<div class="line"><br /></div>
+<div class="line-block">
+<div class="line">[<strong>NOTE</strong>] This method is unsynthesizable, and can be used only on the CPU or in simulation.</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p><strong>Implicit methods</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>rangeToCounter</strong>(reg: <a class="reference internal" href="#"><span class="doc">Range</span></a>): <a class="reference internal" href="../accel/memories/counter.html"><span class="doc">Counter</span></a></div>
+<div class="line-block">
+<div class="line">Implicitly creates a hardware <a class="reference internal" href="../accel/memories/counter.html"><span class="doc">Counter</span></a> from this Range</div>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tup2.html" class="btn btn-neutral float-right" title="Tup2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="datastructs.html" class="btn btn-neutral" title="Data Structures" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017,Stanford PPL.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

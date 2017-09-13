@@ -1,0 +1,434 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>FltPt &mdash; Spatial 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Spatial 0.1 documentation" href="../index.html"/>
+        <link rel="up" title="Primitive Types" href="../primitives.html"/>
+        <link rel="next" title="Type Classes" href="../typeclasses.html"/>
+        <link rel="prev" title="FixPt" href="fixpt.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Spatial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../common.html">Common</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="datastructs.html">Data Structures</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../primitives.html">Primitive Types</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixpt.html">FixPt</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">FltPt</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../typeclasses.html">Type Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html">Math</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../software.html">Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hardware.html">Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory.html">Theory</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Spatial</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../common.html">Common</a> &raquo;</li>
+        
+          <li><a href="../primitives.html">Primitive Types</a> &raquo;</li>
+        
+      <li>FltPt</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/common/fltpt.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="fltpt">
+<span id="id1"></span><h1>FltPt<a class="headerlink" href="#fltpt" title="Permalink to this headline">¶</a></h1>
+<p>FltPt[G,E] represents an arbitrary precision, IEEE-754-like representation.
+FltPt values are always assumed to be signed.</p>
+<p>The type parameters for FltPt are:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="73%" />
+<col width="23%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>G</td>
+<td>Number of significand bits, including sign bit</td>
+<td>(_2 - _64)</td>
+</tr>
+<tr class="row-even"><td>E</td>
+<td>Number of exponent bits</td>
+<td>(_1 - _64)</td>
+</tr>
+</tbody>
+</table>
+<p>Note that numbers of bits use the underscore prefix as integers cannot be used as type parameters in Scala.</p>
+<p><strong>Type Aliases</strong></p>
+<p>Specific types of FltPt values can be managed using type aliases.
+New type aliases can be created using::</p>
+<div class="highlight-Scala"><div class="highlight"><pre><span></span><span class="k">type</span> <span class="kt">MyType</span> <span class="o">=</span> <span class="nc">FltPt</span><span class="o">[</span><span class="k">_##</span>,<span class="k">_##</span><span class="o">]</span>
+</pre></div>
+</div>
+<p>Spatial defines the following type aliases by default:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="13%" />
+<col width="35%" />
+<col width="38%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>type</strong></td>
+<td>Half</td>
+<td><a class="reference internal" href="#"><span class="doc">FltPt</span></a>[_11,_5]</td>
+<td>IEEE-754 half precision</td>
+</tr>
+<tr class="row-even"><td><strong>type</strong></td>
+<td>Float</td>
+<td><a class="reference internal" href="#"><span class="doc">FltPt</span></a>[_24,_8]</td>
+<td>IEEE-754 single precision</td>
+</tr>
+<tr class="row-odd"><td><strong>type</strong></td>
+<td>Double</td>
+<td><a class="reference internal" href="#"><span class="doc">FltPt</span></a>[_53,_11]</td>
+<td>IEEE-754 double precision</td>
+</tr>
+</tbody>
+</table>
+<p>Note that the Float and Double types shadow their respective unstaged Scala types.
+In the case where an unstaged type is required, use the full <cite>scala.*</cite> name.</p>
+<p><strong>Infix methods</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><cite>class</cite>          <strong>FltPt</strong>[G, E]</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>unary_-</strong>: <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]</div>
+<div class="line-block">
+<div class="line">Negates this fixed point value</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>+</strong>(rhs: <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]): <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]</div>
+<div class="line-block">
+<div class="line">Floating point addition</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>-</strong>(rhs: <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]): <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]</div>
+<div class="line-block">
+<div class="line">Floating point subtraction</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>*</strong>(rhs: <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]): <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]</div>
+<div class="line-block">
+<div class="line">Floating point multiplication</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>**</strong>(exp: scala.Int): <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]</div>
+<div class="line-block">
+<div class="line">Integer power, implemented in hardware as a reduction tree with <strong>exp</strong> inputs</div>
+<div class="line"><br /></div>
+<div class="line">* <strong>exp</strong> - exponent, currently must be an integer greater than zero</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>/</strong>(rhs: <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]): <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]</div>
+<div class="line-block">
+<div class="line">Floating point division</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>&lt;</strong>(rhs: <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]): <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]</div>
+<div class="line-block">
+<div class="line">Less than comparison.</div>
+<div class="line">Returns <cite>true</cite> if this value is less than the right hand side. Otherwise returns <cite>false</cite>.</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>&lt;=</strong>(rhs: <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]): <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]</div>
+<div class="line-block">
+<div class="line">Less than or equal comparison</div>
+<div class="line">Returns <cite>true</cite> if this value is less than or equal to the right hand side. Otherwise returns <cite>false</cite>.</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>&gt;</strong>(rhs: <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]): <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]</div>
+<div class="line-block">
+<div class="line">Greater than comparison</div>
+<div class="line">Returns <cite>true</cite> if this value is greater than the right hand side. Otherwise returns <cite>false</cite>.</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>&gt;=</strong>(rhs: <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]): <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]</div>
+<div class="line-block">
+<div class="line">Greater than or equal comparison</div>
+<div class="line">Returns <cite>true</cite> if this value is greater than or equal to the right hand side. Otherwise returns <cite>false</cite>.</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>!=</strong>(rhs: <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]): <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]</div>
+<div class="line-block">
+<div class="line">Value inequality comparison</div>
+<div class="line">Returns <cite>true</cite> if this value is not equal to the right hand side. Otherwise returns <cite>false</cite>.</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>==</strong>(rhs: <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]): <a class="reference internal" href="#"><span class="doc">FltPt</span></a>[G,E]</div>
+<div class="line-block">
+<div class="line">Value equality comparison</div>
+<div class="line">Returns <cite>true</cite> if this value is equal to the right hand side. Otherwise returns <cite>false</cite>.</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>toString</strong>: <a class="reference internal" href="../cpu/string.html"><span class="doc">String</span></a></div>
+<div class="line-block">
+<div class="line">Creates a printable String from this value</div>
+<div class="line"><br /></div>
+<div class="line">[<strong>NOTE</strong>] This method is unsynthesizable, and can be used only on the CPU or in simulation.</div>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../typeclasses.html" class="btn btn-neutral float-right" title="Type Classes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="fixpt.html" class="btn btn-neutral" title="FixPt" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017,Stanford PPL.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

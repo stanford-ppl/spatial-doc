@@ -1,0 +1,314 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>0. Getting Started &mdash; Spatial 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Spatial 0.1 documentation" href="../index.html"/>
+        <link rel="up" title="Tutorial" href="../tutorial.html"/>
+        <link rel="next" title="1. Hello, Spatial!" href="helloworld.html"/>
+        <link rel="prev" title="Tutorial" href="../tutorial.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Spatial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../common.html">Common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software.html">Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hardware.html">Hardware</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorial.html">Tutorial</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">0. Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-from-binary">Installation (From Binary)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installation-from-source">Installation (From Source)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="helloworld.html">1. Hello, Spatial!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">2. The Spatial Programming Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memories.html">3. Memory Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">4. Controller Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transfers.html">5. Transfer Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dse.html">6. Design Space Exploration with Spatial</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory.html">Theory</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Spatial</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../tutorial.html">Tutorial</a> &raquo;</li>
+        
+      <li>0. Getting Started</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutorial/starting.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started">
+<h1>0. Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>First, make sure to download and install the following prerequisites:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.python.org/downloads/">Python (2 or 3)</a></li>
+<li><a class="reference external" href="http://www.scala-sbt.org">Scala SBT</a></li>
+<li><a class="reference external" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java JDK</a></li>
+</ul>
+<p>While it&#8217;s not necessarily required, it may be easier to learn to use Spatial if you&#8217;ve had experience with Scala
+or a similar functional programming language in the past.</p>
+<p>If you&#8217;d like, check out a <a class="reference external" href="https://www.tutorialspoint.com/scala/">Scala tutorial</a> like the one linked here for general info on programming in Scala.</p>
+<p>Finally, please sign up for the <a class="reference external" href="https://groups.google.com/forum/#!forum/spatial-lang-users">Spatial users google group</a> if you have any questions.</p>
+</div>
+<div class="section" id="installation-from-binary">
+<h2>Installation (From Binary)<a class="headerlink" href="#installation-from-binary" title="Permalink to this headline">¶</a></h2>
+<p>Run the following command to clone the quickstart repository:</p>
+<div class="highlight-Scala"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="o">://</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">stanford</span><span class="o">-</span><span class="n">ppl</span><span class="o">/</span><span class="n">spatial</span><span class="o">-</span><span class="n">quickstart</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>To test to make sure it&#8217;s working:</p>
+<div class="highlight-Scala"><div class="highlight"><pre><span></span><span class="n">bin</span><span class="o">/</span><span class="n">spatial</span> <span class="nc">HelloSpatial</span>
+<span class="o">./</span><span class="nc">HelloSpatial</span><span class="o">.</span><span class="n">sim</span> <span class="mi">32</span>
+</pre></div>
+</div>
+<p>That&#8217;s it! You&#8217;re ready to create and run Spatial programs!</p>
+</div>
+<div class="section" id="installation-from-source">
+<h2>Installation (From Source)<a class="headerlink" href="#installation-from-source" title="Permalink to this headline">¶</a></h2>
+<p>Clone two repositories: <cite>argon</cite> and <cite>spatial-lang</cite>.
+You can place these anywhere as long as you point your environment variables correctly.
+This tutorial will assume you place all three in ${HOME}/spatial.</p>
+<p>Run the following (bash) commands to clone:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>mkdir <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/spatial
+<span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/spatial
+git clone https://github.com/stanford-ppl/spatial-lang.git
+git clone https://github.com/stanford-ppl/argon.git
+</pre></div>
+</div>
+<p>Note that the current setup assumes spatial-lang and argon are on the <code class="docutils literal"><span class="pre">master</span></code> branch.</p>
+<p>Next, make sure the following environment variables are set.  If you are using the recommended
+directory structure in this tutorial, then you can simply run the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="si">${</span><span class="nv">HOME</span><span class="si">}</span>/spatial/spatial-lang
+<span class="nb">source</span> ./init-env.sh
+</pre></div>
+</div>
+<p>If you have some other structure, you need to set the following variables manually.
+It may be easiest to set them in your terminal startup script (e.g. bashrc) so all future sessions have them:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">JAVA_HOME</span> <span class="o">=</span> <span class="c1">### Directory Java is installed, usually /usr/bin</span>
+<span class="nb">export</span> <span class="nv">ARGON_HOME</span> <span class="o">=</span> <span class="c1">### Top directory of argon</span>
+<span class="nb">export</span> <span class="nv">SPATIAL_HOME</span> <span class="o">=</span> <span class="c1">### Top directory of spatial-lang</span>
+<span class="nb">export</span> <span class="nv">VIRTUALIZED_HOME</span> <span class="o">=</span> <span class="c1">### Top directory of scala-virtualized</span>
+</pre></div>
+</div>
+<p>Once these are all set, you are ready to compile the language.  Run the following:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="si">${</span><span class="nv">SPATIAL_HOME</span><span class="si">}</span>
+make full
+</pre></div>
+</div>
+<p>A good habit would be to pull from these repositories often and run <code class="docutils literal"><span class="pre">make</span> <span class="pre">full</span></code> in <code class="docutils literal"><span class="pre">SPATIAL_HOME</span></code>.</p>
+<p>That&#8217;s it! Up next, <a class="reference internal" href="helloworld.html"><span class="doc">learn how to build a basic Spatial program</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="helloworld.html" class="btn btn-neutral float-right" title="1. Hello, Spatial!" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../tutorial.html" class="btn btn-neutral" title="Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017,Stanford PPL.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,387 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>RegFile &mdash; Spatial 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Spatial 0.1 documentation" href="../../index.html"/>
+        <link rel="up" title="Memory Templates" href="../memories.html"/>
+        <link rel="next" title="SRAM" href="sram.html"/>
+        <link rel="prev" title="Reg" href="reg.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Spatial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../common.html">Common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software.html">Software</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hardware.html">Hardware</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../memories.html">Memory Templates</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="bus.html">Bus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="counter.html">Counter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="counterchain.html">CounterChain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dram.html">DRAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fifo.html">FIFO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="filo.html">FILO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linebuffer.html">LineBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lut.html">LUT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reg.html">Reg</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">RegFile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sram.html">SRAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sparsetile.html">SparseTile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="streamin.html">StreamIn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="streamout.html">StreamOut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tile.html">Tile</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../controllers.html">Controller Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../controltags.html">Controller Tags</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory.html">Theory</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Spatial</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../hardware.html">Hardware</a> &raquo;</li>
+        
+          <li><a href="../memories.html">Memory Templates</a> &raquo;</li>
+        
+      <li>RegFile</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/accel/memories/regfile.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="regfile">
+<span id="id1"></span><h1>RegFile<a class="headerlink" href="#regfile" title="Permalink to this headline">¶</a></h1>
+<p><strong>RegFiles</strong> are on-chip arrays of registers with fixed size. RegFiles currently can be specified as one or two dimensional.
+Like other memories in Spatial, the contents of RegFiles are persistent across loop iterations, even when they are declared
+in an inner scope.</p>
+<p>Using the <strong>&lt;&lt;=</strong> operator, RegFiles can be used as shift registers. 2-dimensional RegFiles must select a specific
+row or column before shifting using <cite>regfile(row, *)</cite> or regfile(<a href="#id2"><span class="problematic" id="id3">*</span></a>, col)`, respectively.</p>
+<hr class="docutils" />
+<p><strong>Static methods</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="88%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>RegFile</strong>[T:<a class="reference internal" href="../../typeclasses/bits.html"><span class="doc">Bits</span></a>](columns: <a class="reference internal" href="../../common/fixpt.html"><span class="doc">Int</span></a>): <a class="reference internal" href="#"><span class="doc">RegFile</span></a>[T]</div>
+<div class="line-block">
+<div class="line">Creates a 1-dimensional RegFile with given number of <strong>columns</strong>.</div>
+<div class="line"><strong>columns</strong> must be a statically determinable signed integer.</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>RegFile</strong>[T:<a class="reference internal" href="../../typeclasses/bits.html"><span class="doc">Bits</span></a>](rows: <a class="reference internal" href="../../common/fixpt.html"><span class="doc">Int</span></a>, columns: <a class="reference internal" href="../../common/fixpt.html"><span class="doc">Int</span></a>): <a class="reference internal" href="#"><span class="doc">RegFile</span></a>[T]</div>
+<div class="line-block">
+<div class="line">Creates a 2-dimensional RegFile with given number of <strong>rows</strong> and <strong>columns</strong>.</div>
+<div class="line"><strong>rows</strong> and <strong>columns</strong> must be statically determinable signed integers.</div>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<p><strong>Infix methods</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><cite>class</cite>         <strong>RegFile</strong>[T]</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>apply</strong>(address: <a class="reference internal" href="../../common/fixpt.html"><span class="doc">Int</span></a>*): T</div>
+<div class="line-block">
+<div class="line">Creates a load port to this RegFile at the given multi-dimensional address.</div>
+<div class="line">The number of indices should match the number of dimensions the SRAM was declared with.</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>update</strong>(address: <a class="reference internal" href="../../common/fixpt.html"><span class="doc">Int</span></a>*, data: T)</div>
+<div class="line-block">
+<div class="line">Creates a store port to this RegFile, writing <strong>data</strong> to the given <strong>address</strong></div>
+<div class="line">The number of indices should match the number of dimensions the SRAM was declared with.</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>load</strong>(tile: <a class="reference internal" href="tile.html"><span class="doc">Tile</span></a>[T]): Unit</div>
+<div class="line-block">
+<div class="line">Creates a burst load of a <a class="reference internal" href="tile.html"><span class="doc">Tile</span></a> of a <a class="reference internal" href="dram.html"><span class="doc">DRAM</span></a> memory to this local memory.</div>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><cite>class</cite>         <strong>RegFile (1D)</strong>[T]</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>&lt;&lt;=</strong>(data: T): Unit</div>
+<div class="line-block">
+<div class="line">Turns this RegFile into a shift register.</div>
+<div class="line">Shifts the given data element into index 0 and all other positions over by 1.</div>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><cite>class</cite>         <strong>RegFile (2D)</strong>[T]</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>apply</strong>(row: <a class="reference internal" href="../../common/fixpt.html"><span class="doc">Int</span></a>, columns: Wildcard): Unit</div>
+<div class="line-block">
+<div class="line">Gives a 1D RegFile view of the specified row of this RegFile.</div>
+<div class="line">Used to specify shifting a value into a specific row of a 2D RegFile.</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>apply</strong>(rows: Wildcard, column: <a class="reference internal" href="../../common/fixpt.html"><span class="doc">Int</span></a>): Unit</div>
+<div class="line-block">
+<div class="line">Gives a 1D RegFile view of the specified column of this RegFile.</div>
+<div class="line">Used to specify shifting a value into a specific column of a 2D RegFile.</div>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sram.html" class="btn btn-neutral float-right" title="SRAM" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="reg.html" class="btn btn-neutral" title="Reg" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017,Stanford PPL.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

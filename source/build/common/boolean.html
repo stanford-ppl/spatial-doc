@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Boolean &mdash; Spatial 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Spatial 0.1 documentation" href="../index.html"/>
+        <link rel="up" title="Primitive Types" href="../primitives.html"/>
+        <link rel="next" title="FixPt" href="fixpt.html"/>
+        <link rel="prev" title="Primitive Types" href="../primitives.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Spatial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../common.html">Common</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="datastructs.html">Data Structures</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../primitives.html">Primitive Types</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fixpt.html">FixPt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fltpt.html">FltPt</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../typeclasses.html">Type Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math.html">Math</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../software.html">Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hardware.html">Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory.html">Theory</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Spatial</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../common.html">Common</a> &raquo;</li>
+        
+          <li><a href="../primitives.html">Primitive Types</a> &raquo;</li>
+        
+      <li>Boolean</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/common/boolean.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="boolean">
+<span id="id1"></span><h1>Boolean<a class="headerlink" href="#boolean" title="Permalink to this headline">¶</a></h1>
+<p>Boolean represents a staged single boolean value.
+Note that this type shadows the unstaged Scala Boolean.
+In the case where an unstaged Boolean type is required, use the full <cite>scala.Boolean</cite> name.</p>
+<p><strong>Infix methods</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="85%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><cite>class</cite>          <strong>Boolean</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>unary_!</strong>: <a class="reference internal" href="#"><span class="doc">Boolean</span></a></div>
+<div class="line-block">
+<div class="line">Negates the given boolean expression</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>&amp;&amp;</strong>(y: <a class="reference internal" href="#"><span class="doc">Boolean</span></a>): <a class="reference internal" href="#"><span class="doc">Boolean</span></a></div>
+<div class="line-block">
+<div class="line">Boolean AND.</div>
+<div class="line">Compares two booleans and returns <cite>true</cite> if both are <cite>true</cite></div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>||</strong>(y: <a class="reference internal" href="#"><span class="doc">Boolean</span></a>): <a class="reference internal" href="#"><span class="doc">Boolean</span></a></div>
+<div class="line-block">
+<div class="line">Boolean OR.</div>
+<div class="line">Compares two booleans and returns <cite>true</cite> if at least one is <cite>true</cite></div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>^</strong>(y: <a class="reference internal" href="#"><span class="doc">Boolean</span></a>): <a class="reference internal" href="#"><span class="doc">Boolean</span></a></div>
+<div class="line-block">
+<div class="line">Boolean exclusive-or (XOR).</div>
+<div class="line">Compares two booleans and returns <cite>true</cite> if exactly one is <cite>true</cite></div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>!=</strong>(y: <a class="reference internal" href="#"><span class="doc">Boolean</span></a>): <a class="reference internal" href="#"><span class="doc">Boolean</span></a></div>
+<div class="line-block">
+<div class="line">Value inequality, equivalent to exclusive-or (XOR).</div>
+<div class="line">Compares two booleans and returns <cite>true</cite> if exactly one is <cite>true</cite></div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>==</strong>(y: <a class="reference internal" href="#"><span class="doc">Boolean</span></a>): <a class="reference internal" href="#"><span class="doc">Boolean</span></a></div>
+<div class="line-block">
+<div class="line">Value equality, equivalent to exclusive-nor (XNOR).</div>
+<div class="line">Compares two booleans and returns <cite>true</cite> if both are <cite>true</cite> or both are <cite>false</cite></div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>toString</strong>: <a class="reference internal" href="../cpu/string.html"><span class="doc">String</span></a></div>
+<div class="line-block">
+<div class="line">Creates a printable String from this value</div>
+<div class="line"><br /></div>
+<div class="line">[<strong>NOTE</strong>] This method is unsynthesizable, and can be used only on the CPU or in simulation.</div>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fixpt.html" class="btn btn-neutral float-right" title="FixPt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../primitives.html" class="btn btn-neutral" title="Primitive Types" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017,Stanford PPL.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

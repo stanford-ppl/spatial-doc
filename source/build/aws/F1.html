@@ -1,0 +1,319 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. F1 Instances &mdash; Spatial 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Spatial 0.1 documentation" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Spatial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../common.html">Common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../software.html">Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hardware.html">Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory.html">Theory</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Spatial</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>2. F1 Instances</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/aws/F1.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="f1-instances">
+<h1>2. F1 Instances<a class="headerlink" href="#f1-instances" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary-of-steps">
+<h2>Summary of Steps<a class="headerlink" href="#summary-of-steps" title="Permalink to this headline">¶</a></h2>
+<p>Unlike simulation, running on the F1 requires a few simple manual steps in the initial Spatial release.
+These depend on your personal AWS account (EC2 and S3). Specifically,
+following synthesis Amazon requires the bitstream to be uploaded to your S3 account, and an EC2
+account is needed to launch an F1 instance to run the spatial application in hardware.</p>
+<p>This tutorial describes the following steps:</p>
+<ul class="simple">
+<li>Authenticating your AWS account</li>
+<li>Generating and synthesizing a Spatial design. In our experience, synthesis/place/route takes 4-12 hours depending on design size</li>
+<li>Uploading the bitstream (AKA design checkpoint, or DCP) to Amazon S3 and waiting approximately 1 hour for the Amazon FPGA Image (AFI) associated with this bitstream to become valid</li>
+<li>Opening an F1 instance through your EC2 account</li>
+<li>Running the spatial application</li>
+</ul>
+</div>
+<div class="section" id="step-1-authenticating-your-aws-account">
+<h2>Step 1: Authenticating your AWS account<a class="headerlink" href="#step-1-authenticating-your-aws-account" title="Permalink to this headline">¶</a></h2>
+<p>Follow <a class="reference external" href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html#id_root-user_manage_add-key">these steps</a> to create a file <code class="docutils literal"><span class="pre">rootkey.csv</span></code>. This file can be placed anywhere, and will be needed for later steps to run commands associated with your AWS account.</p>
+<p>Then add the path to that file to your .bashrc as follows:</p>
+<div class="highlight-Scala"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="nc">AWS_CONFIG_FILE</span><span class="o">=/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">rootkey</span><span class="o">.</span><span class="n">csv</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-2-generate-and-synthesize-your-application">
+<h2>Step 2: Generate and Synthesize your application<a class="headerlink" href="#step-2-generate-and-synthesize-your-application" title="Permalink to this headline">¶</a></h2>
+<p>The first step is the same as compiling a Spatial application for any other target, shown here for the <code class="docutils literal"><span class="pre">MatMult_outer</span></code> example:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="si">${</span><span class="nv">SPATIAL_HOME</span><span class="si">}</span>
+bin/spatial MatMult_outer --synth
+</pre></div>
+</div>
+<p>You can replace <code class="docutils literal"><span class="pre">MatMult_outer</span></code> with any application, as described in <a class="reference internal" href="../tutorial/helloworld.html"><span class="doc">the previous tutorial</span></a>.</p>
+<p>Now generate the F1 design and run synthesis/place/route to begin creating the Amazon FPGA Image (AFI):</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="si">${</span><span class="nv">SPATIAL_HOME</span><span class="si">}</span>/gen/MatMult_outer
+make aws-F1-afi
+</pre></div>
+</div>
+<p>We tested this both using Amazon&#8217;s <a class="reference external" href="https://aws.amazon.com/marketplace/pp/B06VVYBLZZ#">FPGA Developer AMI</a> and
+also locally using their <a class="reference external" href="https://github.com/aws/aws-fpga/blob/06ba5922d888781ee4405865e0367c31b4893199/hdk/docs/on_premise_licensing_help.md">instructions</a>.</p>
+<p>Notice that once this command completes, Vivado synthesis will be running in the background. A text file called <code class="docutils literal"><span class="pre">create_spatial_AFI_instructions.txt</span></code> has also been created. Follow the instructions in this text file (also described below) once Vivado completes to upload the Design Checkpoint (DCP) and finish creating the AFI.</p>
+<p>Vivado will have completed once the <code class="docutils literal"><span class="pre">*.vivado.log</span></code> file in <code class="docutils literal"><span class="pre">aws-fpga/hdk/cl/examples/MatMult_outer/build/scripts</span></code> has printed <code class="docutils literal"><span class="pre">Finished</span> <span class="pre">creating</span> <span class="pre">final</span> <span class="pre">tar</span> <span class="pre">file</span> <span class="pre">in</span> <span class="pre">to_aws</span> <span class="pre">directory.</span></code>. You can also check if the <code class="docutils literal"><span class="pre">vivado</span></code> process has stopped.</p>
+</div>
+<div class="section" id="step-3-creating-the-afi">
+<h2>Step 3: Creating the AFI<a class="headerlink" href="#step-3-creating-the-afi" title="Permalink to this headline">¶</a></h2>
+<p>See the generated file <code class="docutils literal"><span class="pre">create_spatial_AFI_instructions.txt</span></code>, which guides the user step-by-step on how to upload the DCP to S3 and then run the <code class="docutils literal"><span class="pre">create-fpga-image</span></code> command.</p>
+<p>Once <code class="docutils literal"><span class="pre">create-fpga-image</span></code> has been run, wait for the <code class="docutils literal"><span class="pre">logs</span></code> directory in S3 to be filled, and ensure that the AFI state in the file called <code class="docutils literal"><span class="pre">State</span></code> is &#8220;available&#8221;.</p>
+</div>
+<div class="section" id="step-4-opening-an-f1-instance">
+<h2>Step 4: Opening an F1 instance<a class="headerlink" href="#step-4-opening-an-f1-instance" title="Permalink to this headline">¶</a></h2>
+<p>Start an F1 instance in the AWS console. We tested with Amazon&#8217;s <a class="reference external" href="https://aws.amazon.com/marketplace/pp/B06VVYBLZZ#">FPGA Developer AMI</a> although this might not be necessary.</p>
+<p>If you already have an existing F1 instance (e.g. for a previous Spatial application), skip to Step 5. If this is your first time starting the F1 instance, follow the one-time setup steps below.</p>
+<p>Clone Amazon&#8217;s <a class="reference external" href="https://github.com/aws/aws-fpga/">EC2 FPGA Hardware and Software Development Kit</a> to any location, e.g. <code class="docutils literal"><span class="pre">/home/centos/src/project_data</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/aws/aws-fpga.git
+</pre></div>
+</div>
+<p>Put the following (replacing with your chosen path above) in your <code class="docutils literal"><span class="pre">.bashrc</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> /home/centos/src/project_data/aws-fpga/
+<span class="nb">source</span> /home/centos/src/project_data/aws-fpga/sdk_setup.sh
+</pre></div>
+</div>
+<p>Source the <code class="docutils literal"><span class="pre">.bashrc</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">source</span> ~/.bashrc
+</pre></div>
+</div>
+<p>Then follow <a class="reference external" href="https://github.com/aws/aws-fpga/blob/master/sdk/linux_kernel_drivers/edma/edma_install.md#howToCompile">these instructions</a> to build and install the required EDMA driver. Summary:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="nb">cd</span> sdk/linux_kernel_drivers/edma/
+make
+<span class="nb">echo</span> <span class="s1">&#39;edma&#39;</span> <span class="p">|</span> sudo tee --append /etc/modules-load.d/edma.conf
+sudo cp edma-drv.ko /lib/modules/<span class="sb">`</span>uname -r<span class="sb">`</span>/
+sudo depmod
+sudo modprobe edma-drv
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-5-running-the-spatial-application">
+<h2>Step 5: Running the Spatial application<a class="headerlink" href="#step-5-running-the-spatial-application" title="Permalink to this headline">¶</a></h2>
+<p>Generate the host (software) binary using:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>make aws-F1-sw
+</pre></div>
+</div>
+<p>You can do this on your local machine and copy over the binary to the F1 (this might require changing permissions to run it), or compile the binary on the F1 instance.
+To do it on the F1 instance, you only need the <code class="docutils literal"><span class="pre">software/runtime</span></code> and <code class="docutils literal"><span class="pre">software/include</span></code> directories of the generated Spatial AWS application (e.g. <code class="docutils literal"><span class="pre">aws-fpga/hdk/cl/examples/MatMult_outer</span></code>), and can compile
+using <code class="docutils literal"><span class="pre">make</span> <span class="pre">all</span></code> in <code class="docutils literal"><span class="pre">software/runtime</span></code>.</p>
+<p>Also modify the file <code class="docutils literal"><span class="pre">load.sh</span></code> in <code class="docutils literal"><span class="pre">software/runtime</span></code> to paste in the agfi ID returned above. Eventually this will be automated.</p>
+<p>Run the application using the commands below in the <code class="docutils literal"><span class="pre">runtime</span></code> directory. Eventually the call to <code class="docutils literal"><span class="pre">load.sh</span></code> will be automated within <code class="docutils literal"><span class="pre">Top</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>bash load.sh
+sudo ./Top arg1 arg2 ...
+</pre></div>
+</div>
+<p>Notes on the above commands:</p>
+<ul class="simple">
+<li>Currently we require a board reset (part of <code class="docutils literal"><span class="pre">load.sh</span></code>) prior to running an application. Eventually this will not be needed.</li>
+<li>Eventually the <code class="docutils literal"><span class="pre">agfi</span></code> above will be automatically written to a file which the Spatial application reads. For now it is part of <code class="docutils literal"><span class="pre">load.sh</span></code>.</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017,Stanford PPL.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

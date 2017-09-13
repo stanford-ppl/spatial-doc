@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Sequential &mdash; Spatial 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Spatial 0.1 documentation" href="../../index.html"/>
+        <link rel="up" title="Controller Tags" href="../controltags.html"/>
+        <link rel="next" title="Stream" href="stream.html"/>
+        <link rel="prev" title="Pipe" href="pipe.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Spatial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../common.html">Common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software.html">Software</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../hardware.html">Hardware</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../memories.html">Memory Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../controllers.html">Controller Templates</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../controltags.html">Controller Tags</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="pipe.html">Pipe</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Sequential</a></li>
+<li class="toctree-l3"><a class="reference internal" href="stream.html">Stream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../theory.html">Theory</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Spatial</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../hardware.html">Hardware</a> &raquo;</li>
+        
+          <li><a href="../controltags.html">Controller Tags</a> &raquo;</li>
+        
+      <li>Sequential</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/accel/controltags/sequential.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sequential">
+<span id="id1"></span><h1>Sequential<a class="headerlink" href="#sequential" title="Permalink to this headline">¶</a></h1>
+<p><strong>Sequential</strong> is a controller tag which tells the compiler not to attempt to parallelize or to pipeline inner computation.
+In this scheduling mode, the controller&#8217;s counter will only increment when it&#8217;s last stage is complete.
+This tag is needed primarily when your algorithm contains long loop-carry dependencies that cannot be optimized away.</p>
+<hr class="docutils" />
+<p><strong>Static methods</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="6%" />
+<col width="94%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><cite>object</cite>         <strong>Sequential</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>apply</strong>( =&gt; Unit): Unit</div>
+<div class="line-block">
+<div class="line">Creates a Unit Pipe, akin to a Foreach with only one iteration</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>apply</strong>(ctr: <a class="reference internal" href="../memories/counter.html"><span class="doc">Counter</span></a>)(func: <a class="reference internal" href="../../common/fixpt.html"><span class="doc">Int</span></a> =&gt; Unit): Unit</div>
+<div class="line-block">
+<div class="line">Shorthand for <code class="docutils literal"><span class="pre">Sequential.Foreach</span></code>  - sequential Foreach over a one dimensional space</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>apply</strong>(ctr1: <a class="reference internal" href="../memories/counter.html"><span class="doc">Counter</span></a>, ctr2: <a class="reference internal" href="../memories/counter.html"><span class="doc">Counter</span></a>)(func: (<a class="reference internal" href="../../common/fixpt.html"><span class="doc">Int</span></a>, <a class="reference internal" href="../../common/fixpt.html"><span class="doc">Int</span></a>) =&gt; Unit): Unit</div>
+<div class="line-block">
+<div class="line">Shorthand for <code class="docutils literal"><span class="pre">Sequential.Foreach</span></code> - sequential Foreach over a two dimensional space</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>apply</strong>(ctr1: <a class="reference internal" href="../memories/counter.html"><span class="doc">Counter</span></a>, ctr2: <a class="reference internal" href="../memories/counter.html"><span class="doc">Counter</span></a>, ctr3: <a class="reference internal" href="../memories/counter.html"><span class="doc">Counter</span></a>)(func: (<a class="reference internal" href="../../common/fixpt.html"><span class="doc">Int</span></a>, <a class="reference internal" href="../../common/fixpt.html"><span class="doc">Int</span></a>, <a class="reference internal" href="../../common/fixpt.html"><span class="doc">Int</span></a>) =&gt; Unit): Unit</div>
+<div class="line-block">
+<div class="line">Shorthand for <code class="docutils literal"><span class="pre">Sequential.Foreach</span></code> - sequential Foreach over a three dimensional space</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>apply</strong>(ctr1: <a class="reference internal" href="../memories/counter.html"><span class="doc">Counter</span></a>, ctr2: <a class="reference internal" href="../memories/counter.html"><span class="doc">Counter</span></a>, ctr3: <a class="reference internal" href="../memories/counter.html"><span class="doc">Counter</span></a>, ctr4: <a class="reference internal" href="../memories/counter.html"><span class="doc">Counter</span></a>, ctr5: <a class="reference internal" href="../memories/counter.html"><span class="doc">Counter</span></a>*)(func: List[<a class="reference internal" href="../../common/fixpt.html"><span class="doc">Int</span></a>] =&gt; Unit): Unit</div>
+<div class="line-block">
+<div class="line">Shorthand for <code class="docutils literal"><span class="pre">Sequential.Foreach</span></code> - sequential Foreach over an N-dimensional space</div>
+<div class="line">Note that <strong>func</strong> is on a List of iterators.</div>
+<div class="line">The number of iterators will be the same as the number of counters supplied.</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>Fold</strong>: <a class="reference internal" href="../controllers/fold.html"><span class="doc">Fold</span></a></div>
+<div class="line-block">
+<div class="line">Reference to the <a class="reference internal" href="../controllers/fold.html"><span class="doc">Fold</span></a> object with sequential execution specified as the controller tag.</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>Foreach</strong>: <a class="reference internal" href="../controllers/foreach.html"><span class="doc">Foreach</span></a></div>
+<div class="line-block">
+<div class="line">Reference to the <a class="reference internal" href="../controllers/foreach.html"><span class="doc">Foreach</span></a> object with sequential execution specified as the controller tag.</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>MemFold</strong>: <a class="reference internal" href="../controllers/memfold.html"><span class="doc">MemFold</span></a></div>
+<div class="line-block">
+<div class="line">Reference to the <a class="reference internal" href="../controllers/memfold.html"><span class="doc">MemFold</span></a> object with sequential execution specified as the controller tag.</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>MemReduce</strong>: <a class="reference internal" href="../controllers/memreduce.html"><span class="doc">MemReduce</span></a></div>
+<div class="line-block">
+<div class="line">Reference to the <a class="reference internal" href="../controllers/memreduce.html"><span class="doc">MemReduce</span></a> object with sequential execution specified as the controller tag.</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td colspan="2"><div class="first last line-block">
+<div class="line">def   <strong>Reduce</strong>: <a class="reference internal" href="../controllers/reduce.html"><span class="doc">Reduce</span></a></div>
+<div class="line-block">
+<div class="line">Reference to the <a class="reference internal" href="../controllers/reduce.html"><span class="doc">Reduce</span></a> object with sequential execution specified as the controller tag.</div>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="stream.html" class="btn btn-neutral float-right" title="Stream" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pipe.html" class="btn btn-neutral" title="Pipe" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017,Stanford PPL.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: ''
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
