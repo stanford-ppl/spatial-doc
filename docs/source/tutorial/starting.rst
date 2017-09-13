@@ -76,67 +76,67 @@ you find convenient:
 
 - :doc:`Hello, World! <helloworld>`
 
-- - Application skeleton (import statements, application creation, accel scope, host scope)
+ - Application skeleton (import statements, application creation, accel scope, host scope)
 
-- - ArgIn
+ - ArgIn
  
-- - ArgOut
+ - ArgOut
  
-- - HostIO
+ - HostIO
  
-- - DRAM
+ - DRAM
  
-- - SRAM
+ - SRAM
  
-- - Reg
+ - Reg
  
-- - Typing system
+ - Typing system
 
-- - Data transfer between host and accel (setArg, setMem, getArg, getMem, load, store, gather, scatter)
+ - Data transfer between host and accel (setArg, setMem, getArg, getMem, load, store, gather, scatter)
  
-- - Basic debugging hooks
+ - Basic debugging hooks
  
-- - Compiling an app
+ - Compiling an app
 
 
 - :doc:`Dot Product <dotproduct>`
 
-- - Reduce and Fold
+ - Reduce and Fold
 
-- - Sequential execution and Coarse-grain pipelining
+ - Sequential execution and Coarse-grain pipelining
  
-- - Parallelization
+ - Parallelization
  
-- - Basic buffering and banking
+ - Basic buffering and banking
 
 
 - :doc:`General Matrix Multiply (GEMM) <gemm>`
 
-- - MemReduce and MemFold
+ - MemReduce and MemFold
 
-- - Debugging with instrumentation 
+ - Debugging with instrumentation 
  
-- - Advanced banking
+ - Advanced banking
  
 
 - :doc:`Convolution <convolution>`
 
-- - Foreach
+ - Foreach
 
-- - LineBuffer 
+ - LineBuffer 
  
-- - ShiftRegister
+ - ShiftRegister
  
-- - LUT
+ - LUT
 
-- - Branching
+ - Branching
 
 
 - :doc:`Needleman-Wunsch <nw>`
 
-- - FSM
+ - FSM
 
-- - FIFO 
+ - FIFO 
  
-- - File IO and text management
+ - File IO and text management
  
