@@ -8,6 +8,7 @@ First, make sure to download and install the following prerequisites:
 
 - `Scala SBT <http://www.scala-sbt.org>`_ ** NOTE: You must use version 0.13.15 **
 - `Java JDK <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_
+- `VCS <https://www.synopsys.com/verification/simulation/vcs.html>`_ ** NOTE: License is required **
 
 While it's not at all required, it may be easier to learn to use Spatial if you've had experience with Scala
 or a similar functional programming language in the past.  Knowledge of Scala will allow you to use
