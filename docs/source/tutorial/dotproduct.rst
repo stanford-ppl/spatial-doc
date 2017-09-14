@@ -27,12 +27,6 @@ sum of the element-wise products between two vectors of data. For this example, 
 data in this case are 32-bit signed fixed point numbers with 8 fractional bits. You could, however, 
 also do the same operations with custom struct types.  
 
-The animation below shows the basic idea on how we will implement Dot Product.  Later animations
-will show the hardware we generate to perform the computation, and how we can use the code to 
-tradeoff complexity and resources for performance by adding pipelining and parallelization.
-
-.. image:: dotoverview.gif
-
 
 Data Setup and Validation
 -------------------------
@@ -85,7 +79,7 @@ method::
 Now we can break the vectors into 64-element chunks, and then process these chunks locally on the FPGA using the ``Reduce`` 
 construct::
 	
-	result := Reduce(Reg[T](0))(length by tileSize){tile => // Returns Reg[T], writes to ArgOut
+	result := Sequential.Reduce(Reg[T](0))(length by tileSize){tile => // Returns Reg[T], writes to ArgOut
 		val tile1 = SRAM[T](tileSize)
 		val tile2 = SRAM[T](tileSize)
 
@@ -106,6 +100,9 @@ effectively reset on each iteration of its parent controller.  This means that o
 will write the first product directly to the register. On the second iteration of this innermost reduce, it will write the current value of local_accum
 PLUS the next product.  This means that if local_accum were declared to have an initial value of 5, reducing on top of it will start at 0, not 5.
 
+Also, notice the ``Sequential`` modifier on the outer reduce loop.  This ensures that everything inside of this loop will happen sequentially and without
+coarse-grained pipelining.  We will play more with this parameter in the next section, `Pipelining and Parallelization`_.
+
 The ``Reduce`` construct takes four pieces of information: **1)** an existing Reg or a new Reg in which to accumulate, 
 **2)** a range and step for its counter to scan, **3)** a map function, and **4)** a reduce function.  If a new Reg is declared
 inside the ``Reduce``, then the structure returns this register.  Importantly, note that a declaration of ``val local_accum = Reg[T](0)`` does not
@@ -118,7 +115,7 @@ is persistent and not reset unless explicitly reset by the user.  In the case wh
 5, the Fold on top of this Reg would start at 5 and not 0.  The code would look like this::
 
     val accum = Reg[T](0)
-    Foreach(length by tileSize){tile =>
+    Sequential.Foreach(length by tileSize){tile =>
         val tile1 = SRAM[T](tileSize)
         val tile2 = SRAM[T](tileSize)
 
@@ -159,109 +156,4 @@ Pipelining and Parallelization
 ------------------------------
 
 
-
-
-So far in this example, we assumed that B (our chunk size) evenly divides the vector size (N). What if this isn't the case?
-If B doesn't divide N, we have an edge case where the remaining number of elements to be operated on is less than B.
-The size of the current tile we actually want to compute on then is actually `T = min(B, N - B)`. Let's factor that in::
-
-    @virtualize def dotproduct(a: Array[Float], b: Array[Float]): Float = {
-        assert(a.length == b.length)
-        val len = a.length
-        val N = ArgIn[Int]
-        setArg(N, len)
-
-        val dramA = DRAM[Int](N)
-        val dramB = DRAM[Int](N)
-        setMem(dramA, a)
-        setMem(dramB, a)
-
-        Accel {
-            val result = Reg[Float](0.0f)
-            Reduce(result)(N by B){i =>
-                val sramA = SRAM[Float](B)
-                val sramB = SRAM[Float](B)
-                val T = min(B, N - B)     // Edge case handling
-                sramA load dramA(i::i+T)  // Now loads T elements
-                sramB load dramB(i::i+T)  // Now loads T elements
-
-                Reduce(0.0f)(T by 1){j =>   // Now iterates over T
-                    sramA(j) * sramB(j)
-                }{(x,y) => x + y }
-            }{(x,y) => x + y }
-            output := result   // Write to a register the host can read
-        }
-        getArg(output)  // Read the output register on the host side
-    }
-
-Host Code
----------
-To call our accelerator, all we need now are some arrays to operate on. Let's just load these from some files called
-"vectorA.csv" and "vectorB.csv"::
-
-    @virtualize def main(): Unit = {
-        val a = loadCSV1D[Float]("vectorA.csv")
-        val b = loadCSV1D[Float]("vectorB.csv")
-        val prod = dotproduct(a, b)
-
-        println("Product of A and B: " + prod)
-    }
-
-That's all for this example!
-
-
-Final Code
-----------
-::
-
-    import spatial._
-    import org.virtualized._
-
-    object DotProduct extends SpatialApp {
-
-        /**
-         * Computes the dot product of two arrays on a hardware accelerator.
-         * Arrays a and b should have the same length.
-         */
-        @virtualize def dotproduct(a: Array[Float], b: Array[Float]): Float = {
-            assert(a.length == b.length)
-            val len = a.length
-            val N = ArgIn[Int]
-            setArg(N, len)
-
-            val dramA = DRAM[Int](N)
-            val dramB = DRAM[Int](N)
-            setMem(dramA, a)
-            setMem(dramB, a)
-
-            Accel {
-                val result = Reg[Float](0.0f)
-                Reduce(result)(N by B){i =>
-                    val sramA = SRAM[Float](B)
-                    val sramB = SRAM[Float](B)
-                    val T = min(B, N - B)
-                    sramA load dramA(i::i+T)
-                    sramB load dramB(i::i+T)
-
-                    Reduce(0.0f)(T by 1){j =>
-                        sramA(j) * sramB(j)
-                    }{(x,y) => x + y }
-                }{(x,y) => x + y }
-                output := result   // Write to a register the host can read
-            }
-            getArg(output)  // Read the output register on the host side
-        }
-
-        /**
-         * Entry point for our program. Host CPU starts here.
-         */
-        @virtualize def main(): Unit = {
-            val a = loadCSV[Float]("vectorA.csv")
-            val b = loadCSV[Float]("vectorB.csv")
-            val prod = dotproduct(a, b)
-
-            println("Product of A and B: " + prod)
-        }
-    }
-
-Next example: :doc:`outerproduct`
+.. Next example: :doc:`outerproduct`
