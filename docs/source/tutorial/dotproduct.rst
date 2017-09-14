@@ -293,4 +293,6 @@ Refer back to the `Compiling`_ and `Synthesizing and Testing`_ sections on the p
     }
 
 
-.. Next example: :doc:`outerproduct`
+When you understand the concepts introduced in this page, you may move on to the next example, :doc:`GEMM`, where you
+will learn to perform reductions on memories, include instrumentation hooks to help balance your pipeline,
+and see more complicated examples of banking.
