@@ -8,6 +8,7 @@ First, make sure to download and install the following prerequisites:
 
 - `Scala SBT <http://www.scala-sbt.org>`_ ** NOTE: You must use version 0.13.15 **
 - `Java JDK <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_
+- `VCS <https://www.synopsys.com/verification/simulation/vcs.html>`_ ** NOTE: License is required **
 
 While it's not at all required, it may be easier to learn to use Spatial if you've had experience with Scala
 or a similar functional programming language in the past.  Knowledge of Scala will allow you to use
@@ -77,67 +78,69 @@ you find convenient:
 
 - :doc:`Hello, World! <helloworld>`
 
-- - Application skeleton (import statements, application creation, accel scope, host scope)
+ - Application skeleton (import statements, application creation, accel scope, host scope)
 
-- - ArgIn
+ - ArgIn
  
-- - ArgOut
+ - ArgOut
  
-- - HostIO
+ - HostIO
  
-- - DRAM
+ - DRAM
  
-- - SRAM
+ - SRAM
  
-- - Reg
+ - Reg
  
-- - Typing system
+ - Typing system
 
-- - Data transfer between host and accel (setArg, setMem, getArg, getMem, load, store, gather, scatter)
+ - Data transfer between host and accel (setArg, setMem, getArg, getMem, load, store, gather, scatter)
  
-- - Basic debugging hooks
+ - Basic debugging hooks
  
-- - Compiling an app
+ - Compiling an app
 
 
 - :doc:`Dot Product <dotproduct>`
 
-- - Reduce and Fold
+ - Tiling
+ 
+ - Reduce and Fold
 
-- - Sequential execution and Coarse-grain pipelining
+ - Sequential execution and Coarse-grain pipelining
  
-- - Parallelization
+ - Parallelization
  
-- - Basic buffering and banking
+ - Basic buffering and banking
 
 
 - :doc:`General Matrix Multiply (GEMM) <gemm>`
 
-- - MemReduce and MemFold
+ - MemReduce and MemFold
 
-- - Debugging with instrumentation 
+ - Debugging with instrumentation 
  
-- - Advanced banking
+ - Advanced banking
  
 
 - :doc:`Convolution <convolution>`
 
-- - Foreach
+ - Foreach
 
-- - LineBuffer 
+ - LineBuffer 
  
-- - ShiftRegister
+ - ShiftRegister
  
-- - LUT
+ - LUT
 
-- - Branching
+ - Branching
 
 
 - :doc:`Needleman-Wunsch <nw>`
 
-- - FSM
+ - FSM
 
-- - FIFO 
+ - FIFO 
  
-- - File IO and text management
+ - File IO and text management
  

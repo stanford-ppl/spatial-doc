@@ -2,9 +2,35 @@
 1. Vector Inner Product
 =======================
 
+
+Catalog of Features
+-------------------
+
+In this section, you will learn about the following components in Spatial:
+
+ - Tiling
+
+ - Reduce and Fold
+
+ - Sequential execution and Coarse-grain pipelining
+ 
+ - Parallelization
+ 
+ - Basic buffering and banking
+
+
+Application Overview
+--------------------
+
 Inner product (also called dot product) is an extremely simple linear algebra kernel, defined as the
 sum of the element-wise products between two vectors of data. For this example, we'll assume that the
-data in this case are scalar Floats. You could, however, also do the same operations with custom struct types.
+data in this case are 32-bit signed fixed point numbers with 8 fractional bits. You could, however, 
+also do the same operations with custom struct types.  
+
+The animation below shows the basic idea on how we will implement Dot Product.  Later animations
+will show the hardware we generate to perform the computation, and how we can use the code to 
+tradeoff complexity and resources for performance by adding pipelining and parallelization.
+
 
 Let's look at how to write it in Spatial. Let's start with the application's template. We'll first create a method which
 takes two Arrays, `a` and `b`::
