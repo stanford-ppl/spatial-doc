@@ -48,16 +48,16 @@ recently **pushed** element.
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 |      `object`         **FILO**\[T\]                                                                                                        |
 +=====================+======================================================================================================================+
-| |               def   **empty**\(): :doc:`../../common/boolean`                                                                            |
+| |               def   **empty**\(): :doc:`../../common/bit`                                                                                |
 | |                       True when the FILO contains no elements, false otherwise                                                           |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **full**\(): :doc:`../../common/boolean`                                                                             |
+| |               def   **full**\(): :doc:`../../common/bit`                                                                                 |
 | |                       True when the FILO cannot fit any more elements, false otherwise                                                   |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **almostFull**\(): :doc:`../../common/boolean`                                                                       |
+| |               def   **almostFull**\(): :doc:`../../common/bit`                                                                           |
 | |                       True when the FILO can fit exactly one more element before being full                                              |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **almostEmpty**\(): :doc:`../../common/boolean`                                                                      |
+| |               def   **almostEmpty**\(): :doc:`../../common/bit`                                                                          |
 | |                       True when the FILO contains exactly one element                                                                    |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 | |               def   **numel**\(): :doc:`Int <../../common/fixpt>`                                                                        |
@@ -66,13 +66,13 @@ recently **pushed** element.
 | |               def   **pop**\(): T                                                                                                        |
 | |                       Creates a pop (destructive read) port to this FILO                                                                 |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **pop**\(en: :doc:`../../common/boolean`): T                                                                         |
+| |               def   **pop**\(en: :doc:`../../common/bit`): T                                                                             |
 | |                       Creates a pop (destructive read) port to this FILO with data-dependent enable **en**                               |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 | |               def   **push**\(data: T): Unit                                                                                             |
 | |                       Creates a push (write) port to this FILO which is always enabled with its parent controller                        |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **push**\(data: T, en: :doc:`../../common/boolean`): Unit                                                            |
+| |               def   **push**\(data: T, en: :doc:`../../common/bit`): Unit                                                                |
 | |                       Creates a push (write) port to this FILO with data-dependent enable **en**                                         |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 | |               def   **load**\(tile: :doc:`tile`\[T\]): Unit                                                                              |

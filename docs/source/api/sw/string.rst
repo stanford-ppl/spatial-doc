@@ -39,6 +39,6 @@ In the case where an unstaged type is required, use the full name `java.lang.Str
 | |                       \[**NOTE**\] This method is currently defined for:                                                                 |
 | |                          - :doc:`FixPt[_,_,_] <../common/fixpt>`                                                                         |
 | |                          - :doc:`FltPt[_,_] <../common/fltpt>`                                                                           |
-| |                          - :doc:`Boolean <../common/boolean>`                                                                            |
+| |                          - :doc:`Boolean <../common/bit>`                                                                                |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 

@@ -37,25 +37,25 @@ In the case where an unstaged Boolean type is required, use the full `scala.Bool
 | |               def   **unary_!**\: :doc:`bit`                                                                                             |
 | |                       Negates the given boolean expression.                                                                              |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **&&**\(y: :doc:`bit`): :doc:`bit` 				                                                                           |
+| |               def   **&&**\(y: :doc:`bit`): :doc:`bit`                                                                                   |
 | |                       Boolean AND.                                                                                                       |
 | |                       Compares two Booleans and returns `true` if both are `true`.                                                       |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **||**\(y: :doc:`bit`): :doc:`bit`			                                                                             |
+| |               def   **||**\(y: :doc:`bit`): :doc:`bit`                                                                                   |
 | |                       Boolean OR.                                                                                                        |
 | |                       Compares two Booleans and returns `true` if at least one is `true`.                                                |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **^**\(y: :doc:`bit`): :doc:`bit` 				                                                                           |
+| |               def   **^**\(y: :doc:`bit`): :doc:`bit`                                                                                    |
 | |                       Boolean exclusive-or (XOR).                                                                                        |
 | |                       Compares two Booleans and returns `true` if exactly one is `true`.                                                 |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **!=**\(y: :doc:`bit`): :doc:`bit` 				                                                                           |
-| |                       Value inequality (equivalent to exclusive-or). 			                                                               |
+| |               def   **!=**\(y: :doc:`bit`): :doc:`bit`                                                                                   |
+| |                       Value inequality (equivalent to exclusive-or).                                                                     |
 | |                       Compares two Booleans and returns `true` if exactly one is `true`.                                                 |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **==**\(y: :doc:`bit`): :doc:`bit` 				                                                                           |
+| |               def   **==**\(y: :doc:`bit`): :doc:`bit`                                                                                   |
 | |                       Value equality, equivalent to exclusive-nor (XNOR).                                                                |
-| |                       Compares two Booleans and returns `true` if both are `true` or both are `false`               	                   |
+| |                       Compares two Booleans and returns `true` if both are `true` or both are `false`                                    |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 | |               def   **toString**\: :doc:`../sw/string`                                                                                   |
 | |                       Creates a printable String from this value                                                                         |

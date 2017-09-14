@@ -59,13 +59,13 @@ Combination of :doc:`arith`, :doc:`bits`, and :doc:`order` type classes
 | |      abstract def   **length**\(x: T, y: T): T                                                                                           |
 | |                       Returns the number of bits required to represent this type.                                                        |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **lessThan**\(x: T, y: T): :doc:`../common/boolean`                                                                  |
+| |      abstract def   **lessThan**\(x: T, y: T): :doc:`../common/bit`                                                                      |
 | |                       Returns `true` if x is less than y, `false` otherwise                                                              |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **lessThanOrEqual**\(x: T, y: T): :doc:`../common/boolean`                                                           |
+| |      abstract def   **lessThanOrEqual**\(x: T, y: T): :doc:`../common/bit`                                                               |
 | |                       Returns `true` if x is less than or equal to y, `false` otherwise                                                  |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **equal**\(x: T, y: T): :doc:`../common/boolean`                                                                     |
+| |      abstract def   **equal**\(x: T, y: T): :doc:`../common/bit`                                                                         |
 | |                       Returns `true` if x and y are equal, `false` otherwise                                                             |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 

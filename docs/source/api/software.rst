@@ -6,6 +6,8 @@ This section lists types which are non-synthesizable (i.e. only available on the
 .. toctree::
    sw/array
    sw/debug
+   sw/hashmap
+   sw/matrix
    sw/string
    sw/transfer
 

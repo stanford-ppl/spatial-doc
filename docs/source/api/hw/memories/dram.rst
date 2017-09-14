@@ -63,14 +63,14 @@ In Spatial, DRAMs are specified outside the Accel scope in the host code.
 | |                       using all addresses from the **addrs** :doc:`sram` .                                                                                |
 | |                       Note that creation of SparseTiles is currently only supported on 1-dimensional DRAMs.                                               |
 | |                                                                                                                                                           |
-| | 	                  * **addrs** \- SRAM with addresses to load                                                                                          |
+| |                     * **addrs** \- SRAM with addresses to load                                                                                            |
 +---------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 | |               def   **apply**\(addrs\: :doc:`sram`\[:doc:`Int <../../common/fixpt>`\], size\: :doc:`Int <../../common/fixpt>`): :doc:`sparsetile`\[T\]    |
 | |                       Creates a reference to a :doc:`sparsetile` of this DRAM for use in scatter and gather transfers                                     |
 | |                       using **size** addresses from the **addrs** :doc:`sram` .                                                                           |
 | |                       Note that creation of SparseTiles is currently only supported on 1-dimensional DRAMs.                                               |
 | |                                                                                                                                                           |
-| | 	                  * **addrs** \- SRAM with addresses to load                                                                                          |
+| |                     * **addrs** \- SRAM with addresses to load                                                                                            |
 | |                       * **size** \- the number of addresses to use                                                                                        |
 +---------------------+---------------------------------------------------------------------------------------------------------------------------------------+
 

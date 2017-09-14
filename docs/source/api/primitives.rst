@@ -2,6 +2,6 @@ Primitive Types
 ===============
 
 .. toctree::
-   common/boolean
+   common/bit
    common/fixpt
    common/fltpt

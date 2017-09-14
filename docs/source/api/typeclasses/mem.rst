@@ -32,10 +32,10 @@ Type class used to supply evidence that type T is a local memory, potentially wi
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 |      `trait`         **Mem**\[T,C\]                                                                                                        |
 +=====================+======================================================================================================================+
-| |      abstract def   **load**\(mem: C\[T\], indices: Seq\[:doc:`Int <../common/fixpt>`\], en: :doc:`../common/boolean`): T                |
+| |      abstract def   **load**\(mem: C\[T\], indices: Seq\[:doc:`Int <../common/fixpt>`\], en: :doc:`../common/bit`): T                    |
 | |                       Loads an element from mem at address given by indices and with enable signal en                                    |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **store**\(mem: C\[T\], indices: Seq\[:doc:`Int <../common/fixpt>`\], data: T, en: :doc:`../common/boolean`): Unit   |
+| |      abstract def   **store**\(mem: C\[T\], indices: Seq\[:doc:`Int <../common/fixpt>`\], data: T, en: :doc:`../common/bit`): Unit       |
 | |                       Stores the element data into mem at address given by indices with enable signal en                                 |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 | |      abstract def   **iterator**\(mem: C\[T\]): Seq\[:doc:`../hw/memories/counterchain`\]                                                |

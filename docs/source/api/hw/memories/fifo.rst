@@ -48,16 +48,16 @@ FIFOs preserve the ordering between elements as they are enqueued. A FIFO's **de
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 |      `object`         **FIFO**\[T\]                                                                                                        |
 +=====================+======================================================================================================================+
-| |               def   **empty**\(): :doc:`../../common/boolean`                                                                            |
+| |               def   **empty**\(): :doc:`../../common/bit`                                                                                |
 | |                       True when the FIFO contains no elements, false otherwise                                                           |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **full**\(): :doc:`../../common/boolean`                                                                             |
+| |               def   **full**\(): :doc:`../../common/bit`                                                                                 |
 | |                       True when the FIFO cannot fit any more elements, false otherwise                                                   |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **almostFull**\(): :doc:`../../common/boolean`                                                                       |
+| |               def   **almostFull**\(): :doc:`../../common/bit`                                                                           |
 | |                       True when the FIFO can fit exactly one more element before being full                                              |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **almostEmpty**\(): :doc:`../../common/boolean`                                                                      |
+| |               def   **almostEmpty**\(): :doc:`../../common/bit`                                                                          |
 | |                       True when the FIFO contains exactly one element                                                                    |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 | |               def   **numel**\(): :doc:`Int <../../common/fixpt>`                                                                        |
@@ -66,13 +66,13 @@ FIFOs preserve the ordering between elements as they are enqueued. A FIFO's **de
 | |               def   **deq**\(): T                                                                                                        |
 | |                       Creates a dequeue (destructive read) port to this FIFO                                                             |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **deq**\(en: :doc:`../../common/boolean`): T                                                                         |
+| |               def   **deq**\(en: :doc:`../../common/bit`): T                                                                             |
 | |                       Creates a dequeue (read) port to this FIFO with data-dependent enable **en**                                       |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 | |               def   **enq**\(data: T): Unit                                                                                              |
 | |                       Creates an enqueue (write) port to this FIFO which is always enabled with its parent controller                    |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **enq**\(data: T, en: :doc:`../../common/boolean`): Unit                                                             |
+| |               def   **enq**\(data: T, en: :doc:`../../common/bit`): Unit                                                                 |
 | |                       Creates an enqueue (write) port to this FIFO with data-dependent enable **en**                                     |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 | |               def   **load**\(tile: :doc:`tile`\[T\]): Unit                                                                              |

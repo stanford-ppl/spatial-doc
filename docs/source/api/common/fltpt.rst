@@ -29,11 +29,11 @@ FltPt values are always assumed to be signed.
 
 The type parameters for FltPt are:
 
-+---+------------------------------------------------+---------------+
-| G | Number of significand bits, including sign bit | (_2 - _64)    |
-+---+------------------------------------------------+---------------+
-| E | Number of exponent bits                        | (_1 - _64)    |
-+---+------------------------------------------------+---------------+
++---+-----+------------------------------------------------+---------------+
+| G | INT | Number of significand bits, including sign bit | (_2 - _64)    |
++---+-----+------------------------------------------------+---------------+
+| E | INT | Number of exponent bits                        | (_1 - _64)    |
++---+-----+------------------------------------------------+---------------+
 
 Note that numbers of bits use the underscore prefix as integers cannot be used as type parameters in Scala.
 
@@ -66,7 +66,7 @@ In the case where an unstaged type is required, use the full `scala.*` name.
 |      `class`          **FltPt**\[G, E\]                                                                                                    |
 +=====================+======================================================================================================================+
 | |               def   **unary_-**\: :doc:`fltpt`\[G,E\]                                                                                    |
-| |                       Negates this fixed point value                                                                                     |
+| |                       Negates this floating point value.                                                                                 |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 | |               def   **+**\(rhs: :doc:`fltpt`\[G,E\]): :doc:`fltpt`\[G,E\]                                                                |
 | |                       Floating point addition                                                                                            |

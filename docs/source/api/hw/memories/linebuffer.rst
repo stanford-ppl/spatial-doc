@@ -61,7 +61,7 @@ Up to 5-dimensional LineBuffers are currently supported.
 | |                       Creates an enqueue (write) port to this LineBuffer, writing **data** to the current column                         |
 | |                       in the current receiving buffer                                                                                    |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **enq**\(data: T, en: :doc:`../../common/boolean`)                                                                   |
+| |               def   **enq**\(data: T, en: :doc:`../../common/bit`)                                                                       |
 | |                       Creates an enqueue (write) port to this LineBuffer with data-dependent enable **en**                               |
 | |                       writing **data** to the current column in the current receiving buffer                                             |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+

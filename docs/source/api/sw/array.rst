@@ -78,13 +78,13 @@ In the case where an unstaged Array type is required, use the full `scala.Array`
 | |               def   **reduce**\(func: (T,T) => T): T                                                                                     |
 | |                       Reduces the elements in this Array into a single element using associative function **func**.                      |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **filter**\(predicate: T => :doc:`../common/boolean`): :doc:`array`\[T\]                                             |
+| |               def   **filter**\(predicate: T => :doc:`../common/bit`): :doc:`array`\[T\]                                                 |
 | |                       Creates a new Array with all elements in this Array which satisfy the given **predicate**.                         |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 | |               def   **flatMap**\[R\](func: T => :doc:`array`\[R\]): :doc:`array`\[R\]                                                    |
 | |                       Creates a new Array by concatenating the results of **func** applied to all elements in this Array.                |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **groupByReduce**\[K,V\](key: T => K)(value: T => V)(reduce: (V,V) => V): :doc:`hashmap`[K,V]	                       |
+| |               def   **groupByReduce**\[K,V\](key: T => K)(value: T => V)(reduce: (V,V) => V): :doc:`hashmap`[K,V]                        |
 | |                       Partitions this array using the **key** function, then maps each element using **value**, and                      |
 | |                       finally combines values in each bin using **reduce**.                                                              |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+

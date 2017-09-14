@@ -30,10 +30,10 @@ These operations are available for use on the CPU and during simulation to aid r
 **Methods**
 
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **assert**\(cond: :doc:`../common/boolean`): Unit                                                                    |
+| |               def   **assert**\(cond: :doc:`../common/bit`): Unit                                                                        |
 | |                       Checks that the given condition **cond** is true. If not, exits the program with an exception.                     |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **assert**\(cond: :doc:`../common/boolean`, message: :doc:`string`): Unit                                            |
+| |               def   **assert**\(cond: :doc:`../common/bit`, message: :doc:`string`): Unit                                                |
 | |                     Checks that the given condition **cond** is true. If not, exits the program with the given **message**.              |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 | |               def   **print**\(message: :doc:`string`): Unit                                                                             |
