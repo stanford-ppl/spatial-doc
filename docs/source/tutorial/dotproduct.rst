@@ -145,7 +145,7 @@ we execute the inner pipe::
     Accel {
         val accum = Reg[T](0)
         Sequential.Foreach(length by tileSize){tile =>
-            val numel = min(tileSize, length - tile)
+            val numel = min(tileSize.to[Int], length - tile)
             val tile1 = SRAM[T](tileSize)
             val tile2 = SRAM[T](tileSize)
 
@@ -174,12 +174,13 @@ In order to exploit this technique, you simply need to remove the ``Sequential``
 the outer loop.  By default, all controllers will pipeline their children controllers if no
 modifiers are added.  In this dot product, there are two child stages inside the outer pipe 
 (parallel load of tiles 1 and 2 is the first stage, and reduction over the tiles is the second 
-stage).  The resulting code looks like this::
+stage).  This kind of coarse-grain pipeline is implemented using asynchronous handshaking signals
+between each child stage and their respective parent.  The resulting code looks like this::
 
     Accel {
         val accum = Reg[T](0)
         Foreach(length by tileSize){tile =>
-            val numel = min(tileSize, length - tile)
+            val numel = min(tileSize.to[Int], length - tile)
             val tile1 = SRAM[T](tileSize)
             val tile2 = SRAM[T](tileSize)
 
@@ -220,7 +221,76 @@ of memories that is necessary to ensure the user gets the correct logical behavi
 The compiler also generates the necessary reduction tree and parallel hardware required to feed
 the reduction loop.  The animation below demonstrates this innermost parallelization.
 
+.. image:: dotpar.gif
 
+Finally, the language also exposes parallelization at controllers beyond the innermost ones.  In this particular application,
+the outer ``Reduce`` can be parallelized, enabling us to operate on multiple tiles at the same time in parallel.  When
+loops containing other controllers and operations are parallelized, the compiler automatically unrolls the body and duplicates
+whatever hardware is necessary.  It routes the proper lanes of the counter to each of the unrolled bodies and executes them 
+in parallel.  Below is an animation depicting this mode of operation.
+
+.. image:: dotopar.gif
+
+Notice that the accumulator in stage 2 is now double-buffered.  This is because the final reduction stage of the outer reduce
+is actually viewed as a third stage in the hierarchical control scheme.  This means that we need to protect whatever value is
+in the accumulator when the buffer switches and the third stage prepares to reduce and consume the partial sums.
+
+The reason we could not use the ``Fold`` version with outer parallelization is because it would require us to have multiple
+controllers all competing to write to the same register.  When there is outer-level parallelization, anything declared inside
+the body of the controller goes along for the ride when unrolled.  This is why we must declare the SRAMs inside of the outer loop.
+In the case of the ``Fold`` app, we had to declare the accumulator above the outer loop so that it is visible at the end when
+we write the result to the ArgOut.  Using an outer reduce lets us work on multiple tiles in parallel and merge their results in 
+the final stage of the controller.
+
+Finally, below is the complete app that includes all of the performance-oriented features outlined in this page of the tutorial.
+Refer back to the `Compiling`_ and `Synthesizing and Testing`_ sections on the previous page for a refresher on how to test your app.::
+
+    import spatial.dsl._
+    import org.virtualized._
+
+    object DotProduct extends SpatialApp {
+
+      @virtualize
+      def main() {
+
+        type T = FixPt[TRUE,_24,_8]
+        val tileSize = 64
+        
+        val N = args(0).to[Int]
+        val length = ArgIn[Int]
+        setArg(length, N)
+        val result = ArgOut[T]
+        
+        val vector1_data = Array.tabulate(N){i => random[T](5)}
+        val vector2_data = Array.tabulate(N){i => random[T](5)}
+
+        val vector1 = DRAM[T](length) // DRAMs can be sized by ArgIns
+        val vector2 = DRAM[T](length)
+
+        setMem(vector1, vector1_data)
+        setMem(vector2, vector2_data)
+
+
+        Accel {
+            result := Reduce(Reg[T](0))(length by tileSize par 2){tile =>
+                val numel = min(tileSize.to[Int], length - tile)
+                val tile1 = SRAM[T](tileSize)
+                val tile2 = SRAM[T](tileSize)
+
+                tile1 load vector1(tile :: tile + numel)
+                tile2 load vector2(tile :: tile + numel)
+
+                Reduce(Reg[T](0))(numel by 1 par 4){i => tile1(i) * tile2(i)}{_+_} 
+            }{_+_}
+        }
+        
+        val result_dot = getArg(result)
+        val gold_dot = vector1_data.zip(vector2_data){_*_}.reduce{_+_}
+        val cksum = gold_dot == result_dot
+        println("Received " + result_dot + ", wanted " + gold_dot)
+        println("Pass? " + cksum)
+      }
+    }
 
 
 .. Next example: :doc:`outerproduct`
