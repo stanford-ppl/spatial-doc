@@ -462,7 +462,7 @@ Below is a copy-pastable version of the code outlined above::
           val gathered_sram = SRAM[Int](64)  // Create SRAM to hold data
           gathered_sram gather dram1D_longer(sram1D par 1, 64)  // Use the first 64 elements in sram1D as the addresses in dram1D_longer to collect, and store them into gathered_sram
 
-          dram_scatter1D(sram1D par 1, 64) scatter gathered_sram // For the first 64 elements, place element i of gathered_sram into the address indicated by the i'th element of sram1D 
+          dram_scatter1D(sram1D par 1, 64) scatter gathered_sram // For the first 64 elements, place element i of gathered_sram into the address indicated by the i-th element of sram1D 
 
           val reg1 = Reg[Int](5) // Create register with initial value of 5
           val reg2 = Reg[T] // Default initial value for a Reg is 0
@@ -470,7 +470,6 @@ Below is a copy-pastable version of the code outlined above::
           Pipe{reg2 := argin2} // Load from ArgIn
           argout1 := reg1 + reg2.value.to[Int] // Cast the value in reg2 to Int and add it to reg1
           io1 := reg1
-
         }
 
         // 6. More code to be deployed to the host device, generally
