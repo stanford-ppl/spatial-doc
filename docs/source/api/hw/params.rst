@@ -33,7 +33,7 @@ Related methods
 
 .. parsed-literal::
 
-  :maroon:`def` parameter(x: Int): :doc:`Index <fixpt>`
+  :maroon:`def` parameter(x: Int): :doc:`Index <../common/fixpt>`
 
 
 

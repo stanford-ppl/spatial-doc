@@ -39,7 +39,7 @@ Tup2[A,B] is a simple data structure used to hold a pair of staged values.
 | |               def   **_2**\: B                                                                                                           |
 | |                       Returns the second field in this tuple                                                                             |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **toString**\: :doc:`../cpu/string`                                                                                  |
+| |               def   **toString**\: :doc:`../sw/string`                                                                                   |
 | |                       Creates a printable String from this value                                                                         |
 | |                                                                                                                                          |
 | |                       \[**NOTE**\] This method is unsynthesizable, and can be used only on the CPU or in simulation.                     |

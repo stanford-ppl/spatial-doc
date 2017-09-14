@@ -56,7 +56,7 @@ In the case where an unstaged Boolean type is required, use the full `scala.Bool
 | |                       Value equality, equivalent to exclusive-nor (XNOR).                                                                |
 | |                       Compares two booleans and returns `true` if both are `true` or both are `false`                                    |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **toString**\: :doc:`../cpu/string`                                                                                  |
+| |               def   **toString**\: :doc:`../sw/string`                                                                                   |
 | |                       Creates a printable String from this value                                                                         |
 | |                                                                                                                                          |
 | |                       \[**NOTE**\] This method is unsynthesizable, and can be used only on the CPU or in simulation.                     |

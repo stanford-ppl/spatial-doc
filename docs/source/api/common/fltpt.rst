@@ -109,7 +109,7 @@ In the case where an unstaged type is required, use the full `scala.*` name.
 | |                       Value equality comparison                                                                                          |
 | |                       Returns `true` if this value is equal to the right hand side. Otherwise returns `false`.                           |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **toString**\: :doc:`../cpu/string`                                                                                  |
+| |               def   **toString**\: :doc:`../sw/string`                                                                                   |
 | |                       Creates a printable String from this value                                                                         |
 | |                                                                                                                                          |
 | |                       \[**NOTE**\] This method is unsynthesizable, and can be used only on the CPU or in simulation.                     |

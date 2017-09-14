@@ -20,7 +20,7 @@ highlight_language = 'Scala' ## Name here is the name field of the Lexer, not th
 
 
 #### HTML Info ###
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'pyramid' #'sphinx_rtd_theme'
 html_static_path = ['_static']
 htmlhelp_basename = 'SpatialDoc'
 

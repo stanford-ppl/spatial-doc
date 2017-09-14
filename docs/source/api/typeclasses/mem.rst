@@ -38,7 +38,7 @@ Type class used to supply evidence that type T is a local memory, potentially wi
 | |      abstract def   **store**\(mem: C\[T\], indices: Seq\[:doc:`Int <../common/fixpt>`\], data: T, en: :doc:`../common/boolean`): Unit   |
 | |                       Stores the element data into mem at address given by indices with enable signal en                                 |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **iterator**\(mem: C\[T\]): Seq\[:doc:`../accel/memories/counterchain`\]                                             |
+| |      abstract def   **iterator**\(mem: C\[T\]): Seq\[:doc:`../hw/memories/counterchain`\]                                                |
 | |                       Creates counters which iterate over the (optionally multi-dimensional) memory mem                                  |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 

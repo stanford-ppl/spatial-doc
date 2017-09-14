@@ -133,7 +133,7 @@ only values of the same FixPt class can be used for this argument.
 | |                       Value equality comparison                                                                                          |
 | |                       Returns `true` if this value is equal to the right hand side. Otherwise returns `false`.                           |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **toString**\: :doc:`../cpu/string`                                                                                  |
+| |               def   **toString**\: :doc:`../sw/string`                                                                                   |
 | |                       Creates a printable String from this value                                                                         |
 | |                                                                                                                                          |
 | |                       \[**NOTE**\] This method is unsynthesizable, and can be used only on the CPU or in simulation.                     |
