@@ -243,7 +243,7 @@ we write the result to the ArgOut.  Using an outer reduce lets us work on multip
 the final stage of the controller.
 
 Finally, below is the complete app that includes all of the performance-oriented features outlined in this page of the tutorial.
-Refer back to the `Compiling`_ and `Synthesizing and Testing`_ sections on the previous page for a refresher on how to test your app.::
+Refer back to the `Compiling`_ and `Synthesizing and Testing`_ (TODO: fix links) sections on the previous page for a refresher on how to test your app.::
 
     import spatial.dsl._
     import org.virtualized._
