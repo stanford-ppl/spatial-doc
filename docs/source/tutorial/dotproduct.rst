@@ -31,7 +31,7 @@ The animation below shows the basic idea on how we will implement Dot Product.  
 will show the hardware we generate to perform the computation, and how we can use the code to 
 tradeoff complexity and resources for performance by adding pipelining and parallelization.
 
-.. image:: overview.gif
+.. image:: dotoverview.gif
 
 
 Data Setup and Validation
