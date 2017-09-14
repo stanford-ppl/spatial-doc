@@ -129,7 +129,7 @@ is persistent and not reset unless explicitly reset by the user.  In the case wh
 Let's take a look at the hardware we have generated.  The animation below demonstrates how this code
 will synthesize and execute.
 
-TODO: ADD ANIMATION
+.. image:: dotseq.gif
 
 While the above code appears to be correct, there is a problem when handling edge-cases.  If
 the user inputs a vector size that is not a multiple of our tileSize, then we will have an issue
