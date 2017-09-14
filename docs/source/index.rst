@@ -1,7 +1,4 @@
 
-Spatial 0.1 Documentation
-=========================
-
 About Spatial
 -------------
  Spatial is a domain-specific language for describing hardware accelerators for use on FPGAs and other supported spatial architectures.
@@ -14,6 +11,7 @@ About Spatial
    * Design runtime and area analysis
    * Automatic parameter tuning
    * Automatic memory banking and buffering
+
 
 Getting Started
 ===============
@@ -29,11 +27,9 @@ Contents
 --------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
-   common
-   software
-   hardware
+   api
    tutorial
    examples
    .. aws

@@ -43,6 +43,7 @@ Installation (From Source)
 Run the following (bash) commands to clone and update the spatial-lang repository::
 
     git clone https://github.com/stanford-ppl/spatial-lang.git
+    cd spatial-lang
     git submodule update --init
 
 This will pull Spatial's submodules `argon`, `apps`, and `scala-virtualized`.

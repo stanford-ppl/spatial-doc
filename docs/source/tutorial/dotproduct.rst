@@ -34,7 +34,7 @@ Data Setup and Validation
 Let's start by creating the data structures above the Accel that we will compute the dot product on. We will expose
 the length of these vectors as a command-line argument. We will also write the code below the Accel to ensure we have
 the correct result::
-	
+  
     import spatial.dsl._
     import org.virtualized._
 
@@ -43,55 +43,55 @@ the correct result::
       @virtualize
       def main() {
 
-		type T = FixPt[TRUE,_24,_8]
-		
-		val N = args(0).to[Int]
-		val length = ArgIn[Int]
-		setArg(length, N)
-		val result = ArgOut[T]
-		
-		val vector1_data = Array.tabulate(N){i => random[T](5)}
-		val vector2_data = Array.tabulate(N){i => random[T](5)}
+    type T = FixPt[TRUE,_24,_8]
+    
+    val N = args(0).to[Int]
+    val length = ArgIn[Int]
+    setArg(length, N)
+    val result = ArgOut[T]
+    
+    val vector1_data = Array.tabulate(N){i => random[T](5)}
+    val vector2_data = Array.tabulate(N){i => random[T](5)}
 
-		val vector1 = DRAM[T](length) // DRAMs can be sized by ArgIns
-		val vector2 = DRAM[T](length)
+    val vector1 = DRAM[T](length) // DRAMs can be sized by ArgIns
+    val vector2 = DRAM[T](length)
 
-		setMem(vector1, vector1_data)
-		setMem(vector2, vector2_data)
+    setMem(vector1, vector1_data)
+    setMem(vector2, vector2_data)
 
-		Accel {}
-		
-		val result_dot = getArg(result)
-		val gold_dot = vector1_data.zip(vector2_data){_*_}.reduce{_+_}
-		val cksum = gold_dot == result_dot
-		println("Received " + result_dot + ", wanted " + gold_dot)
-		println("Pass? " + cksum)
+    Accel {}
+    
+    val result_dot = getArg(result)
+    val gold_dot = vector1_data.zip(vector2_data){_*_}.reduce{_+_}
+    val cksum = gold_dot == result_dot
+    println("Received " + result_dot + ", wanted " + gold_dot)
+    println("Pass? " + cksum)
       }
 
 Tiling and Reduce/Fold
------------------
+----------------------
 
 Now we will focus our attention on writing the accelerator code.  We must first figure out how to process a variable-sized
 vector on a fixed hardware design.  To do this, we use tiling.  Let's create a val for the tileSize just inside the ``main()`` 
 method::
 
-	val tileSize = 64
+  val tileSize = 64
 
 Now we can break the vectors into 64-element chunks, and then process these chunks locally on the FPGA using the ``Reduce`` 
 construct::
-	
+  
     Accel {
-    	result := Sequential.Reduce(Reg[T](0))(length by tileSize){tile => // Returns Reg[T], writes to ArgOut
-    		val tile1 = SRAM[T](tileSize)
-    		val tile2 = SRAM[T](tileSize)
+      result := Sequential.Reduce(Reg[T](0))(length by tileSize){tile => // Returns Reg[T], writes to ArgOut
+        val tile1 = SRAM[T](tileSize)
+        val tile2 = SRAM[T](tileSize)
 
-    		tile1 load vector1(tile :: tile + tileSize)
-    		tile2 load vector2(tile :: tile + tileSize)
+        tile1 load vector1(tile :: tile + tileSize)
+        tile2 load vector2(tile :: tile + tileSize)
 
             val local_accum = Reg[T](0)
-    		Reduce(local_accum)(tileSize by 1){i => tile1(i) * tile2(i)}{_+_} // Accumulates directly into local_accum
+        Reduce(local_accum)(tileSize by 1){i => tile1(i) * tile2(i)}{_+_} // Accumulates directly into local_accum
             local_accum
-    	}{_+_}
+      }{_+_}
     }
 
 
