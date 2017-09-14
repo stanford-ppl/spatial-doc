@@ -66,6 +66,7 @@ the correct result::
 		val cksum = gold_dot == result_dot
 		println("Received " + result_dot + ", wanted " + gold_dot)
 		println("Pass? " + cksum)
+      }
 
 Tiling and Reduce/Fold
 -----------------
@@ -79,18 +80,19 @@ method::
 Now we can break the vectors into 64-element chunks, and then process these chunks locally on the FPGA using the ``Reduce`` 
 construct::
 	
-	result := Sequential.Reduce(Reg[T](0))(length by tileSize){tile => // Returns Reg[T], writes to ArgOut
-		val tile1 = SRAM[T](tileSize)
-		val tile2 = SRAM[T](tileSize)
+    Accel {
+    	result := Sequential.Reduce(Reg[T](0))(length by tileSize){tile => // Returns Reg[T], writes to ArgOut
+    		val tile1 = SRAM[T](tileSize)
+    		val tile2 = SRAM[T](tileSize)
 
-		tile1 load vector1(tile :: tile + tileSize)
-		tile2 load vector2(tile :: tile + tileSize)
+    		tile1 load vector1(tile :: tile + tileSize)
+    		tile2 load vector2(tile :: tile + tileSize)
 
-        val local_accum = Reg[T](0)
-		Reduce(local_accum)(tileSize by 1){i => tile1(i) * tile2(i)}{_+_} // Accumulates directly into local_accum
-        local_accum
-	}{_+_}
-
+            val local_accum = Reg[T](0)
+    		Reduce(local_accum)(tileSize by 1){i => tile1(i) * tile2(i)}{_+_} // Accumulates directly into local_accum
+            local_accum
+    	}{_+_}
+    }
 
 
 
@@ -114,17 +116,19 @@ Alternatively, you can express the Accel for dot product using a ``Fold``.  This
 is persistent and not reset unless explicitly reset by the user.  In the case where a Reg was declared to have an initial value of
 5, the Fold on top of this Reg would start at 5 and not 0.  The code would look like this::
 
-    val accum = Reg[T](0)
-    Sequential.Foreach(length by tileSize){tile =>
-        val tile1 = SRAM[T](tileSize)
-        val tile2 = SRAM[T](tileSize)
+    Accel {
+        val accum = Reg[T](0)
+        Sequential.Foreach(length by tileSize){tile =>
+            val tile1 = SRAM[T](tileSize)
+            val tile2 = SRAM[T](tileSize)
 
-        tile1 load vector1(tile :: tile + tileSize)
-        tile2 load vector2(tile :: tile + tileSize)
+            tile1 load vector1(tile :: tile + tileSize)
+            tile2 load vector2(tile :: tile + tileSize)
 
-        Fold(accum)(tileSize by 1){i => tile1(i) * tile2(i)}{_+_} 
+            Fold(accum)(tileSize by 1){i => tile1(i) * tile2(i)}{_+_} 
+        }
+        result := accum
     }
-    result := accum
 
 Let's take a look at the hardware we have generated.  The animation below demonstrates how this code
 will synthesize and execute.
@@ -138,22 +142,85 @@ with the above code on the final iteration.
 To fix this, we need to keep track of how many elements we `actually` want to reduce over each time
 we execute the inner pipe::
 
-    val accum = Reg[T](0)
-    Foreach(length by tileSize){tile =>
-        val numel = min(tileSize, length - tile)
-        val tile1 = SRAM[T](tileSize)
-        val tile2 = SRAM[T](tileSize)
+    Accel {
+        val accum = Reg[T](0)
+        Sequential.Foreach(length by tileSize){tile =>
+            val numel = min(tileSize, length - tile)
+            val tile1 = SRAM[T](tileSize)
+            val tile2 = SRAM[T](tileSize)
 
-        tile1 load vector1(tile :: tile + numel)
-        tile2 load vector2(tile :: tile + numel)
+            tile1 load vector1(tile :: tile + numel)
+            tile2 load vector2(tile :: tile + numel)
 
-        Fold(accum)(numel by 1){i => tile1(i) * tile2(i)}{_+_} 
+            Fold(accum)(numel by 1){i => tile1(i) * tile2(i)}{_+_} 
+        }
+        result := accum
     }
-    result := accum
 
 
 Pipelining and Parallelization
 ------------------------------
+
+Now we will look into ways to speed up the application we have written above.  
+
+The first technique is to pipeline the algorithm.  In the animation in the previous section,
+you will notice that the entire hardware is working on one tile at a time.  It is possible to
+pipeline this algorithm at a coarse level such that we overlap the tile loading with the 
+computation.  While this boils down to a "prefetching" operation in this particular design,
+Spatial allows you to arbitrarily pipeline any operations you have in your algorithm and at
+any level and over any depth.
+
+In order to exploit this technique, you simply need to remove the ``Sequential`` modifier on 
+the outer loop.  By default, all controllers will pipeline their children controllers if no
+modifiers are added.  In this dot product, there are two child stages inside the outer pipe 
+(parallel load of tiles 1 and 2 is the first stage, and reduction over the tiles is the second 
+stage).  The resulting code looks like this::
+
+    Accel {
+        val accum = Reg[T](0)
+        Foreach(length by tileSize){tile =>
+            val numel = min(tileSize, length - tile)
+            val tile1 = SRAM[T](tileSize)
+            val tile2 = SRAM[T](tileSize)
+
+            tile1 load vector1(tile :: tile + numel)
+            tile2 load vector2(tile :: tile + numel)
+
+            Fold(accum)(numel by 1){i => tile1(i) * tile2(i)}{_+_} 
+        }
+        result := accum
+    }
+
+This code is expressed in the following animation. Notice that the on-chip SRAM is now larger
+as it consists of a double buffer.  This buffer is what protects one stage of the pipeline from 
+the next.  In order to load the next tile into memory, we must retain the data from the previous tile
+in such a way that the second stage can consume it.  While this pipelining improves performance,
+it consumes more area.  Spatial will automatically buffer all SRAMs, Regs, and RegFiles for the user up
+to whatever depth is required to guarantee correctness.  Note that while it is not shown in the animation,
+the accumulating register is also duplicated, such that one of the duplicates is a double buffer to
+guarantee correctness for its reader. 
+
+.. image:: dotpipe.gif
+
+We will now look at parallelization as another technique to speed up the algorithm.  We will return
+to the version that uses two ``Reduce`` nodes rather than the version that uses the ``Fold``, and this
+switch will make sense by the end of the tutorial.  
+
+You can think of parallelization of a controller as extending the counter value to hold multiple
+consecutive values at once.  Specifically, if we parallelize the innermost controller, whose
+counter value is captured by the variable ``i``, then this ``i`` no longer holds a single value.
+It becomes a vector of consecutive values. If the parallelization is set to 4, then it will hold 4 
+consecutive values and the controller will complete its execution in a quarter of the time.
+
+Because ``i`` is used to index into our SRAMs, we need to physically bank our memories in order
+to ensure that we can read all of the requested values at the same time.  The scratchpad memories
+on-chip have a single write port and a single read port, but the language allows the user to
+read and write to a memory at will.  The Spatial compiler figures out the physical banking, muxing, and duplication
+of memories that is necessary to ensure the user gets the correct logical behavior specified in the application.
+The compiler also generates the necessary reduction tree and parallel hardware required to feed
+the reduction loop.  The animation below demonstrates this innermost parallelization.
+
+
 
 
 .. Next example: :doc:`outerproduct`
