@@ -1,4 +1,4 @@
-12. Compiler Flags 
+6. Compiler Flags 
 ==================
 
 - sim - Turn on Scala backend
