@@ -8,3 +8,4 @@ all:
 clean:
 	cd docs; \
 	rm -rf build
+	rm -rf prepped

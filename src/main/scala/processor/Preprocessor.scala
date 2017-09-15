@@ -119,7 +119,7 @@ object Preprocessor {
 
   def main(args: Array[String]): Unit = {
     val cwd = new File(".").getAbsolutePath.replace("/./", "/").replace("/.", "/")
-    val dir = args.headOption.getOrElse(cwd + "source/")
+    val dir = cwd + args.headOption.getOrElse("docs/source/")
     val out = dir.split(WITH_DELIMETER("/")).reverse.dropWhile(s => s == "/").reverse.dropRight(1).mkString("") + "prepped/"
 
     println("Dir: " + dir)
@@ -129,6 +129,7 @@ object Preprocessor {
 
     others.filter(_.isFile).foreach{f =>
       val origPath = f.getAbsolutePath
+      println(origPath)
       val path = origPath.replace(dir, out)
       val dirs = path.split(WITH_DELIMETER("/")).dropRight(1).mkString("")
       new File(dirs).mkdirs()
