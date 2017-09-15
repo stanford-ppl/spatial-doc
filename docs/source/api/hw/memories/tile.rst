@@ -19,13 +19,13 @@
 .. role:: navy
 .. role:: purple
 
-.. _Tile:
+.. _DRAMDenseTile:
 
-Tile
-====
+DRAMDenseTile
+=============
 
 
-A **Tile** describes a continguous slice of a :doc:`dram` memory's address space which can be loaded onto the
+A **DRAMDenseTile** describes a continguous slice of a :doc:`dram` memory's address space which can be loaded onto the
 accelerator for processing or which can be updated with results once FPGA computation is complete.
 
 ----------------
@@ -33,7 +33,7 @@ accelerator for processing or which can be updated with results once FPGA comput
 **Infix methods**
 
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-|      `class`         **Tile**\[T\]                                                                                                         |
+|      `class`         **DRAMDenseTile**\[T\]                                                                                                |
 +=====================+======================================================================================================================+
 | |               def   **store**\(data: :doc:`sram`\[T\]): Unit                                                                             |
 | |                       Creates a burst store from **data** to the section of DRAM described by this Tile.                                 |

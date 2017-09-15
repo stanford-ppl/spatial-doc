@@ -19,13 +19,13 @@
 .. role:: navy
 .. role:: purple
 
-.. _SparseTile:
+.. _DRAMSparseTile:
 
-SparseTile
-==========
+DRAMSparseTile
+==============
 
 
-A **SparseTile** describes a sparse section of a DRAM memory which can be loaded onto the accelerator using a gather operation, or which can
+A **DRAMSparseTile** describes a sparse section of a DRAM memory which can be loaded onto the accelerator using a gather operation, or which can
 be updated using a scatter operation.
 
 --------------
@@ -33,7 +33,7 @@ be updated using a scatter operation.
 **Infix methods**
 
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-|      `class`         **SparseTile**\[T\]                                                                                                   |
+|      `class`         **DRAMSparseTile**\[T\]                                                                                               |
 +=====================+======================================================================================================================+
 | |               def   **scatter**\(data: :doc:`sram`\[T\]): Unit                                                                           |
 | |                       Creates a scatter store to the addresses of DRAM described by this SparseTile.                                     |
