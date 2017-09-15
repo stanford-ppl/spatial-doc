@@ -121,6 +121,8 @@ you find convenient:
  - Debugging with instrumentation 
  
  - Advanced banking
+
+ - Advanced buffering
  
 
 - :doc:`Convolution <convolution>`

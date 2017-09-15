@@ -16,10 +16,6 @@ in Spatial.
     tutorial/gemm
     tutorial/convolution
     tutorial/nw
-    tutorial/model
-    tutorial/memories
-    tutorial/controllers
-    tutorial/transfers
     tutorial/dse
     tutorial/compileflags
     tutorial/tipsfaq
