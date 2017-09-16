@@ -127,8 +127,6 @@ you find convenient:
 
 - :doc:`Convolution <convolution>`
 
- - Foreach
-
  - LineBuffer 
  
  - ShiftRegister
@@ -136,6 +134,8 @@ you find convenient:
  - LUT
 
  - Branching
+
+ - Spatial Functions and Multifile Projects
 
 
 - :doc:`Needleman-Wunsch <nw>`
