@@ -24,6 +24,8 @@
 Num
 ====
 
+@alias Num
+
 Combination of :doc:`arith`, :doc:`bits`, and :doc:`order` type classes
 
 **Abstract Methods**
@@ -31,41 +33,41 @@ Combination of :doc:`arith`, :doc:`bits`, and :doc:`order` type classes
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 |      `trait`         **Num**\[T\] `extends` :doc:`arith`\[T\] `with` :doc:`bits`\[T\] `with` :doc:`order`\[T\]                             |
 +=====================+======================================================================================================================+
-| |      abstract def   **negate**\(x: T): T                                                                                                 |
+| |               def   **negate**\(x: T): T                                                                                                 |
 | |                       Returns a negated version of the given value                                                                       |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **plus**\(x: T, y: T): T                                                                                             |
+| |               def   **plus**\(x: T, y: T): T                                                                                             |
 | |                       Returns the result of adding x and y                                                                               |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **minus**\(x: T, y: T): T                                                                                            |
+| |               def   **minus**\(x: T, y: T): T                                                                                            |
 | |                       Returns the result of subtracting y from x                                                                         |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **times**\(x: T, y: T): T                                                                                            |
+| |               def   **times**\(x: T, y: T): T                                                                                            |
 | |                       Returns the result of multiplying x and y                                                                          |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **divide**\(x: T, y: T): T                                                                                           |
+| |               def   **divide**\(x: T, y: T): T                                                                                           |
 | |                       Returns the result of dividing x by y                                                                              |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **zero**\: T                                                                                                         |
+| |               def   **zero**\: T                                                                                                         |
 | |                       Creates the zero value for type T                                                                                  |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **one**\: T                                                                                                          |
+| |               def   **one**\: T                                                                                                          |
 | |                       Creates the one value for type T                                                                                   |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **random**\(max: Option[T]): T                                                                                       |
+| |               def   **random**\(max: Option[T]): T                                                                                       |
 | |                       Generates a pseudorandom value uniformly distributed between 0 and max.                                            |
 | |                       If max is unspecified, type T's default maximum is used instead.                                                   |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **length**\(x: T, y: T): T                                                                                           |
+| |               def   **length**\(x: T, y: T): T                                                                                           |
 | |                       Returns the number of bits required to represent this type.                                                        |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **lessThan**\(x: T, y: T): :doc:`../common/bit`                                                                      |
+| |               def   **lessThan**\(x: T, y: T): :doc:`../common/bit`                                                                      |
 | |                       Returns `true` if x is less than y, `false` otherwise                                                              |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **lessThanOrEqual**\(x: T, y: T): :doc:`../common/bit`                                                               |
+| |               def   **lessThanOrEqual**\(x: T, y: T): :doc:`../common/bit`                                                               |
 | |                       Returns `true` if x is less than or equal to y, `false` otherwise                                                  |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **equal**\(x: T, y: T): :doc:`../common/bit`                                                                         |
+| |               def   **equal**\(x: T, y: T): :doc:`../common/bit`                                                                         |
 | |                       Returns `true` if x and y are equal, `false` otherwise                                                             |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 

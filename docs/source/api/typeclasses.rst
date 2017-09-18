@@ -7,3 +7,4 @@ Type Classes
   typeclasses/mem
   typeclasses/num
   typeclasses/order
+  typeclasses/type

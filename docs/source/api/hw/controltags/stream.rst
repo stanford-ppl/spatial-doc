@@ -24,7 +24,7 @@
 Stream
 ======
 
-**Stream** is a controller tag which tells the compiler to overlap inner computation in a fine-grained, streaming fashion.
+**Stream** is a scheduling directive which tells the compiler to overlap inner computation in a fine-grained, streaming fashion.
 In controllers which contain multiple control stages, this implies that communication is being done through :doc:`FIFOs <../memories/fifo>`
 at an element-wise level.
 
@@ -36,38 +36,26 @@ Note that this may change as the language evolves.
 
 **Static methods**
 
-+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|      `object`         **Stream**                                                                                                                                                                                                                                                                                                                         |
-+=====================+====================================================================================================================================================================================================================================================================================================================================+
-| |               def   **apply**\( => Unit): Unit                                                                                                                                                                                                                                                                                                         |
-| |                       Creates a Unit Pipe, akin to a Foreach with only one iteration                                                                                                                                                                                                                                                                   |
-+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| |               def   **apply**\(ctr: :doc:`../memories/counter`)(func: :doc:`Int <../../common/fixpt>` => Unit): Unit                                                                                                                                                                                                                                   |
-| |                       Shorthand for ``Stream.Foreach``  - streaming Foreach over a one dimensional space                                                                                                                                                                                                                                               |
-+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| |               def   **apply**\(ctr1: :doc:`../memories/counter`, ctr2: :doc:`../memories/counter`)(func: (:doc:`Int <../../common/fixpt>`, :doc:`Int <../../common/fixpt>`) => Unit): Unit                                                                                                                                                             |
-| |                       Shorthand for ``Stream.Foreach`` - streaming Foreach over a two dimensional space                                                                                                                                                                                                                                                |
-+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| |               def   **apply**\(ctr1: :doc:`../memories/counter`, ctr2: :doc:`../memories/counter`, ctr3: :doc:`../memories/counter`)(func: (:doc:`Int <../../common/fixpt>`, :doc:`Int <../../common/fixpt>`, :doc:`Int <../../common/fixpt>`) => Unit): Unit                                                                                          |
-| |                       Shorthand for ``Stream.Foreach`` - streaming Foreach over a three dimensional space                                                                                                                                                                                                                                              |
-+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| |               def   **apply**\(ctr1: :doc:`../memories/counter`, ctr2: :doc:`../memories/counter`, ctr3: :doc:`../memories/counter`, ctr4: :doc:`../memories/counter`, ctr5: :doc:`../memories/counter`\*)(func: List\[:doc:`Int <../../common/fixpt>`\] => Unit): Unit                                                                                |
-| |                       Shorthand for ``Stream.Foreach`` - streaming Foreach over an N-dimensional space                                                                                                                                                                                                                                                 |
-| |                       Note that **func** is on a List of iterators.                                                                                                                                                                                                                                                                                    |
-| |                       The number of iterators will be the same as the number of counters supplied.                                                                                                                                                                                                                                                     |
-+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| |               def   **Fold**\: :doc:`../controllers/fold`                                                                                                                                                                                                                                                                                              |
-| |                       Reference to the :doc:`../controllers/fold` object with streaming specified as the controller tag.                                                                                                                                                                                                                               |
-+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| |               def   **Foreach**\: :doc:`../controllers/foreach`                                                                                                                                                                                                                                                                                        |
-| |                       Reference to the :doc:`../controllers/foreach` object with streaming specified as the controller tag.                                                                                                                                                                                                                            |
-+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| |               def   **MemFold**\: :doc:`../controllers/memfold`                                                                                                                                                                                                                                                                                        |
-| |                       Reference to the :doc:`../controllers/memfold` object with streaming specified as the controller tag.                                                                                                                                                                                                                            |
-+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| |               def   **MemReduce**\: :doc:`../controllers/memreduce`                                                                                                                                                                                                                                                                                    |
-| |                       Reference to the :doc:`../controllers/memreduce` object with streaming specified as the controller tag.                                                                                                                                                                                                                          |
-+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| |               def   **Reduce**\: :doc:`../controllers/reduce`                                                                                                                                                                                                                                                                                          |
-| |                       Reference to the :doc:`../controllers/reduce` object with streaming specified as the controller tag.                                                                                                                                                                                                                             |
-+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+@table-start
+object Stream
+
+  /** Creates a streaming Unit Pipe, akin to a Foreach with one iteration. **/
+  @api def apply(func: => Unit): Unit
+
+
+  /** References the @Fold object with streaming specified as the scheduling directive. **/
+  @api def Fold: Fold
+
+  /** References the @Foreach object with streaming specified as the scheduling directive. **/
+  @api def Foreach: Foreach
+
+  /** References the @MemFold object with streaming specified as the scheduling directive. **/
+  @api def MemFold: MemFold
+
+  /** References the @MemReduce object with streaming specified as the scheduling directive. **/
+  @api def MemReduce: MemReduce
+
+  /** References the @Reduce object with streaming specified as the scheduling directive. **/
+  @api def Reduce: Reduce
+
+@table-end

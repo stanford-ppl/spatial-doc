@@ -24,6 +24,8 @@
 String
 ======
 
+@alias String
+
 Staged type representing arbitrary length Strings.
 Note that this type shadows the respective unstaged Scala type.
 In the case where an unstaged type is required, use the full name `java.lang.String`.

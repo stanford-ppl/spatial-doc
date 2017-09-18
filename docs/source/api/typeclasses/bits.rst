@@ -24,6 +24,8 @@
 Bits
 ====
 
+@alias Bits
+
 Type class used to supply evidence that type T is representable by a statically known number of bits.
 
 **Abstract Methods**

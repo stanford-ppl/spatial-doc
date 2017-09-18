@@ -24,6 +24,8 @@
 MemReduce
 =========
 
+@alias MemReduce
+
 **MemReduce** describes the reduction *across* multiple local memories.
 Like :doc:`reduce`, MemReduce requires both a *map* and a *reduction* function. However, in MemReduce, the *map*
 describes the creation and population of a local memory (typically an :doc:`../memories/sram`).
@@ -36,20 +38,33 @@ of each of these memories into a single accumulator.
 
 **Static methods**
 
-+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|      `object`         **MemReduce**                                                                                                                                                                                                                                                                                                                      |
-+=====================+====================================================================================================================================================================================================================================================================================================================================+
-| |               def   **apply**\[T,C\[T\]\](accum: C\[T\])(ctr: :doc:`../memories/counter`)(map: :doc:`Int <../../common/fixpt>` => C\[T\])(reduce: (T,T) => T): C\[T\]                                                                                                                                                                                  |
-| |                       Memory reduction over a one dimensional space                                                                                                                                                                                                                                                                                    |
-+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| |               def   **apply**\[T,C\[T\]\](accum: C\[T\])(ctr1: :doc:`../memories/counter`, ctr2: :doc:`../memories/counter`)(map: (:doc:`Int <../../common/fixpt>`, :doc:`Int <../../common/fixpt>`) => C\[T\])(reduce: (T,T) => T): C\[T\]                                                                                                            |
-| |                       Memory reduction over a two dimensional space                                                                                                                                                                                                                                                                                    |
-+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| |               def   **apply**\[T,C\[T\]\](accum: C\[T\])(ctr1: :doc:`../memories/counter`, ctr2: :doc:`../memories/counter`, ctr3: :doc:`../memories/counter`)(map: (:doc:`Int <../../common/fixpt>`, :doc:`Int <../../common/fixpt>`, :doc:`Int <../../common/fixpt>`) => C\[T\])(reduce: (T,T) => T): C\[T\]                                         |
-| |                       Memory reduction over a three dimensional space                                                                                                                                                                                                                                                                                  |
-+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| |               def   **apply**\[T,C\[T\]\](accum: C\[T\])(ctr1: :doc:`../memories/counter`, ctr2: :doc:`../memories/counter`, ctr3: :doc:`../memories/counter`, ctr4: :doc:`../memories/counter`, ctr5: :doc:`../memories/counter`\*)(map: List\[:doc:`Int <../../common/fixpt>`\] => C\[T\])(reduce: (T,T) => T): C\[T\]                               |
-| |                       Memory reduction over an N-dimensional space                                                                                                                                                                                                                                                                                     |
-| |                       Note that the **map** function is on a List of iterators.                                                                                                                                                                                                                                                                        |
-| |                       The number of iterators will be the same as the number of counters supplied.                                                                                                                                                                                                                                                     |
-+---------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+@table-start
+object MemReduce
+
+  /** 
+    * On-chip memory reduction over a one dimensional space.
+    * Returns the accumulator `accum`. 
+    **/
+  @api def apply[T,C[T]](accum: C[T])(ctr: Counter)(map: Int => C[T])(reduce: (T,T) => T): C[T]
+
+  /** 
+    * On-chip memory reduction over a two dimensional space.
+    * Returns the accumulator `accum`.
+    **/
+  @api def apply[T,C[T]](accum: C[T])(ctr1: Counter, ctr2: Counter)(map: (Int,Int) => C[T])(reduce: (T,T) => T): C[T]
+
+  /** 
+    * On-chip memory reduction over a three dimensional space.
+    * Returns the accumulator `accum`.
+    **/
+  @api def apply[T,C[T]](accum: C[T])(ctr1: Counter, ctr2: Counter, ctr3: Counter)(map: (Int,Int,Int) => C[T])(reduce: (T,T) => T): C[T]
+
+  /** 
+    * On-chip memory reduction over a 4+ dimensional space.
+    * Returns the accumulator `accum`.
+    * Note that the `map` function is on a `List` of iterators.
+    * The number of iterators will be the same as the number of counters supplied.
+    **/
+  @api def apply[T,C[T]](accum: C[T])(ctr1: Counter, ctr2: Counter, ctr3: Counter, ctr4: Counter, ctr5: Counter*)(map: List[Int] => C[T])(reduce: (T,T) => T): C[T]
+
+@table-end

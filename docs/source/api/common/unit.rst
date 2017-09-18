@@ -19,13 +19,11 @@
 .. role:: navy
 .. role:: purple
 
-.. _Vector:
+.. _Unit:
 
-Vector
-======
+Unit
+====
 
+@alias Unit
 
-Vector defines a fixed size collection of scalar values.
-
-NOTE: This method currently has no real user-facing methods. It is only generated during controller unrolling
-
+Like Scala, **Unit** is a type representing no return value in Spatial. It is similar to `void` in Java or C++.

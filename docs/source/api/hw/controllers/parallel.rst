@@ -24,6 +24,8 @@
 Parallel
 ========
 
+@alias Parallel
+
 **Parallel** is a control node which informs the compiler to schedule any inner control nodes in a fork-join manner.
 
 Note: Parallel will be soon be deprecated for general use as the scheduling algorithms in the Spatial compiler improve.

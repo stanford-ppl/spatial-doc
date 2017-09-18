@@ -24,10 +24,12 @@
 Range
 =====
 
+@alias Range
+
 Range represents a sequence of 32b integer values from a given *start* (inclusive) to *end* (exclusive) with a non-zero step size.
 Range also has an optional parallelization factor, which is used to determine physical unrolling in hardware.
 
-In Accel scopes, Range instances can be implicitly converted to :doc:`../hw/memories/counter`
+In Accel scopes, Range instances can be implicitly converted to @Counter.
 
 Ranges can be created using two different syntax flavors. When unspecified, the default value for `start` is 0, and
 the default value for `step` and `par` are both 1.
@@ -59,23 +61,31 @@ This loop will run for all even integers from \[0, max). Note that this syntax i
 
 **Infix methods**
 
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-|      `class`          **Range**                                                                                                            |
-+=====================+======================================================================================================================+
-| |               def   **::**\(end: :doc:`Int <fixpt>`): :doc:`range`                                                                       |
-| |                     Creates a Range with this Range's start, this end as the step size, and the given end                                |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **by**\(step: :doc:`Int <fixpt>`): :doc:`range`                                                                      |
-| |                     Creates a copy of this range with the same start and end but with the given step size                                |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **par**\(p: :doc:`Int <fixpt>`): :doc:`range`                                                                        |
-| |                     Creates a copy of this range with the same start, end, and step but with parallelization **p**                       |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **foreach**\(func: :doc:`Int <fixpt>` => Unit): Unit                                                                 |
-| |                     Iterates over all integers in this range, calling **func** on each                                                   |
-| |                                                                                                                                          |
-| |                       \[**NOTE**\] This method is unsynthesizable, and can be used only on the CPU or in simulation.                     |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
+@table-start
+class Range
+
+  /** Returns the length of this Range. **/
+  @api def length: Index
+
+  /** Creates a Range with this Range's start and end but with the given `step` size. **/
+  @api def by(step: Index): Range = Range(start, end, Some(step), p, isUnit = false)
+  /** Creates a Range with this Range's start, end, and stride, but with the given `par` parallelization factor. **/
+  @api def par(p: Index): Range = Range(start, end, step, Some(p), isUnit = false)
+
+  /**
+    * Creates a Range with this Range's end, with the previous start as the step size, and the given start.
+    * Note that this operator is right-associative.
+    */
+  @api def ::(start2: Index): Range = Range(Some(start2), end, start, p, isUnit = false)
+
+  /**
+    * Iterates over all integers in this range, calling `func` on each.
+    *
+    * `NOTE`: This method is unsynthesizable, and can be used only on the CPU or in simulation.
+    */
+  @api def foreach(func: Index => MUnit): MUnit = {
+
+@table-end
 
 
 ----------------
@@ -83,7 +93,11 @@ This loop will run for all even integers from \[0, max). Note that this syntax i
 
 **Implicit methods**
 
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **rangeToCounter**\(reg: :doc:`range`): :doc:`../hw/memories/counter`                                                |
-| |                       Implicitly creates a hardware :doc:`../hw/memories/counter` from this Range                                        |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
+@table-start
+NoHeading
+
+  /** Implicitly creates a hardware @Counter from this Range. **/
+  @api def rangeToCounter(range: Range): Counter
+
+@table-end
+

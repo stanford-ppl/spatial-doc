@@ -24,6 +24,8 @@
 Array
 =====
 
+@alias Array
+
 Class and companion object for managing one dimensional arrays on the CPU.
 
 Note that this type shadows the unstaged Scala Array.

@@ -1,6 +1,6 @@
 
-Spatial 0.1 Documentation
-=========================
+API Documentation
+=================
 
 .. toctree::
    :maxdepth: 1

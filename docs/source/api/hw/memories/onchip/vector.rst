@@ -19,12 +19,15 @@
 .. role:: navy
 .. role:: purple
 
-.. _Bus:
+.. _Vector:
 
-Bus
-====
+Vector
+======
 
-In Spatial, **Buses** are predefined input/output pins available on supported FPGA targets.
-They are accessed using the static `target` object available in Spatial apps.
+@alias Vector
+@alias VectorN
 
-They currently have no corresponding syntax, and are used only to create :doc:`streamin` and :doc:`streamout` ports.
+Vector defines a fixed size collection of scalar values.
+
+NOTE: This method currently has no real user-facing methods. It is only generated during controller unrolling
+

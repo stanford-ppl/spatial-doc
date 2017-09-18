@@ -1,7 +1,7 @@
 
 all: 
 	sbt compile; \
-	sbt run "docs/source";
+	sbt run;
 	cd docs; \
 	sphinx-build -b html prepped build
 

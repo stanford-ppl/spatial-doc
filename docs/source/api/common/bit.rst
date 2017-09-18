@@ -24,6 +24,10 @@
 Boolean
 =======
 
+@alias Boolean
+@alias Bit
+@alias Bool
+
 Boolean represents a staged single boolean value.
 
 Note that this type shadows the unstaged Scala Boolean.

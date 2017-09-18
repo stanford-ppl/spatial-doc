@@ -24,6 +24,9 @@
 Tup2
 ====
 
+@alias Tup2
+@alias Tuple2
+
 Tup2[A,B] is a simple data structure used to hold a pair of staged values.
 
 -----------

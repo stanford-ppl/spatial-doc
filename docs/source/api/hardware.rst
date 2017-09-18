@@ -2,6 +2,7 @@ Hardware
 ========
 
 .. toctree::
-   hw/memories
+   hw/memories/onchip
+   hw/memories/offchip
    hw/controllers
    hw/controltags

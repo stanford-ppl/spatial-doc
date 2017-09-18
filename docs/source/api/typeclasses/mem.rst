@@ -24,21 +24,25 @@
 Mem
 ====
 
+@alias Mem
+
 Type class used to supply evidence that type T is a local memory, potentially with multiple dimensions.
 
 
 **Abstract Methods**
 
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-|      `trait`         **Mem**\[T,C\]                                                                                                        |
-+=====================+======================================================================================================================+
-| |      abstract def   **load**\(mem: C\[T\], indices: Seq\[:doc:`Int <../common/fixpt>`\], en: :doc:`../common/bit`): T                    |
-| |                       Loads an element from mem at address given by indices and with enable signal en                                    |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **store**\(mem: C\[T\], indices: Seq\[:doc:`Int <../common/fixpt>`\], data: T, en: :doc:`../common/bit`): Unit       |
-| |                       Stores the element data into mem at address given by indices with enable signal en                                 |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **iterator**\(mem: C\[T\]): Seq\[:doc:`../hw/memories/counterchain`\]                                                |
-| |                       Creates counters which iterate over the (optionally multi-dimensional) memory mem                                  |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
+@table-start
+trait Mem[T,C]
+
+  /** Loads an element from `mem` at the given multi-dimensional address `indices` with enable `en`. **/
+  @api def load(mem: C[T], indices: Seq[Index], en: Bit): T
+  /** Stores `data` into `mem` at the given multi-dimensional address `indices` with enable `en`. **/
+  @api def store(mem: C[T], indices: Seq[Index], data: T, en: Bit): MUnit
+  /** Returns a `Seq` of counters which define the iteration space of the given memory `mem`. **/
+  @api def iterators(mem: C[T]): Seq[Counter]
+
+  /** Returns the parallelization annotation for this memory. **/
+  def par(mem: C[T]): Option[Index]
+
+@table-end
 

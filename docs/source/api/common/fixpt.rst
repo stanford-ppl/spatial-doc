@@ -24,6 +24,12 @@
 FixPt
 =====
 
+@alias FixPt
+@alias Int
+@alias Index
+@alias Int32
+@alias Int64
+
 FixPt[S,I,F] represents an arbitrary precision fixed point representation.
 FixPt values may be signed or unsigned. Negative values, if applicable, are represented
 in twos complement.
