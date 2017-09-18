@@ -13,4 +13,7 @@
   - This means that this particular value was computed using uninitialized numbers at some point
     in its history
 
+`
+If you could not find the answer to your question here, head over to the `google group <https://groups.google.com/forum/#!forum/spatial-lang-users>`_.
+
 More to be added...
