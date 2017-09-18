@@ -57,28 +57,19 @@ Application Template
 All Spatial programs have a few basic components. The following code example shows each of those components for
 an application that is called `HelloSpatial`::
 
-    // 1. Imports
     import spatial.dsl._
     import org.virtualized._
 
-    // 2. The Scala object which can be compiled and staged
     object HelloSpatial extends SpatialApp {
 
-      // 3. This method, main, is called on program startup.
-      // Spatial apps are required to use the "@virtualize" macro
       @virtualize
       def main() {
 
-        // 4. Code to be deployed to the host device, generally
-        // consisting of setting up data and reading files
 
-        // 5. Algorithm to be accelerated in hardware
         Accel {
 
         }
 
-        // 6. More code to be deployed to the host device, generally
-        // consisting of validation checks
       }
     }
 
@@ -268,20 +259,14 @@ above for a refresher on how to test your app.
 
 Below is a copy-pastable version of the code outlined above::
 
-    // 1. Imports
     import spatial.dsl._
     import org.virtualized._
 
-    // 2. The Scala object which can be compiled and staged
     object HelloSpatial extends SpatialApp {
 
-      // 3. This method, main, is called on program startup.
-      // Spatial apps are required to use the "@virtualize" macro
       @virtualize
       def main() {
 
-        // 4. Code to be deployed to the host device, generally
-        // consisting of setting up data and reading files
         val data1D        = Array.tabulate(64){i => i * 3} // Create 1D array with 64 elements, each element being index * 3
         val data1D_longer = Array.tabulate(1024){i => i} // Create 1D array with 1024 elements
         val data2D        = (0::64, 0::64){(i,j) => i*100 + j} // Create 64x64 2D, where each element is row * 100 + col
@@ -300,7 +285,6 @@ Below is a copy-pastable version of the code outlined above::
         val dram_result2D = DRAM[Int](32,32)
         val dram_scatter1D = DRAM[Int](1024)
 
-        // 5. Algorithm to be accelerated in hardware
         Accel {
           val sram1D        = SRAM[Int](64)
           val sram2D        = SRAM[Int](32,32)
@@ -318,8 +302,6 @@ Below is a copy-pastable version of the code outlined above::
           dram_scatter1D(sram1D par 1, 64) scatter gathered_sram // For the first 64 elements, place element i of gathered_sram into the address indicated by the i'th element of sram1D 
         }
 
-        // 6. More code to be deployed to the host device, generally
-        // consisting of validation checks
         val result_scattered = getMem(dram_scatter1D)
         val result2D = getMatrix(dram_result2D) // Collect 2D dram as a "Matrix."  Likewise, 3, 4, and 5D regions use "getTensor3D", "getTensor4D", and "getTensor5D"
 
@@ -400,22 +382,19 @@ Congratulations!  You have completed the ArgIn/Out section of the tutorial.  Ple
 above for a refresher on how to test your app.
 
 
+Final Code
+----------
+
 Below is a copy-pastable version of the code outlined above::
 
-    // 1. Imports
     import spatial.dsl._
     import org.virtualized._
 
-    // 2. The Scala object which can be compiled and staged
     object HelloSpatial extends SpatialApp {
 
-      // 3. This method, main, is called on program startup.
-      // Spatial apps are required to use the "@virtualize" macro
       @virtualize
       def main() {
 
-        // 4. Code to be deployed to the host device, generally
-        // consisting of setting up data and reading files
         val argin1 = ArgIn[Int]   // Register that is written to by the host and read from by the Accel
         val argout1 = ArgOut[Int] // Register that is written to by the Accel and read from by the host
         val io1 = HostIO[Int]     // Register that can be both written to and read from by the Accel and the host
@@ -447,7 +426,6 @@ Below is a copy-pastable version of the code outlined above::
         val dram_result2D = DRAM[Int](32,32)
         val dram_scatter1D = DRAM[Int](1024)
 
-        // 5. Algorithm to be accelerated in hardware
         Accel {
           val sram1D        = SRAM[Int](64)
           val sram2D        = SRAM[Int](32,32)
@@ -472,8 +450,6 @@ Below is a copy-pastable version of the code outlined above::
           io1 := reg1
         }
 
-        // 6. More code to be deployed to the host device, generally
-        // consisting of validation checks
         val result_scattered = getMem(dram_scatter1D)
         val result2D = getMatrix(dram_result2D) // Collect 2D dram as a "Matrix."  Likewise, 3, 4, and 5D regions use "getTensor3D", "getTensor4D", and "getTensor5D"
 

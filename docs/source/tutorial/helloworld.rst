@@ -382,6 +382,9 @@ Congratulations!  You have completed the ArgIn/Out section of the tutorial.  Ple
 above for a refresher on how to test your app.
 
 
+Final Code
+----------
+
 Below is a copy-pastable version of the code outlined above::
 
     import spatial.dsl._
