@@ -120,7 +120,7 @@ object Utils {
     val tokens = tokenize(line, List("\\.", "\\s+", "\\,", "\\;", "\\!", "\\?", "\\)", "\\("))
     val ignore = List("api", "virtualize", "table-start", "table-end", "alias", "disp")
     tokens.map{t =>
-      if (t.startsWith("@") && !ctx.paths.contains(t.drop(1)) && !ignore.contains(t.drop(1))) {
+      if (t.contains("@") && !ctx.paths.contains(t.drop(1)) && !ignore.contains(t.drop(1))) {
         println(s"${ctx.filename}:${ctx.line}: Messed up token $t")
       }
       if (t.startsWith("@") && ctx.paths.contains(t.drop(1))) makeLink(t.drop(1), ctx)

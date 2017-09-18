@@ -292,10 +292,6 @@ not need 16 unique banks (as is implied by the previous example) and can get awa
 If the parallelizations of the various accesses are not multiples of each other, the compiler will figure out the most
 minimalistic banking scheme that guarantees correctness.
 
-
-Final Code
-==========
-
 Below is the complete GEMM app::
 
     import spatial.dsl._
