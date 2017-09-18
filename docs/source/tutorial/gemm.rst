@@ -413,6 +413,6 @@ to the user to figure out how to use parallelizations and rewrite portions of th
 and get better performance.
 
 
-When you understand the concepts introduced in this page, you may move on to the next example, :doc:`Convolution`, where you
+When you understand the concepts introduced in this page, you may move on to the next example, :doc:`convolution`, where you
 will learn to perform reductions on memories, include instrumentation hooks to help balance your pipeline,
 and see more complicated examples of banking.

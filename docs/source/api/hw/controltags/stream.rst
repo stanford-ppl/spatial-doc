@@ -25,7 +25,7 @@ Stream
 ======
 
 **Stream** is a scheduling directive which tells the compiler to overlap inner computation in a fine-grained, streaming fashion.
-In controllers which contain multiple control stages, this implies that communication is being done through :doc:`FIFOs <../memories/fifo>`
+In controllers which contain multiple control stages, this implies that communication is being done through @FIFO memories.
 at an element-wise level.
 
 Communication across stages within Stream controllers through any memory except FIFOs is currently disallowed.
