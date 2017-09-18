@@ -121,22 +121,22 @@ class DRAM1[T] extends DRAM[T]
   * Creates a reference to a sparse region of this DRAM1 for use in scatter and gather transfers
   * using all addresses in `addrs`.
   **/
-@api def apply(addrs: FIFO[Index]): DRAMSparseTileMem[T,FIFO] = this.apply(addrs, addrs.numel())
+@api def apply(addrs: FIFO[Index]): DRAMSparseTile[T] = this.apply(addrs, addrs.numel())
 /**
   * Creates a reference to a sparse region of this DRAM1 for use in scatter and gather transfers
   * using the first `size` addresses in `addrs`.
   */
-@api def apply(addrs: FIFO[Index], size: Index): DRAMSparseTileMem[T,FIFO] = DRAMSparseTileMem(this.s, addrs, size)
+@api def apply(addrs: FIFO[Index], size: Index): DRAMSparseTile[T] = DRAMSparseTileMem(this.s, addrs, size)
 /**
   * Creates a reference to a sparse region of this DRAM1 for use in scatter and gather transfers
   * using all addresses in `addrs`.
   **/
-@api def apply(addrs: FILO[Index]): DRAMSparseTileMem[T,FILO] = this.apply(addrs, addrs.numel())
+@api def apply(addrs: FILO[Index]): DRAMSparseTile[T] = this.apply(addrs, addrs.numel())
 /**
   * Creates a reference to a sparse region of this DRAM1 for use in scatter and gather transfers
   * using the first `size` addresses in `addrs`.
   */
-@api def apply(addrs: FILO[Index], size: Index): DRAMSparseTileMem[T,FILO] = DRAMSparseTileMem(this.s, addrs, size)
+@api def apply(addrs: FILO[Index], size: Index): DRAMSparseTile[T] = DRAMSparseTileMem(this.s, addrs, size)
 
 /** Creates a dense, burst transfer from the given on-chip `data` to this DRAM's region of main memory. **/
 @api def store(data: SRAM1[T]): MUnit = DRAMTransfers.dense_transfer(this.toTile(data.ranges), data, isLoad = false)

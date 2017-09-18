@@ -28,7 +28,7 @@ StreamOut
 
 **StreamOut** defines a hardware bus used to output streaming data from the FPGA.
 StreamOuts may not be read from. For streaming inputs, use @StreamIn.
-StreamOuts are specified using a @Bits`- based type and a target :doc:`bus`.
+StreamOuts are specified using a @Bits - based type and a target @Bus.
 
 In Spatial, StreamOuts are specified outside the Accel block, in host code.
 

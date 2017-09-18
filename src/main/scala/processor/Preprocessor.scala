@@ -117,10 +117,11 @@ object Utils {
   }
 
   def subAts(line: String, ctx: Context): String = {
-    val tokens = tokenize(line, List("\\.", "\\s+", "\\,", "\\;", "\\!", "\\?"))
+    val tokens = tokenize(line, List("\\.", "\\s+", "\\,", "\\;", "\\!", "\\?", "\\)", "\\("))
+    val ignore = List("api", "virtualize", "table-start", "table-end", "alias", "disp")
     tokens.map{t =>
-      if (t.startsWith("@")) {
-        println(s"Found token $t")
+      if (t.startsWith("@") && !ctx.paths.contains(t.drop(1)) && !ignore.contains(t.drop(1))) {
+        println(s"${ctx.filename}:${ctx.line}: Messed up token $t")
       }
       if (t.startsWith("@") && ctx.paths.contains(t.drop(1))) makeLink(t.drop(1), ctx)
       else t
@@ -159,7 +160,9 @@ case object TableMode extends Mode {
 }
 
 case class Context(
-  var path: String,
+  var filename: String,
+  var path: String = "",
+  var line: Int = 0,
   var displ: Map[String, String] = Map.empty,  // Map from alias to display name
   var paths: Map[String, String] = Map.empty   // Map from type name to absolute path to filename (without .rst)
 )
@@ -237,19 +240,22 @@ object Preprocessor {
     var mode: Mode = IdentityMode
     files.foreach{file =>
       mode = IdentityMode
+      val filename = file.getName
       val origPath = file.getAbsolutePath
       val path = origPath.replace(dir, out)
       val dirs = path.split(WITH_DELIMETER("/")).dropRight(1).mkString("")
-      val ctx = Context(origPath, displ, paths)
 
       new File(dirs).mkdirs()
       implicit val pw: PrintWriter = new PrintWriter(path)
 
       val src = Source.fromFile(file.getAbsolutePath).reset()
       val lines = src.getLines()
-      lines.foreach{ln =>
-        var line = ln
+      var lineNum: Int = 1
 
+      lines.foreach{ln =>
+        val ctx = Context(filename, origPath, lineNum, displ, paths)
+
+        var line = ln
         // Replace references to files using @x annotation
         line = subAts(line, ctx)
 
@@ -274,6 +280,8 @@ object Preprocessor {
           case _ =>
             mode.process(line)
         }
+
+        lineNum += 1
       }
 
       src.close()
