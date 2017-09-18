@@ -125,7 +125,7 @@ you find convenient:
  - Advanced buffering
  
 
-- :doc:`Convolution <convolution>`
+- :doc:`Differentiator & Sobel Filter <convolution>`
 
  - LineBuffer 
  
@@ -133,14 +133,14 @@ you find convenient:
  
  - LUT
 
- - Branching
-
  - Spatial Functions and Multifile Projects
 
 
 - :doc:`Needleman-Wunsch <nw>`
 
  - FSM
+
+ - Branching
 
  - FIFO 
  
