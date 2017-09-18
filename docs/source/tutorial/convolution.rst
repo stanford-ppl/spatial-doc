@@ -246,6 +246,11 @@ The snippet below shows how to generate an accel that performs the operations sh
       }
 	}
 
+It is possible to improve the performance of this algorithm using parallelization.  However, we leave this as an exercise to the user
+or direct the user to some example apps written in the spatial-apps repository.  While parallelizing every loop will speed up this
+algorithm, some loops will give incorrect results if parallelized while others will maintain the correct result if extra code is 
+added to handle the edge cases appropriately
+
 
 
 Spatial Functions and Multifile

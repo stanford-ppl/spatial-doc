@@ -242,6 +242,9 @@ In the case of the ``Fold`` app, we had to declare the accumulator above the out
 we write the result to the ArgOut.  Using an outer reduce lets us work on multiple tiles in parallel and merge their results in 
 the final stage of the controller.
 
+Final Code
+==========
+
 Finally, below is the complete app that includes all of the performance-oriented features outlined in this page of the tutorial.
 Refer back to the `Compiling`_ and `Synthesizing and Testing`_ (TODO: fix links) sections on the previous page for a refresher on how to test your app.::
 

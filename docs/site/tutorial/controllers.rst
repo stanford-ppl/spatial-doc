@@ -26,7 +26,6 @@ will assume each iteration of *Foreach* is independent, and will attempt to para
 A *Foreach* can be created using::
 
     Foreach(0 until N){i =>
-        // Some operations or other controllers
     }
 
 Here, the variable ``i`` represents the iterator, which will take on values 0 through N as the counter progresses.
@@ -34,7 +33,6 @@ Here, the variable ``i`` represents the iterator, which will take on values 0 th
 We can also make a 2 dimensional loop::
 
     Foreach(0 until M, 0 until N){(i,j) =>
-        // Some other operations
     }
 
 This code says that we are iterating over a two dimensional, *M* x *N* space, where *M* is the size of the outer dimension,
