@@ -383,7 +383,7 @@ above for a refresher on how to test your app.
 
 
 Final Code
-==========
+----------
 
 Below is a copy-pastable version of the code outlined above::
 

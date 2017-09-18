@@ -142,7 +142,7 @@ and it will become clear why we must constrain the maximum number of columns in 
 
 
 1D Convolution
-==============
+--------------
 
 In order to perform the 1D convolution, we need a pipeline to perform two operations.  The first
 is to load one tile at a time, and the second is to shift data through a window and perform
@@ -190,7 +190,7 @@ Finally, there is a mux inside the ``Reduce`` map function.  This mux is to chec
 address of the shift register corresponds to data with a "negative" address in the X_1D data structure.  
 
 2D Convolution
-==============
+--------------
 
 Now we will focus on the Sobel filter that will perform a 2D convolution.  First, we will introduce a LineBuffer
 memory structure.  A LineBuffer is a special case on an N-buffered 1D SRAM exposed to the user.  It allows
@@ -254,4 +254,4 @@ added to handle the edge cases appropriately
 
 
 Spatial Functions and Multifile
-===============================
+-------------------------------

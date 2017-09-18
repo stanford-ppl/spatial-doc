@@ -294,7 +294,7 @@ minimalistic banking scheme that guarantees correctness.
 
 
 Final Code
-==========
+----------
 
 Below is the complete GEMM app::
 
