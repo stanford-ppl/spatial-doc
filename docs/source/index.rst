@@ -2,7 +2,7 @@
 .. image:: images/spatial_start.png
 
 +------------------------------------------+------------------------------------+
-| :doc:`##Get Started <tutorial/starting>` | :doc:`##API Documentation <api>`   |
+| :doc:`Get Started <tutorial/starting>`   | :doc:`API Documentation <api>`     |
 +------------------------------------------+------------------------------------+
 
 Spatial is a domain-specific language for describing hardware accelerators for use on FPGAs and other supported spatial architectures.

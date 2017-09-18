@@ -78,7 +78,6 @@ filters and compute the gold check. We will expose the rows of the images as com
         setArg(COLS,C)
         setArg(LEN, vec_len)
 
-        // Create 1D conv data, function = -.18*x^4+.5x^2+.8 = "M" shaped function from -2 to 2
         val window = 16
         val x_t = Array.tabulate(vec_len){i => 
           val x = i.to[T] * (4.to[T] / vec_len.to[T]).to[T] - 2
@@ -94,7 +93,6 @@ filters and compute the gold check. We will expose the rows of the images as com
         setMem(X_1D, x_t)
         setMem(H_1D, h_t)
 
-        // Create 2D conv data
         val border = 3
         val image = (0::R, 0::C){(i,j) => if (j > border && j < C-border && i > border && i < C - border) (i*16).to[T] else 0.to[T]}
         val kernelv = Array[T](1,2,1,0,0,0,-1,-2,-1)
@@ -105,11 +103,9 @@ filters and compute the gold check. We will expose the rows of the images as com
 
 	    Accel{}
 
-        // Get data
         val Y_1D_result = getMem(Y_1D)
         val Y_2D_result = getMatrix(Y_2D)
   
-        // Compute gold
         val Y_1D_gold = Array.tabulate(vec_len){i => 
           Array.tabulate(window){j => 
             val data = if (i - j < 0) 0 else x_t(i-j)
@@ -123,13 +119,11 @@ filters and compute the gold check. We will expose the rows of the images as com
           }}.flatten.reduce{_+_}
         }
   
-        // Print values
         printArray(Y_1D_result, "1D Result:")
         printArray(Y_1D_gold, "1D Gold:")
         printMatrix(Y_2D_result, "2D Result:")
         printMatrix(Y_2D_gold, "2D Gold:")
   
-        // Get cksums
         val margin = 0.25.to[T]
         val cksum_1D = Y_1D_result.zip(Y_1D_gold){(a,b) => abs(a - b) < margin}.reduce{_&&_}
         val cksum_2D = Y_2D_result.zip(Y_2D_gold){(a,b) => abs(a - b) < margin}.reduce{_&&_}
