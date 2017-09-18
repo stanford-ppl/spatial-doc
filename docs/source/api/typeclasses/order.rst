@@ -24,6 +24,7 @@
 Order
 =====
 
+
 Type class used to supply evidence that type T has basic ordering operations defined on it.
 
 
@@ -33,13 +34,13 @@ Type class used to supply evidence that type T has basic ordering operations def
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 |      `trait`         **Order**\[T\]                                                                                                        |
 +=====================+======================================================================================================================+
-| |      abstract def   **lessThan**\(x: T, y: T): :doc:`../common/bit`                                                                      |
+| |               def   **lessThan**\(x: T, y: T): :doc:`../common/bit`                                                                      |
 | |                       Returns `true` if x is less than y, `false` otherwise                                                              |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **lessThanOrEqual**\(x: T, y: T): :doc:`../common/bit`                                                               |
+| |               def   **lessThanOrEqual**\(x: T, y: T): :doc:`../common/bit`                                                               |
 | |                       Returns `true` if x is less than or equal to y, `false` otherwise                                                  |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **equal**\(x: T, y: T): :doc:`../common/bit`                                                                         |
+| |               def   **equal**\(x: T, y: T): :doc:`../common/bit`                                                                         |
 | |                       Returns `true` if x and y are equal, `false` otherwise                                                             |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 

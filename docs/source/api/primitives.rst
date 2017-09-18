@@ -5,3 +5,4 @@ Primitive Types
    common/bit
    common/fixpt
    common/fltpt
+   common/unit

@@ -24,6 +24,7 @@
 FixPt
 =====
 
+
 FixPt[S,I,F] represents an arbitrary precision fixed point representation.
 FixPt values may be signed or unsigned. Negative values, if applicable, are represented
 in twos complement.
@@ -31,7 +32,7 @@ in twos complement.
 The type parameters for FixPt are:
 
 +---+------+-----------------------------------+-----------------+
-| S | BOOL | Signed representation             | TRUE | FALSE    |
+| S | BOOL | Signed representation             | TRUE \| FALSE   |
 +---+------+-----------------------------------+-----------------+
 | I | INT  | Number of integer bits            | (_1 - _64)      |
 +---+------+-----------------------------------+-----------------+
@@ -79,113 +80,144 @@ In the case where an unstaged type is required, use the full `scala.*` name.
 The following infix methods are defined on all FixPt classes. When the method takes a right hand argument,
 only values of the same FixPt class can be used for this argument.
 
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-|      `class`          **FixPt**\[S, I, F\]                                                                                                 |
-+=====================+======================================================================================================================+
-| |               def   **unary_-**\: :doc:`fixpt`\[S,I,F\]                                                                                  |
-| |                       Returns negation of this fixed point value.                                                                        |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **unary_~**\: :doc:`fixpt`\[S,I,F\]                                                                                  |
-| |                       Returns bitwise inversion of this fixed point value.                                                               |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **+**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                            |
-| |                       Fixed point addition.                                                                                              |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **-**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                            |
-| |                       Fixed point subtraction.                                                                                           |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   *****\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                            |
-| |                       Fixed point multiplication.                                                                                        |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **\*\***\(exp: scala.Int): :doc:`fixpt`\[S,I,F\]                                                                     |
-| |                       Integer power, implemented in hardware as a reduction tree with **exp** inputs                                     |
-| |                                                                                                                                          |
-| |                       * **exp** \- exponent, currently must be an integer greater than zero                                              |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **\/**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                           |
-| |                       Fixed point division.                                                                                              |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **%**\(rhs: :doc:`fixpt`\[S,I,_0\]): :doc:`fixpt`\[S,I,_0\]                                                          |
-| |                       Fixed point modulus.                                                                                               |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **<+>**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                          |
-| |                       Saturating fixed point addition.                                                                                   |
-| |                       Addition which saturates at the largest or smallest representable number upon over/underflow.                      |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **<->**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                          |
-| |                       Saturating fixed point subtraction.                                                                                |
-| |                       Subtraction which saturates at the largest or smallest representable number upon over/underflow.                   |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **<*>**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                          |
-| |                       Saturating fixed point multiplication.                                                                             |
-| |                       Multiplication which saturates at the largest or smallest representable number upon over/underflow.                |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **<\/>**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                         |
-| |                       Saturating fixed point division.                                                                                   |
-| |                       Division which saturates at the largest or smallest representable number upon over/underflow.                      |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   ***&**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                           |
-| |                       Fixed point multiplication with unbiased rounding.                                                                 |
-| |                       After multiplication, probabilistically rounds up or down to the closest representable number.                     |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **\/&**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                          |
-| |                       Fixed point division with unbiased rounding.                                                                       |
-| |                       After division, probabilistically rounds up or down to the closest representable number.                           |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **<*&>**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                         |
-| |                       Saturating fixed point multiplication with unbiased rounding.                                                      |
-| |                       After multiplication, probabilistically rounds up or down to the closest representable number.                     |
-| |                       After rounding, also saturates at the largest or smallest representable number upon over/underflow.                |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **<\/&>**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                        |
-| |                       Saturating fixed point division with unbiased rounding.                                                            |
-| |                       After division, probabilistically rounds up or down to the closest representable number.                           |
-| |                       After rounding, also saturates at the largest or smallest representable number upon over/underflow.                |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **&**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                            |
-| |                       Bit-wise AND.                                                                                                      |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **|**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                            |
-| |                       Bit-wise OR.                                                                                                       |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **<<**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                           |
-| |                       Logical shift left.                                                                                                |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **>>**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                           |
-| |                       Arithmetic (sign preserving) shift right.                                                                          |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **>>>**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                          |
-| |                       Logical (zero padded) shift right.                                                                                 |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **<**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                            |
-| |                       Less than comparison.                                                                                              |
-| |                       Returns `true` if this value is less than the right hand side. Otherwise returns `false`.                          |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **<=**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                           |
-| |                       Less than or equal comparison                                                                                      |
-| |                       Returns `true` if this value is less than or equal to the right hand side. Otherwise returns `false`.              |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **>**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                            |
-| |                       Greater than comparison                                                                                            |
-| |                       Returns `true` if this value is greater than the right hand side. Otherwise returns `false`.                       |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **>=**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                           |
-| |                       Greater than or equal comparison                                                                                   |
-| |                       Returns `true` if this value is greater than or equal to the right hand side. Otherwise returns `false`.           |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **!=**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                           |
-| |                       Value inequality comparison                                                                                        |
-| |                       Returns `true` if this value is not equal to the right hand side. Otherwise returns `false`.                       |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **==**\(rhs: :doc:`fixpt`\[S,I,F\]): :doc:`fixpt`\[S,I,F\]                                                           |
-| |                       Value equality comparison                                                                                          |
-| |                       Returns `true` if this value is equal to the right hand side. Otherwise returns `false`.                           |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **toString**\: :doc:`../sw/string`                                                                                   |
-| |                       Creates a printable String from this value                                                                         |
-| |                                                                                                                                          |
-| |                       \[**NOTE**\] This method is unsynthesizable, and can be used only on the CPU or in simulation.                     |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
++----------+----------------------------------------------------------------------------------------------------------------+
+| class      **FixPt**\[S,I,F\]                                                                                             |
++==========+================================================================================================================+
+| |    def   **unary_-**\(\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                                                                |
+| |            Returns negation of this fixed point value.                                                                  |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **unary_~**\(\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                                                                |
+| |            Returns bitwise inversion of this fixed point value.                                                         |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **+** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                                 |
+| |            Fixed point addition.                                                                                        |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **-** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                                 |
+| |            Fixed point subtraction.                                                                                     |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **\*** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                                |
+| |            Fixed point multiplication.                                                                                  |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **/** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                                 |
+| |            Fixed point division.                                                                                        |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **%** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                                 |
+| |            Fixed point modulus.                                                                                         |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **\*&** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                               |
+| |            Fixed point multiplication with unbiased rounding.                                                           |
+| |                                                                                                                         |
+| |            After multiplication, probabilistically rounds up or down to the closest representable number.               |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **/&** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                                |
+| |            Fixed point division with unbiased rounding.                                                                 |
+| |                                                                                                                         |
+| |            After division, probabilistically rounds up or down to the closest representable number.                     |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **<+>** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                               |
+| |            Saturating fixed point addition.                                                                             |
+| |                                                                                                                         |
+| |            Addition which saturates at the largest or smallest representable number upon over/underflow.                |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **<->** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                               |
+| |            Saturating fixed point subtraction.                                                                          |
+| |                                                                                                                         |
+| |            Subtraction which saturates at the largest or smallest representable number upon over/underflow.             |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **<\*>** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                              |
+| |            Saturating fixed point multiplication.                                                                       |
+| |                                                                                                                         |
+| |            Multiplication which saturates at the largest or smallest representable number upon over/underflow.          |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **</>** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                               |
+| |            Saturating fixed point division.                                                                             |
+| |                                                                                                                         |
+| |            Division which saturates at the largest or smallest representable number upon over/underflow.                |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **<\*&>** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                             |
+| |            Saturating fixed point multiplication with unbiased rounding.                                                |
+| |                                                                                                                         |
+| |            After multiplication, probabilistically rounds up or down to the closest representable number.               |
+| |            After rounding, also saturates at the largest or smallest representable number upon over/underflow.          |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **</&>** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                              |
+| |            Saturating fixed point division with unbiased rounding.                                                      |
+| |                                                                                                                         |
+| |            After division, probabilistically rounds up or down to the closest representable number.                     |
+| |            After rounding, also saturates at the largest or smallest representable number upon over/underflow.          |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **<** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: MBoolean                                                      |
+| |            Less than comparison.                                                                                        |
+| |                                                                                                                         |
+| |            Returns **true** if this value is less than **that** value. Otherwise returns **false**.                     |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **<=**\(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: MBoolean                                                      |
+| |            Less than or equal comparison.                                                                               |
+| |                                                                                                                         |
+| |            Returns **true** if this value is less than or equal to **that** value. Otherwise returns **false**.         |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **>** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: MBoolean                                                      |
+| |            Greater than comparison                                                                                      |
+| |                                                                                                                         |
+| |            Returns **true** if this value is greater than **that** value. Otherwise returns **false**.                  |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **>=**\(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: MBoolean                                                      |
+| |            Greater than or equal comparison.                                                                            |
+| |                                                                                                                         |
+| |            Returns **true** if this value is greater than or equal to **that** value. Otherwise returns **false**.      |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **!=**\(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`Boolean <bit>`                                          |
+| |            Value inequality comparison.                                                                                 |
+| |            Returns **true** if this value is not equal to the right hand side. Otherwise returns **false**.             |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **!=**\(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`Boolean <bit>`                                          |
+| |            Value equality comparison.                                                                                   |
+| |            Returns **true** if this value is equal to the right hand side. Otherwise returns **false**.                 |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **&** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                                 |
+| |            Bit-wise AND.                                                                                                |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **|** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                                 |
+| |            Bit-wise OR.                                                                                                 |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **^** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                                 |
+| |            Bit-wise XOR.                                                                                                |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **<<**\(that\: :doc:`FixPt <fixpt>`\[S,I,_0\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                                |
+| |            Logical shift left.                                                                                          |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **>>**\(that\: :doc:`FixPt <fixpt>`\[S,I,_0\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                                |
+| |            Arithmetic (sign-preserving) shift right.                                                                    |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **>>>**\(that\: :doc:`FixPt <fixpt>`\[S,I,_0\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                               |
+| |            Logical (zero-padded) shift right.                                                                           |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **as**\[T\::doc:`Type <../typeclasses/type>`\::doc:`Bits <../typeclasses/bits>`\]\: T                          |
+| |            Re-interprets this value's bits as the given type, without conversion.                                       |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **apply**\(i\: scala.Int\)\: :doc:`Bit <bit>`                                                                  |
+| |            Returns the given bit in this value.                                                                         |
+| |            0 corresponds to the least significant bit (LSB).                                                            |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **apply**\(range\: :doc:`Range <range>`\)\: :doc:`Vector <../hw/memories/onchip/vector>`\[:doc:`Bit <bit>`\]   |
+| |            Returns a vector of bits based on the given range.                                                           |
+| |            The range must be statically determinable values.                                                            |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **reverse**\: :doc:`FixPt <fixpt>`\[S,I,F\]                                                                    |
+| |            Returns a FixPt value with this value's bits in reverse order.                                               |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **to**\[T\::doc:`Type <../typeclasses/type>`\::doc:`Bits <../typeclasses/bits>`\]\: T                          |
+| |            Converts this value to the given type.                                                                       |
+| |                                                                                                                         |
+| |            Currently supported types are @FixPt, @FltPt, and @String.                                                   |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **toString**\: :doc:`String <../sw/string>`                                                                    |
+| |            Creates a printable String representation of this value.                                                     |
+| |                                                                                                                         |
+| |            **NOTE**: This method is unsynthesizable, and can be used only on the CPU or in simulation.                  |
++----------+----------------------------------------------------------------------------------------------------------------+
+
+
 
 --------------
 

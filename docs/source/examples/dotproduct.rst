@@ -118,7 +118,6 @@ Now that we have tiles of data, let's compute a small dot product::
 
     @virtualize def dotproduct(a: Array[Float], b: Array[Float]): Float = {
         ...
-                // Inner dot product
                 Reduce(0.0f)(B by 1){j =>
                     sramA(j) * sramB(j)
                 }{(x,y) => x + y }

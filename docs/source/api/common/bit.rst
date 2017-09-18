@@ -24,6 +24,7 @@
 Boolean
 =======
 
+
 Boolean represents a staged single boolean value.
 
 Note that this type shadows the unstaged Scala Boolean.

@@ -44,7 +44,6 @@ gold check. We will expose the dimensions of the matrices as command-line argume
 
 		type T = FixPt[TRUE,_24,_8]
 
-		// Mxk * KxN = MxN 
 	    val M = ArgIn[Int]
 	    val N = ArgIn[Int]
 	    val K = ArgIn[Int]
@@ -67,12 +66,10 @@ gold check. We will expose the dimensions of the matrices as command-line argume
 
 		val accel_matrix = getMatrix(c)
 
-		// Check is computed with inner products since it is easier to write this in parallel patterns
 		val gold_matrix = (0::args(0).to[Int], 0::args(1).to[Int]){(i,j) => 
 			Array.tabulate(args(2).to[Int]){k => a_data(i,k) * b_data(k,j)}.reduce{_+_}
 		}
 
-		// Print results and cksum
 		printMatrix(accel_matrix, "Received: ")
 		printMatrix(gold_matrix, "Wanted: ")
 		val cksum = accel_matrix.zip(gold_matrix){_==_}.reduce{_&&_}
@@ -130,7 +127,6 @@ Remember that you may add parallelization wherever you please::
 					tileB_sram load b(kk::kk+numel_k, nn::nn+numel_n)
 					tileC_sram load c(mm::mm+numel_m, nn::nn+numel_n)
 
-					// More code to be added here
 
 					c(mm::mm+numel_m, nn::nn+numel_n) store tileC_sram
 				}
@@ -315,7 +311,6 @@ Below is the complete GEMM app::
 		val tileN = 16
 		val tileK = 16
 
-		// MxK * KxN = MxN 
 	    val M = ArgIn[Int]
 	    val N = ArgIn[Int]
 	    val K = ArgIn[Int]
@@ -364,12 +359,10 @@ Below is the complete GEMM app::
 
 		val accel_matrix = getMatrix(c)
 
-		// Check is computed with inner products since it is easier to write this in parallel patterns
 		val gold_matrix = (0::args(0).to[Int], 0::args(1).to[Int]){(i,j) => 
 			Array.tabulate(args(2).to[Int]){k => a_data(i,k) * b_data(k,j)}.reduce{_+_}
 		}
 
-		// Print results and cksum
 		printMatrix(accel_matrix, "Received: ")
 		printMatrix(gold_matrix, "Wanted: ")
 		val cksum = accel_matrix.zip(gold_matrix){_==_}.reduce{_&&_}
@@ -417,6 +410,6 @@ to the user to figure out how to use parallelizations and rewrite portions of th
 and get better performance.
 
 
-When you understand the concepts introduced in this page, you may move on to the next example, :doc:`Convolution`, where you
+When you understand the concepts introduced in this page, you may move on to the next example, :doc:`convolution`, where you
 will learn to perform reductions on memories, include instrumentation hooks to help balance your pipeline,
 and see more complicated examples of banking.

@@ -23,6 +23,7 @@
 Matrix
 ======
 
+
 Class and companion object for dense matrices on the CPU. 
 
 

@@ -24,6 +24,7 @@
 FltPt
 =====
 
+
 FltPt[G,E] represents an arbitrary precision, IEEE-754-like representation.
 FltPt values are always assumed to be signed.
 

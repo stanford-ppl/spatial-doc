@@ -1,7 +1,8 @@
 Makefile
-docs/build
-docs/build/*
+build/
+prepped/
 make.bat
-source/*
-build*
+target/
+.idea/
+
 

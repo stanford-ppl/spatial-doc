@@ -30,17 +30,44 @@ They must be specified explicitly in the host code (not in Accel scopes).
 
 **Methods**
 
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **getArg**\[T::doc:`../typeclasses/bits`\](reg: :doc:`../hw/memories/reg`\[T\]): T                                   |
-| |                       Transfer a scalar ArgOut value from the accelerator to the host                                                    |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **getMem**\[T::doc:`../typeclasses/bits`\](dram: :doc:`../hw/memories/dram`\[T\]): :doc:`array`\[T\]                 |
-| |                       Copy a block of data from the accelerator's main memory into an Array on the host                                  |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **setArg**\[T::doc:`../typeclasses/bits`\](reg: :doc:`../hw/memories/reg`\[T\], value: T): Unit                      |
-| |                       Transfer a scalar value from the host to the accelerator                                                           |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **setMem**\[T::doc:`../typeclasses/bits`\](dram: :doc:`../hw/memories/dram`\[T\], data: :doc:`array`\[T\]): Unit     |
-| |                       Copy a block of data from a host Array to the accelerator's main memory                                            |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| |     def   **setArg**\[T\]\(reg\: Reg\[T\], value\: T\)\: :doc:`Unit <../common/unit>`                                                                                                                                          |
+| |             Transfer a scalar value from the host to the accelerator through the register **reg**.                                                                                                                             |
+| |             **reg** should be allocated as the HostIO or ArgIn methods.                                                                                                                                                        |
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| |     def   **getArg**\[T\::doc:`Type <../typeclasses/type>`\::doc:`Bits <../typeclasses/bits>`\]\(reg\: Reg\[T\]\)\: T                                                                                                          |
+| |             Transfer a scalar value from the accelerator to the host through the register **reg**.                                                                                                                             |
+| |             **reg** should be allocated using the HostIO or ArgIn methods.                                                                                                                                                     |
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| |     def   **setMem**\[T\::doc:`Type <../typeclasses/type>`\::doc:`Bits <../typeclasses/bits>`\]\(dram\: :doc:`DRAM <../hw/memories/offchip/dram>`\[T\], data\: :doc:`Array <array>`\[T\]\)\: :doc:`Unit <../common/unit>`      |
+| |             Transfers the given @Array of **data** from the host's memory to **dram**'s region of accelerator DRAM.                                                                                                            |
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| |     def   **getMem**\[T\::doc:`Type <../typeclasses/type>`\::doc:`Bits <../typeclasses/bits>`\]\(dram\: :doc:`DRAM <../hw/memories/offchip/dram>`\[T\]\)\: :doc:`Array <array>`\[T\]                                           |
+| |             Transfers **dram**'s region of accelerator DRAM to the host's memory and returns the result as an @Array.                                                                                                          |
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| |     def   **setMem**\[T\::doc:`Type <../typeclasses/type>`\::doc:`Bits <../typeclasses/bits>`\]\(dram\: :doc:`DRAM <../hw/memories/offchip/dram>`\[T\], data\: :doc:`Matrix <matrix>`\[T\]\)\: :doc:`Unit <../common/unit>`    |
+| |             Transfers the given @Matrix of **data** from the host's memory to **dram**'s region of accelerator DRAM.                                                                                                           |
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| |     def   **getMatrix**\[T\::doc:`Type <../typeclasses/type>`\::doc:`Bits <../typeclasses/bits>`\]\(dram\: :doc:`DRAM2 <../hw/memories/offchip/dram>`\[T\]\)\(implicit ctx\: SrcCtx\)\: :doc:`Matrix <matrix>`\[T\]            |
+| |             Transfers **dram**'s region of accelerator DRAM to the host's memory and returns the result as a @Matrix.                                                                                                          |
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| |     def   **setMem**\[T\::doc:`Type <../typeclasses/type>`\::doc:`Bits <../typeclasses/bits>`\]\(dram\: :doc:`DRAM <../hw/memories/offchip/dram>`\[T\], tensor3\: Tensor3\[T\]\)\: :doc:`Unit <../common/unit>`                |
+| |             Transfers the given Tensor3 of **data** from the host's memory to **dram**'s region of accelerator DRAM.                                                                                                           |
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| |     def   **getTensor3**\[T\::doc:`Type <../typeclasses/type>`\::doc:`Bits <../typeclasses/bits>`\]\(dram\: :doc:`DRAM3 <../hw/memories/offchip/dram>`\[T\]\)\(implicit ctx\: SrcCtx\)\: Tensor3\[T\]                          |
+| |             Transfers **dram**'s region of accelerator DRAM to the host's memory and returns the result as a Tensor3.                                                                                                          |
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| |     def   **setMem**\[T\::doc:`Type <../typeclasses/type>`\::doc:`Bits <../typeclasses/bits>`\]\(dram\: :doc:`DRAM <../hw/memories/offchip/dram>`\[T\], tensor4\: Tensor4\[T\]\)\: :doc:`Unit <../common/unit>`                |
+| |             Transfers the given Tensor4 of **data** from the host's memory to **dram**'s region of accelerator DRAM.                                                                                                           |
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| |     def   **getTensor4**\[T\::doc:`Type <../typeclasses/type>`\::doc:`Bits <../typeclasses/bits>`\]\(dram\: :doc:`DRAM4 <../hw/memories/offchip/dram>`\[T\]\)\(implicit ctx\: SrcCtx\)\: Tensor4\[T\]                          |
+| |             Transfers **dram**'s region of accelerator DRAM to the host's memory and returns the result as a Tensor4.                                                                                                          |
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| |     def   **setMem**\[T\::doc:`Type <../typeclasses/type>`\::doc:`Bits <../typeclasses/bits>`\]\(dram\: :doc:`DRAM <../hw/memories/offchip/dram>`\[T\], tensor5\: Tensor5\[T\]\)\: :doc:`Unit <../common/unit>`                |
+| |             Transfers the given Tensor5 of **data** from the host's memory to **dram**'s region of accelerator DRAM.                                                                                                           |
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| |     def   **getTensor5**\[T\::doc:`Type <../typeclasses/type>`\::doc:`Bits <../typeclasses/bits>`\]\(dram\: :doc:`DRAM5 <../hw/memories/offchip/dram>`\[T\]\)\(implicit ctx\: SrcCtx\)\: Tensor5\[T\]                          |
+| |             Transfers **dram**'s region of accelerator DRAM to the host's memory and returns the result as a Tensor5.                                                                                                          |
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
 

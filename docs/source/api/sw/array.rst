@@ -24,6 +24,7 @@
 Array
 =====
 
+
 Class and companion object for managing one dimensional arrays on the CPU.
 
 Note that this type shadows the unstaged Scala Array.
@@ -84,7 +85,7 @@ In the case where an unstaged Array type is required, use the full `scala.Array`
 | |               def   **flatMap**\[R\](func: T => :doc:`array`\[R\]): :doc:`array`\[R\]                                                    |
 | |                       Creates a new Array by concatenating the results of **func** applied to all elements in this Array.                |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **groupByReduce**\[K,V\](key: T => K)(value: T => V)(reduce: (V,V) => V): :doc:`hashmap`[K,V]                        |
+| |               def   **groupByReduce**\[K,V\](key: T => K)(value: T => V)(reduce: (V,V) => V): :doc:`hashmap`\[K,V\]                      |
 | |                       Partitions this array using the **key** function, then maps each element using **value**, and                      |
 | |                       finally combines values in each bin using **reduce**.                                                              |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
