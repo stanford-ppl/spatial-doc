@@ -42,10 +42,10 @@ object Foreach
   @api def apply(ctr: Counter)(func: Int => Unit): Unit
 
   /** Foreach over a two dimensional space. **/
-  @api def apply(ctr1: Counter, ctr2: Counter)(func: (Int,Int) => Unit): Unit
+  @api def apply(ctr1: Counter, ctr2: Counter)(func: (Int, Int) => Unit): Unit
 
   /** Foreach over a three dimensional space. **/
-  @api def apply(ctr1: Counter, ctr2: Counter, ctr3: Counter)(func: (Int,Int,Int) => Unit): Unit
+  @api def apply(ctr1: Counter, ctr2: Counter, ctr3: Counter)(func: (Int, Int, Int) => Unit): Unit
 
   /** 
     * Foreach over a 4+ dimensional space. 

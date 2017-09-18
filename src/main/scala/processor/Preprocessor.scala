@@ -101,7 +101,8 @@ object Utils {
       if (dropDef.nonEmpty) {
         val combined = dropDef.mkString("")
         val tokened = tokenize(combined, List("\\(", "\\)", "\\[", "\\]", "\\s+"))
-        val bolded = if (tokened.head.endsWith("\\:")) {
+        val bolded = if (!tokened.head.contains(":doc:")) {
+          if (tokened.head.endsWith("\\:")) {
           "**" + tokened.head.dropRight(2) + "**" + "\\:" + tokened.drop(1).mkString("")
         }
         else if (tokened.head.endsWith("\\")) {
@@ -109,7 +110,8 @@ object Utils {
         }
         else {
           "**" + tokened.head + "**" + tokened.drop(1).mkString("")
-        }
+        }}
+        else tokened.mkString("")
         dropRhs(bolded)
       }
       else ""

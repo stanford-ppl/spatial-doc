@@ -42,19 +42,19 @@ Note that this may change as the language evolves.
 | |    def   **apply**\(func\: => :doc:`Unit <../../common/unit>`\)\: :doc:`Unit <../../common/unit>`                                  |
 | |            Creates a streaming Unit Pipe, akin to a Foreach with one iteration.                                                    |
 +----------+---------------------------------------------------------------------------------------------------------------------------+
-| |    def   **:doc:`Fold** <../controllers/fold>`\: :doc:`Fold <../controllers/fold>`                                                 |
+| |    def   :doc:`Fold <../controllers/fold>`\: :doc:`Fold <../controllers/fold>`                                                     |
 | |            References the :doc:`Fold <../controllers/fold>` object with streaming specified as the scheduling directive.           |
 +----------+---------------------------------------------------------------------------------------------------------------------------+
-| |    def   **:doc:`Foreach** <../controllers/foreach>`\: :doc:`Foreach <../controllers/foreach>`                                     |
+| |    def   :doc:`Foreach <../controllers/foreach>`\: :doc:`Foreach <../controllers/foreach>`                                         |
 | |            References the :doc:`Foreach <../controllers/foreach>` object with streaming specified as the scheduling directive.     |
 +----------+---------------------------------------------------------------------------------------------------------------------------+
-| |    def   **:doc:`MemFold** <../controllers/memfold>`\: :doc:`MemFold <../controllers/memfold>`                                     |
+| |    def   :doc:`MemFold <../controllers/memfold>`\: :doc:`MemFold <../controllers/memfold>`                                         |
 | |            References the :doc:`MemFold <../controllers/memfold>` object with streaming specified as the scheduling directive.     |
 +----------+---------------------------------------------------------------------------------------------------------------------------+
-| |    def   **:doc:`MemReduce** <../controllers/memreduce>`\: :doc:`MemReduce <../controllers/memreduce>`                             |
+| |    def   :doc:`MemReduce <../controllers/memreduce>`\: :doc:`MemReduce <../controllers/memreduce>`                                 |
 | |            References the :doc:`MemReduce <../controllers/memreduce>` object with streaming specified as the scheduling directive. |
 +----------+---------------------------------------------------------------------------------------------------------------------------+
-| |    def   **:doc:`Reduce** <../controllers/reduce>`\: :doc:`Reduce <../controllers/reduce>`                                         |
+| |    def   :doc:`Reduce <../controllers/reduce>`\: :doc:`Reduce <../controllers/reduce>`                                             |
 | |            References the :doc:`Reduce <../controllers/reduce>` object with streaming specified as the scheduling directive.       |
 +----------+---------------------------------------------------------------------------------------------------------------------------+
 

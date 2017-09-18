@@ -51,13 +51,13 @@ object MemReduce
     * On-chip memory reduction over a two dimensional space.
     * Returns the accumulator `accum`.
     **/
-  @api def apply[T,C[T]](accum: C[T])(ctr1: Counter, ctr2: Counter)(map: (Int,Int) => C[T])(reduce: (T,T) => T): C[T]
+  @api def apply[T,C[T]](accum: C[T])(ctr1: Counter, ctr2: Counter)(map: (Int, Int) => C[T])(reduce: (T,T) => T): C[T]
 
   /** 
     * On-chip memory reduction over a three dimensional space.
     * Returns the accumulator `accum`.
     **/
-  @api def apply[T,C[T]](accum: C[T])(ctr1: Counter, ctr2: Counter, ctr3: Counter)(map: (Int,Int,Int) => C[T])(reduce: (T,T) => T): C[T]
+  @api def apply[T,C[T]](accum: C[T])(ctr1: Counter, ctr2: Counter, ctr3: Counter)(map: (Int, Int, Int) => C[T])(reduce: (T,T) => T): C[T]
 
   /** 
     * On-chip memory reduction over a 4+ dimensional space.

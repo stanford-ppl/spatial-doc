@@ -52,13 +52,13 @@ object Reduce
     * Reduction over a two dimensional space with implicit accumulator but explicit identity value. 
     * Returns the accumulator used to implement this reduction.
     **/
-  @api def apply[T](identity: T)(ctr1: Counter, ctr2: Counter)(map: (Int,Int) => T)(reduce: (T,T) => T): Reg[T]
+  @api def apply[T](identity: T)(ctr1: Counter, ctr2: Counter)(map: (Int, Int) => T)(reduce: (T,T) => T): Reg[T]
 
   /** 
     * Reduction over a three dimensional space with implicit accumulator but explicit identity value. 
     * Returns the accumulator used to implement this reduction.
     **/
-  @api def apply[T](identity: T)(ctr1: Counter, ctr2: Counter, ctr3: Counter)(map: (Int,Int,Int) => T)(reduce: (T,T) => T): Reg[T]
+  @api def apply[T](identity: T)(ctr1: Counter, ctr2: Counter, ctr3: Counter)(map: (Int, Int, Int) => T)(reduce: (T,T) => T): Reg[T]
 
    /** 
     * Reduction over an 4+ dimensional space with implicit accumulator but explicit identity value. 
@@ -79,13 +79,13 @@ object Reduce
     * Reduction over a two dimensional space with explicit accumulator. 
     * Returns the accumulator used to implement this reduction.
     **/
-  @api def apply[T](accum: Reg[T])(ctr1: Counter, ctr2: Counter)(map: (Int,Int) => T)(reduce: (T,T) => T): Reg[T]
+  @api def apply[T](accum: Reg[T])(ctr1: Counter, ctr2: Counter)(map: (Int, Int) => T)(reduce: (T,T) => T): Reg[T]
 
   /** 
     * Reduction over a three dimensional space with explicit accumulator. 
     * Returns the accumulator used to implement this reduction.
     **/
-  @api def apply[T](accum: Reg[T])(ctr1: Counter, ctr2: Counter, ctr3: Counter)(map: (Int,Int,Int) => T)(reduce: (T,T) => T): Reg[T]
+  @api def apply[T](accum: Reg[T])(ctr1: Counter, ctr2: Counter, ctr3: Counter)(map: (Int, Int, Int) => T)(reduce: (T,T) => T): Reg[T]
 
    /** 
     * Reduction over an 4+ dimensional space with explicit accumulator. 
