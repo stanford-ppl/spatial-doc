@@ -3,9 +3,9 @@ all:
 	sbt compile; \
 	sbt run;
 	cd docs; \
-	sphinx-build -b html prepped build
+	sphinx-build -b html source build
 
 clean:
 	cd docs; \
 	rm -rf build; \
-	rm -rf prepped
+	rm -rf source

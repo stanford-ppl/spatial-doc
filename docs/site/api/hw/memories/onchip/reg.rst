@@ -83,21 +83,22 @@ object HostIO
 
 **Infix methods**
 
-+----------+------------------------------------------------------------------------------------------------+
-| class      **Reg**\[T\]                                                                                   |
-+==========+================================================================================================+
-| |    def   **value**\: T                                                                                  |
-| |            Returns the value currently held by this register.                                           |
-+----------+------------------------------------------------------------------------------------------------+
-| |    def   **\:\=**\(data\: T\)\: MUnit                                                                   |
-| |            Writes the given **data** to this register.                                                  |
-+----------+------------------------------------------------------------------------------------------------+
-| |    def   **reset**\: MUnit                                                                              |
-| |            Resets the value of this register back to its reset value.                                   |
-+----------+------------------------------------------------------------------------------------------------+
-| |    def   **reset**\(cond\: :doc:`Bit <../../../common/bit>`\)\: MUnit                                   |
-| |            Conditionally resets the value of this register back to its reset value if **cond** is true. |
-+----------+------------------------------------------------------------------------------------------------+
+@table-start
+class Reg[T]
+
+  /** Returns the value currently held by this register. **/
+  @api def value: T
+
+  /** Writes the given `data` to this register. **/
+  @api def :=(data: T): MUnit
+
+  /** Resets the value of this register back to its reset value. **/
+  @api def reset: MUnit
+
+  /** Conditionally resets the value of this register back to its reset value if **cond** is true. **/
+  @api def reset(cond: Bit): MUnit
+
+@table-end
 
 --------------
 

@@ -33,17 +33,17 @@ Type class used to supply evidence that type T is representable by a statically 
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 |      `trait`         **Bits**\[T\]                                                                                                         |
 +=====================+======================================================================================================================+
-| |      abstract def   **zero**\: T                                                                                                         |
+| |               def   **zero**\: T                                                                                                         |
 | |                       Creates the zero value for type T                                                                                  |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **one**\: T                                                                                                          |
+| |               def   **one**\: T                                                                                                          |
 | |                       Creates the one value for type T                                                                                   |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **random**\(max: Option[T]): T                                                                                       |
+| |               def   **random**\(max: Option[T]): T                                                                                       |
 | |                       Generates a pseudorandom value uniformly distributed between 0 and max.                                            |
 | |                       If max is unspecified, type T's default maximum is used instead.                                                   |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |      abstract def   **length**\(x: T, y: T): T                                                                                           |
+| |               def   **length**\(x: T, y: T): T                                                                                           |
 | |                       Returns the number of bits required to represent this type.                                                        |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 
@@ -59,13 +59,9 @@ Type class used to supply evidence that type T is representable by a statically 
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 | |               def   **random**\[T: :doc:`bits`\]: T                                                                                      |
 | |                       Generates a pseudorandom value uniformly distributed between 0 and the default max for type T.                     |
-| |                                                                                                                                          |
-| |                       \[**NOTE**\] This method is unsynthesizable, and can be used only on the CPU or in simulation.                     |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 | |               def   **random**\[T: :doc:`bits`\](max: T): T                                                                              |
 | |                       Generates a pseudorandom value uniformly distributed between 0 and **max**.                                        |
-| |                                                                                                                                          |
-| |                       \[**NOTE**\] This method is unsynthesizable, and can be used only on the CPU or in simulation.                     |
 +---------------------+----------------------------------------------------------------------------------------------------------------------+
 
 

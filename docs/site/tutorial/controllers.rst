@@ -50,7 +50,7 @@ a *reduction* function to describe how the values should be combined.
 
 *Reduce* returns the accumulator which, at the end of the loop, will contain the final result of the reduction.
 
-For example, suppose we want to add up all of the elements in a local :doc:`../api/hw/memories/sram` scratchpad.
+For example, suppose we want to add up all of the elements in a local @SRAM scratchpad.
 In this case, the *map* function should tell the hardware to load an element from the memory and the *reduction* function
 tells the hardware to perform an addition to combine elements::
 
@@ -116,7 +116,7 @@ Again, this will produce 10 + (the sum of the contents of ``data``), since ``acc
 
 Also occasionally referred to as "Block Reduce", *MemReduce* describes the reduction *across* multiple local memories.
 Like *Reduce*, *MemReduce* requires both a *map* and a *reduction* function. However, in *MemReduce*, the *map*
-describes the creation and population of a local memory (typically an :doc:`../api/hw/memories/sram`).
+describes the creation and population of a local memory (typically an @SRAM).
 The *reduction* function still operates on scalars, and is used to combine local memories together element-wise.
 Unlike *Reduce*, *MemReduce* always requires an explicit accumulator.
 Unless otherwise disabled, the compiler will then try to parallelize both the creation of this memory and the reduction
@@ -172,7 +172,7 @@ the stages of the controller can be overlapped in a pipelined fashion. If the co
 this means that these inner controllers will be executed using coarse-grained pipeline scheduling.
 Additionally, *Pipe* tells the compiler it may attempt to parallelize the loop by unrolling it in space.
 
-When multiple stages communicate through an :doc:`../api/hw/memories/sram` in a *Pipe* controller, the compiler will
+When multiple stages communicate through an @SRAM in a *Pipe* controller, the compiler will
 automatically buffer and bank memories as necessary to maximize throughput.
 
 For example, suppose a *Foreach* contains two stages::
@@ -207,7 +207,7 @@ This tag is needed primarily when your algorithm contains long loop-carry depend
 **Stream**
 
 The *Stream* tag tells the compiler to overlap inner computation in a fine-grained, streaming fashion. In controllers
-which contain multiple control stages, this implies that communication is being done through :doc:`FIFOs <../api/hw/memories/fifo>`
+which contain multiple control stages, this implies that communication is being done through @FIFO memories
 at an element-wise level.
 
 Communication across stages within *Stream* controllers through any memory except FIFOs is currently disallowed.

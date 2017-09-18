@@ -293,6 +293,6 @@ Refer back to the `Compiling`_ and `Synthesizing and Testing`_ (TODO: fix links)
     }
 
 
-When you understand the concepts introduced in this page, you may move on to the next example, :doc:`GEMM`, where you
+When you understand the concepts introduced in this page, you may move on to the next example, :doc:`gemm`, where you
 will learn to perform reductions on memories, include instrumentation hooks to help balance your pipeline,
 and see more complicated examples of banking.

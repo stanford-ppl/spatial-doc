@@ -31,17 +31,17 @@ object Utils {
   def makeRelativePath(from: String, to: String): String = {
     val start = from.split("/").dropRight(1)
     val end   = to.split("/").dropRight(1)
-    println(start.mkString(" "))
-    println(end.mkString(" "))
+    //println(start.mkString(" "))
+    //println(end.mkString(" "))
     val diff  = start.zip(end).indexWhere{case (x,y) => x != y }
-    println("diff: " + diff)
+    //println("diff: " + diff)
     val back  = if (diff == -1) 0 else start.length - diff
     val forw  = if (diff == -1) end.length else diff
     val forward = end.drop(forw)
     val backBrk = if (back > 0) "/" else ""
     val forBrk  = if (forward.nonEmpty) "/" else ""
     val relative = List.fill(back)("..").mkString("/") + backBrk + forward.mkString("/") + forBrk + to.split("/").last
-    println(relative)
+    //println(relative)
     relative
   }
 
@@ -49,8 +49,11 @@ object Utils {
     var i = 0
     var eqlPos = -1
     var inParens = 0
+    val lastColon = str.lastIndexOf("\\:")
+    //println(str)
+    //println(" "*lastColon + "^")
     while (i < str.length) {
-      if (str(i) == '=' && inParens == 0) eqlPos = i
+      if (str(i) == '=' && inParens == 0 && i >= lastColon) eqlPos = i
       if (str(i) == '(') inParens += 1
       if (str(i) == ')') inParens -= 1
       i += 1
@@ -96,8 +99,18 @@ object Utils {
       val dropDef = linked.drop(defPos + 1).dropWhile(_.matches("\\s+")).dropWhile(_ == "")
 
       if (dropDef.nonEmpty) {
-        val boldFunc = "**" + dropDef.head + "**" + dropDef.drop(1).mkString("")
-        dropRhs(boldFunc)
+        val combined = dropDef.mkString("")
+        val tokened = tokenize(combined, List("\\(", "\\)", "\\[", "\\]", "\\s+"))
+        val bolded = if (tokened.head.endsWith("\\:")) {
+          "**" + tokened.head.dropRight(2) + "**" + "\\:" + tokened.drop(1).mkString("")
+        }
+        else if (tokened.head.endsWith("\\")) {
+          "**" + tokened.head.dropRight(1) + "**" + "\\" + tokened.drop(1).mkString("")
+        }
+        else {
+          "**" + tokened.head + "**" + tokened.drop(1).mkString("")
+        }
+        dropRhs(bolded)
       }
       else ""
     }
@@ -106,6 +119,9 @@ object Utils {
   def subAts(line: String, ctx: Context): String = {
     val tokens = tokenize(line, List("\\.", "\\s+", "\\,", "\\;", "\\!", "\\?"))
     tokens.map{t =>
+      if (t.startsWith("@")) {
+        println(s"Found token $t")
+      }
       if (t.startsWith("@") && ctx.paths.contains(t.drop(1))) makeLink(t.drop(1), ctx)
       else t
     }
@@ -156,8 +172,8 @@ object Preprocessor {
 
   def main(args: Array[String]): Unit = {
     val cwd = new File(".").getAbsolutePath.replace("/./", "/").replace("/.", "/")
-    val dir = cwd + args.headOption.getOrElse("docs/source/")
-    val out = dir.split(WITH_DELIMETER("/")).reverse.dropWhile(s => s == "/").reverse.dropRight(1).mkString("") + "prepped/"
+    val dir = cwd + args.headOption.getOrElse("docs/site/")
+    val out = dir.split(WITH_DELIMETER("/")).reverse.dropWhile(s => s == "/").reverse.dropRight(1).mkString("") + "source/"
 
     println("Dir: " + dir)
     println("Out: " + out)
@@ -339,25 +355,27 @@ case class TableProcessor(ctx: Context) {
   def complete()(implicit output: PrintWriter): Unit = {
     finishEntry()
     val finalDescriptions = entries.map{e =>
-      var words = e.description.split("\n").flatMap(_.split(WITH_DELIMETER(" "))).toList
-      var lines = List[String]()
-      while (words.nonEmpty) {
-        var line = List[String]()
-        if (words.head.length > MAX_DESCRIPTION_LENGTH) {
-          line = List(words.head.take(MAX_DESCRIPTION_LENGTH - 1) + "-")
-          words = List(words.head.drop(MAX_DESCRIPTION_LENGTH - 1)) ++ words.tail
+      e.description.split("\n").flatMap{line =>
+        var words = line.split(WITH_DELIMETER(" ")).toList
+        var lines = List[String]()
+        while (words.nonEmpty) {
+          var line = List[String]()
+          if (words.head.length > MAX_DESCRIPTION_LENGTH) {
+            line = List(words.head.take(MAX_DESCRIPTION_LENGTH - 1) + "-")
+            words = List(words.head.drop(MAX_DESCRIPTION_LENGTH - 1)) ++ words.tail
+          }
+          while (words.nonEmpty && lines.map(_.length).sum < MAX_DESCRIPTION_LENGTH - words.head.length) {
+            line = line ++ List(words.head)
+            words = words.tail
+          }
+          lines = lines ++ List(line.mkString("").trim)
         }
-        while (words.nonEmpty && lines.map(_.length).sum < MAX_DESCRIPTION_LENGTH - words.head.length) {
-          line = line ++ List(words.head)
-          words = words.tail
-        }
-        lines = lines ++ List(line.mkString(""))
+
+        //lines.foreach(println)
+        lines
       }
-
-      lines.foreach(println)
-
-      lines //e.description.sliding(MAX_DESCRIPTION_LENGTH,MAX_DESCRIPTION_LENGTH).toArray
     }
+
     val finalSignatures = entries.map(_.signature)
 
     name = {
@@ -378,7 +396,7 @@ case class TableProcessor(ctx: Context) {
     if (finalSignatures.isEmpty) {
       output.println(rb)
     }
-    else {
+    else if (heading != "NoHeading") {
       output.println(hb)
     }
 
