@@ -104,6 +104,9 @@ only values of the same FixPt class can be used for this argument.
 | |    def   **%** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                                 |
 | |            Fixed point modulus.                                                                                         |
 +----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **\\*\\***\(exp\: scala.Int\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                                                  |
+| |            Integer exponentiation, implemented in hardware as a reduction tree with **exp** inputs.                     |
++----------+----------------------------------------------------------------------------------------------------------------+
 | |    def   **\*&** \(that\: :doc:`FixPt <fixpt>`\[S,I,F\]\)\: :doc:`FixPt <fixpt>`\[S,I,F\]                               |
 | |            Fixed point multiplication with unbiased rounding.                                                           |
 | |                                                                                                                         |
@@ -204,12 +207,12 @@ only values of the same FixPt class can be used for this argument.
 | |            The range must be statically determinable values.                                                            |
 +----------+----------------------------------------------------------------------------------------------------------------+
 | |    def   **reverse**\: :doc:`FixPt <fixpt>`\[S,I,F\]                                                                    |
-| |            Returns a FixPt value with this value's bits in reverse order.                                               |
+| |            Returns a fixed point value with this value's bits in reverse order.                                         |
 +----------+----------------------------------------------------------------------------------------------------------------+
 | |    def   **to**\[T\::doc:`Type <../typeclasses/type>`\::doc:`Bits <../typeclasses/bits>`\]\: T                          |
 | |            Converts this value to the given type.                                                                       |
 | |                                                                                                                         |
-| |            Currently supported types are @FixPt, @FltPt, and @String.                                                   |
+| |            Currently supported types are :doc:`FixPt <fixpt>`, :doc:`FltPt <fltpt>`, and :doc:`String <../sw/string>`.  |
 +----------+----------------------------------------------------------------------------------------------------------------+
 | |    def   **toString**\: :doc:`String <../sw/string>`                                                                    |
 | |            Creates a printable String representation of this value.                                                     |

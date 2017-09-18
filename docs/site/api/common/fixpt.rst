@@ -103,6 +103,9 @@ class FixPt[S,I,F]
   /** Fixed point modulus. **/
   @api def % (that: FixPt[S,I,F]): FixPt[S,I,F] = FixPt(fix.mod(this.s,that.s))
 
+  /** Integer exponentiation, implemented in hardware as a reduction tree with **exp** inputs. **/
+  @api def \*\*(exp: scala.Int): FixPt[S,I,F]
+
   /**
     * Fixed point multiplication with unbiased rounding.
     *
@@ -224,7 +227,7 @@ class FixPt[S,I,F]
     */
   @api def apply(range: Range): Vector[Bit]
 
-  /** Returns a FixPt value with this value's bits in reverse order. **/
+  /** Returns a fixed point value with this value's bits in reverse order. **/
   @api def reverse: FixPt[S,I,F]
 
 

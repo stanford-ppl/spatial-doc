@@ -119,14 +119,16 @@ object Utils {
   def subAts(line: String, ctx: Context): String = {
     val tokens = tokenize(line, List("\\.", "\\s+", "\\,", "\\;", "\\!", "\\?", "\\)", "\\("))
     val ignore = List("api", "virtualize", "table-start", "table-end", "alias", "disp")
+
+    //println(tokens.mkString("_"))
+
     tokens.map{t =>
       if (t.contains("@") && !ctx.paths.contains(t.drop(1)) && !ignore.contains(t.drop(1))) {
         println(s"${ctx.filename}:${ctx.line}: Messed up token $t")
       }
       if (t.startsWith("@") && ctx.paths.contains(t.drop(1))) makeLink(t.drop(1), ctx)
       else t
-    }
-    tokens.mkString("")
+    }.mkString("")
   }
 
   val MAX_DESCRIPTION_LENGTH = 100
@@ -137,6 +139,7 @@ import Utils._
 sealed trait Mode {
   val startToken: String
   val endToken: String
+  def preprocess(line: String): String
   def process(line: String)(implicit output: PrintWriter): Unit
   def start(ctx: Context)(implicit output: PrintWriter): Unit
   def complete()(implicit output: PrintWriter): Unit
@@ -144,6 +147,7 @@ sealed trait Mode {
 case object IdentityMode extends Mode {
   val startToken: String = ""
   val endToken: String = ""
+  def preprocess(line: String): String = line
   def process(line: String)(implicit output: PrintWriter): Unit = output.println(line)
   def start(ctx: Context)(implicit output: PrintWriter): Unit = {}
   def complete()(implicit output: PrintWriter): Unit = {}
@@ -152,6 +156,10 @@ case object TableMode extends Mode {
   var p: TableProcessor = TableProcessor(Context.empty)
   val startToken = "@table-start"
   val endToken = "@table-end"
+  def preprocess(line: String): String = {
+    if (p.inComment || line.contains("/*")) line.replaceAll("`", "**")
+    else line
+  }
   def process(line: String)(implicit output: PrintWriter): Unit = p.parseLine(line)
   def start(ctx: Context)(implicit output: PrintWriter): Unit = {
     p = TableProcessor(ctx)
@@ -256,8 +264,15 @@ object Preprocessor {
         val ctx = Context(filename, origPath, lineNum, displ, paths)
 
         var line = ln
+
+        line = mode.preprocess(line)
+
         // Replace references to files using @x annotation
-        line = subAts(line, ctx)
+        if (line.contains("@")) {
+          //println(line)
+          line = subAts(line, ctx)
+          //println(line)
+        }
 
         mode match {
           case _ if line.trim.startsWith("//")     => // Do nothing for comments
@@ -294,10 +309,10 @@ object Preprocessor {
 case class TableEntry(var signature: String, var description: String) {
 
   def cleanup(ctx: Context): Unit = {
-    description = description.trim.replaceAll("`", "**")
+    description = description.trim
     signature = cleanupSignature(signature.trim, ctx)
-
   }
+
   def isEmpty: Boolean = signature.isEmpty
 }
 

@@ -63,55 +63,77 @@ In the case where an unstaged type is required, use the full `scala.*` name.
 
 **Infix methods**
 
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-|      `class`          **FltPt**\[G, E\]                                                                                                    |
-+=====================+======================================================================================================================+
-| |               def   **unary_-**\: :doc:`fltpt`\[G,E\]                                                                                    |
-| |                       Negates this floating point value.                                                                                 |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **+**\(rhs: :doc:`fltpt`\[G,E\]): :doc:`fltpt`\[G,E\]                                                                |
-| |                       Floating point addition                                                                                            |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **-**\(rhs: :doc:`fltpt`\[G,E\]): :doc:`fltpt`\[G,E\]                                                                |
-| |                       Floating point subtraction                                                                                         |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   *****\(rhs: :doc:`fltpt`\[G,E\]): :doc:`fltpt`\[G,E\]                                                                |
-| |                       Floating point multiplication                                                                                      |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **\*\***\(exp: scala.Int): :doc:`fltpt`\[G,E\]                                                                       |
-| |                       Integer power, implemented in hardware as a reduction tree with **exp** inputs                                     |
-| |                                                                                                                                          |
-| |                       * **exp** \- exponent, currently must be an integer greater than zero                                              |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **\/**\(rhs: :doc:`fltpt`\[G,E\]): :doc:`fltpt`\[G,E\]                                                               |
-| |                       Floating point division                                                                                            |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **<**\(rhs: :doc:`fltpt`\[G,E\]): :doc:`fltpt`\[G,E\]                                                                |
-| |                       Less than comparison.                                                                                              |
-| |                       Returns `true` if this value is less than the right hand side. Otherwise returns `false`.                          |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **<=**\(rhs: :doc:`fltpt`\[G,E\]): :doc:`fltpt`\[G,E\]                                                               |
-| |                       Less than or equal comparison                                                                                      |
-| |                       Returns `true` if this value is less than or equal to the right hand side. Otherwise returns `false`.              |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **>**\(rhs: :doc:`fltpt`\[G,E\]): :doc:`fltpt`\[G,E\]                                                                |
-| |                       Greater than comparison                                                                                            |
-| |                       Returns `true` if this value is greater than the right hand side. Otherwise returns `false`.                       |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **>=**\(rhs: :doc:`fltpt`\[G,E\]): :doc:`fltpt`\[G,E\]                                                               |
-| |                       Greater than or equal comparison                                                                                   |
-| |                       Returns `true` if this value is greater than or equal to the right hand side. Otherwise returns `false`.           |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **!=**\(rhs: :doc:`fltpt`\[G,E\]): :doc:`fltpt`\[G,E\]                                                               |
-| |                       Value inequality comparison                                                                                        |
-| |                       Returns `true` if this value is not equal to the right hand side. Otherwise returns `false`.                       |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **==**\(rhs: :doc:`fltpt`\[G,E\]): :doc:`fltpt`\[G,E\]                                                               |
-| |                       Value equality comparison                                                                                          |
-| |                       Returns `true` if this value is equal to the right hand side. Otherwise returns `false`.                           |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **toString**\: :doc:`../sw/string`                                                                                   |
-| |                       Creates a printable String from this value                                                                         |
-| |                                                                                                                                          |
-| |                       \[**NOTE**\] This method is unsynthesizable, and can be used only on the CPU or in simulation.                     |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
++----------+----------------------------------------------------------------------------------------------------------------+
+| class      **FltPt**\[G,E\]                                                                                               |
++==========+================================================================================================================+
+| |    def   **unary_-**\(\)\: :doc:`FltPt <fltpt>`\[G,E\]                                                                  |
+| |            Returns the negation of this floating point value.                                                           |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **+** \(that\: :doc:`FltPt <fltpt>`\[G,E\]\)\: :doc:`FltPt <fltpt>`\[G,E\]                                     |
+| |            Floating point addition.                                                                                     |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **-** \(that\: :doc:`FltPt <fltpt>`\[G,E\]\)\: :doc:`FltPt <fltpt>`\[G,E\]                                     |
+| |            Floating point subtraction.                                                                                  |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **\*** \(that\: :doc:`FltPt <fltpt>`\[G,E\]\)\: :doc:`FltPt <fltpt>`\[G,E\]                                    |
+| |            Floating point multiplication.                                                                               |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **/** \(that\: :doc:`FltPt <fltpt>`\[G,E\]\)\: :doc:`FltPt <fltpt>`\[G,E\]                                     |
+| |            Floating point division.                                                                                     |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **\\*\\***\(exp\: scala.Int\)\: :doc:`FltPt <fltpt>`\[G,E\]                                                    |
+| |            Integer exponentiation, implemented in hardware as a reduction tree with **exp** inputs.                     |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **<** \(that\: :doc:`FltPt <fltpt>`\[G,E\]\)\: MBoolean                                                        |
+| |            Less than comparison.                                                                                        |
+| |                                                                                                                         |
+| |            Returns **true** if this value is less than **that** value. Otherwise returns **false**.                     |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **<=**\(that\: :doc:`FltPt <fltpt>`\[G,E\]\)\: MBoolean                                                        |
+| |            Less than or equal comparison.                                                                               |
+| |                                                                                                                         |
+| |            Returns **true** if this value is less than or equal to **that** value. Otherwise returns **false**.         |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **>** \(that\: :doc:`FltPt <fltpt>`\[G,E\]\)\: MBoolean                                                        |
+| |            Greater than comparison.                                                                                     |
+| |                                                                                                                         |
+| |            Returns **true** if this value is greater than **that** value. Otherwise returns **false**.                  |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **>=**\(that\: :doc:`FltPt <fltpt>`\[G,E\]\)\: MBoolean                                                        |
+| |            Greater than or equal comparison.                                                                            |
+| |                                                                                                                         |
+| |            Returns **true** if this value is less than **that** value. Otherwise returns **false**.                     |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **!=**\(that\: :doc:`FltPt <fltpt>`\[G,E\]\)\: :doc:`Boolean <bit>`                                            |
+| |            Value inequality comparison.                                                                                 |
+| |            Returns **true** if this value is not equal to the right hand side. Otherwise returns **false**.             |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **!=**\(that\: :doc:`FltPt <fltpt>`\[G,E\]\)\: :doc:`Boolean <bit>`                                            |
+| |            Value equality comparison.                                                                                   |
+| |            Returns **true** if this value is equal to the right hand side. Otherwise returns **false**.                 |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **as**\[T\::doc:`Type <../typeclasses/type>`\::doc:`Bits <../typeclasses/bits>`\]\: T                          |
+| |            Re-interprets this value's bits as the given type, without conversion.                                       |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **apply**\(i\: scala.Int\)\: :doc:`Bit <bit>`                                                                  |
+| |            Returns the given bit in this value.                                                                         |
+| |            0 corresponds to the least significant bit (LSB).                                                            |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **apply**\(range\: :doc:`Range <range>`\)\: :doc:`Vector <../hw/memories/onchip/vector>`\[:doc:`Bit <bit>`\]   |
+| |            Returns a vector of bits based on the given range.                                                           |
+| |            The range must be statically determinable values.                                                            |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **reverse**\: :doc:`FltPt <fltpt>`\[G,E\]                                                                      |
+| |            Returns a floating point value with this value's bits in reverse order.                                      |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **to**\[T\::doc:`Type <../typeclasses/type>`\::doc:`Bits <../typeclasses/bits>`\]\: T                          |
+| |            Converts this value to the given type.                                                                       |
+| |                                                                                                                         |
+| |            Currently supported types are :doc:`FixPt <fixpt>`, :doc:`FltPt <fltpt>`, and :doc:`String <../sw/string>`.  |
++----------+----------------------------------------------------------------------------------------------------------------+
+| |    def   **toString**\: :doc:`String <../sw/string>`                                                                    |
+| |            Creates a printable String representation of this value.                                                     |
+| |                                                                                                                         |
+| |            **NOTE**: This method is unsynthesizable, and can be used only on the CPU or in simulation.                  |
++----------+----------------------------------------------------------------------------------------------------------------+
+

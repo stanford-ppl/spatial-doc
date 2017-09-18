@@ -26,8 +26,8 @@ MemReduce
 
 
 **MemReduce** describes the reduction *across* multiple local memories.
-Like @Reduce, MemReduce requires both a *map* and a *reduction* function. However, in MemReduce, the *map*
-describes the creation and population of a local memory (typically an @SRAM).
+Like :doc:`Reduce <reduce>`, MemReduce requires both a *map* and a *reduction* function. However, in MemReduce, the *map*
+describes the creation and population of a local memory (typically an :doc:`SRAM <../memories/onchip/sram>`).
 The *reduction* function still operates on scalars, and is used to combine local memories together element-wise.
 Unlike Reduce, MemReduce always requires an explicit accumulator.
 Unless otherwise disabled, the compiler will then try to parallelize both the creation of multiple memories and the reduction

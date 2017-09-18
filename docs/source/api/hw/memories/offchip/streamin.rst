@@ -26,8 +26,8 @@ StreamIn
 
 
 **StreamIn** defines a hardware bus used to receive streaming data from outside of the FPGA.
-StreamIns may not be written to. For streaming outputs, use @StreamOut.
-StreamIns are specified using a @Bits - based type and a target @Bus.
+StreamIns may not be written to. For streaming outputs, use :doc:`StreamOut <streamout>`.
+StreamIns are specified using a :doc:`Bits <../../../typeclasses/bits>` - based type and a target :doc:`Bus <bus>`.
 
 In Spatial, StreamIns are specified outside the Accel block, in host code.
 
