@@ -102,7 +102,7 @@ You should use this backend if you are debugging things at the algorithm level.
 In order to compile and simulate for the Scala backend, run::
 
     cd spatial-lang/ # Navigate to Spatial base directory
-    bin/spatial <app name> --sim # + :doc:`other options <compileflags>`
+    bin/spatial <app name> --sim # + :doc:`other options <../compiler>`
 
 The "<app name>" refers to the name of the ``object``. In our app above, for example, the app name is "HelloSpatial".
 See the "Running" section below for a guide on how to test the generated app
@@ -115,7 +115,7 @@ Targeting Chisel will let you compile your app down into Berkeley's Chisel langu
 It also allows you to debug your app at the clock-cycle resolution. In order to compile with the Chisel backend, run the following::
 
     cd spatial-lang/ # Navigate to Spatial base directory
-    bin/spatial <app name> --synth # + :doc:`other options <compileflags>`
+    bin/spatial <app name> --synth # + :doc:`other options <../compiler>`
 
 
 
@@ -364,7 +364,7 @@ compiler scopes code into separate Blocks.  Before this point, we have not scope
 than the base, global block, meaning all of the hardware we generate will fire at the same time.  In this particular
 example, we want ``reg1`` and ``reg2`` to be loaded before we sum them up, and therefore we should scope them out 
 with ``Pipe`` in order to ensure the top-level controller will execute them one after another.  Note that if retiming is turned on
-(see :doc:`compiler flags <compileflags>`), then we would not need to scope these operations out because all primitives
+(see :doc:`compiler flags <../compiler>`), then we would not need to scope these operations out because all primitives
 inside of a block are retimed appropriately to ensure their values arrive as dictated by the code.  Without retiming, however,
 all primitives can happen simultaneously and give an incorrect result.  Later sections will discuss retiming and 
 controller hierarchies further.

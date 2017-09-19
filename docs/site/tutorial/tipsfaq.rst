@@ -1,4 +1,4 @@
-7. Tips and FAQ
+FAQ
 =================================
 
 - Why does my Scala result not match my RTL simulation result?

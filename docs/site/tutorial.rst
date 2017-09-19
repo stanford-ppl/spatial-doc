@@ -8,7 +8,7 @@ in Spatial.
 
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 1
 
     tutorial/starting
     tutorial/helloworld
@@ -17,5 +17,3 @@ in Spatial.
     tutorial/convolution
     tutorial/nw
     tutorial/dse
-    tutorial/compileflags
-    tutorial/tipsfaq

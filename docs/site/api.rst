@@ -2,9 +2,12 @@
 Documentation
 =============
 
-The Spatial API is divided into three components: "Acceleratable" data structures and syntax can be used in the acceleration scope,
-while "Host" operations can only be used within the host code. Operations which are often used for either within the accelerator definition
-or in the host code are grouped under the "Common" category.
+The Spatial API is divided into three components: **Acceleratable** data structures and syntax can be used in the acceleration scope,
+while **Host** operations can only be used within the host code. Operations which are often used for either within the accelerator definition
+or in the host code are grouped under the **Common** category.
+
+
+Documentation for running the Spatial compiler is provided under **Compiler**. 
 
 
 .. toctree::
@@ -13,3 +16,4 @@ or in the host code are grouped under the "Common" category.
    api/common
    api/hardware
    api/software
+   compiler
