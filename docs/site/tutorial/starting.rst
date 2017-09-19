@@ -143,6 +143,8 @@ you find convenient:
  - Branching
 
  - FIFO 
+
+ - Systolic Arrays
  
  - File IO and text management
  
