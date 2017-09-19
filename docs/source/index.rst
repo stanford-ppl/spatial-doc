@@ -32,3 +32,4 @@ Language features of Spatial include:
    examples
    .. aws
    theory
+   tutorial/tipsfaq
