@@ -38,13 +38,13 @@ We will create an app that will read whatever text is in these files, pass it to
 between the two, and print out the result back into files called ``alignedA.txt`` and ``alignedB.txt``.  In order to test
 if our alignments are "correct," we will aim to have less than 10% of the entries be in error.::
 
-		import spatial.dsl._
-		import org.virtualized._
+    import spatial.dsl._
+    import org.virtualized._
 
-		object NW extends SpatialApp {
+    object NW extends SpatialApp {
 
-			@virtualize
-			def main() {
+      @virtualize
+      def main() {
         // Get data
         val seqA_text = loadCSV1D[MString]("/home/mattfel/seqA.txt", " ").apply(0) // Loads into array with 1 string
         val seqB_text = loadCSV1D[MString]("/home/mattfel/seqB.txt", " ").apply(0) // Loads into array with 1 string
@@ -77,7 +77,7 @@ if our alignments are "correct," we will aim to have less than 10% of the entrie
         val underscore = ArgIn[Int8]
         setArg(underscore,u)
 
-				Accel{}
+        Accel{}
 
         // Get data
         val seqA_aligned_result = getMem(seqA_aligned)
@@ -127,34 +127,34 @@ scores by -1 each for each hop away from the top left corner.  Then, for each en
 between the elements in string A and string B.  We then proceed to compute the ``from_left``, ``from_top``, and ``from_diag`` 
 updates based on these values and choose the smallest of them.  When getting this result, we keep the tuple that consists of
 both the new score and the path taken to achieve this new score.  Finally, we update the score matrix so that this new 
-value is available for the next update
+value is available for the next update::
 	
-	Accel{
-      val seqa_sram_raw = SRAM[Int8](max_length)
-      val seqb_sram_raw = SRAM[Int8](max_length)
+    Accel{
+        val seqa_sram_raw = SRAM[Int8](max_length)
+        val seqb_sram_raw = SRAM[Int8](max_length)
 
-      seqa_sram_raw load seqA(0::LEN)
-      seqb_sram_raw load seqB(0::LEN)
+        seqa_sram_raw load seqA(0::LEN)
+        seqb_sram_raw load seqB(0::LEN)
 
-      val score_matrix = SRAM[nw_tuple](max_length+1,max_length+1)
+        val score_matrix = SRAM[nw_tuple](max_length+1,max_length+1)
 
-      // Build score matrix
-      Foreach(LEN+1 by 1){ r =>
-        Sequential.Foreach(0 until LEN+1 by 1) { c =>
-          val previous_result = Reg[nw_tuple]
-          val update = if (r == 0) (nw_tuple(-c.as[Int16], 0)) else if (c == 0) (nw_tuple(-r.as[Int16], 1)) else {
-            val match_score = mux(seqa_sram_raw(c-1) == seqb_sram_raw(r-1), MATCH_SCORE.to[Int16], MISMATCH_SCORE.to[Int16])
-            val from_top = score_matrix(r-1, c).score + GAP_SCORE
-            val from_left = previous_result.score + GAP_SCORE
-            val from_diag = score_matrix(r-1, c-1).score + match_score
-            mux(from_left >= from_top && from_left >= from_diag, nw_tuple(from_left, SKIPB), mux(from_top >= from_diag, nw_tuple(from_top,SKIPA), nw_tuple(from_diag, ALIGN)))
+        // Build score matrix
+        Foreach(LEN+1 by 1){ r =>
+          Sequential.Foreach(0 until LEN+1 by 1) { c =>
+            val previous_result = Reg[nw_tuple]
+            val update = if (r == 0) (nw_tuple(-c.as[Int16], 0)) else if (c == 0) (nw_tuple(-r.as[Int16], 1)) else {
+              val match_score = mux(seqa_sram_raw(c-1) == seqb_sram_raw(r-1), MATCH_SCORE.to[Int16], MISMATCH_SCORE.to[Int16])
+              val from_top = score_matrix(r-1, c).score + GAP_SCORE
+              val from_left = previous_result.score + GAP_SCORE
+              val from_diag = score_matrix(r-1, c-1).score + match_score
+              mux(from_left >= from_top && from_left >= from_diag, nw_tuple(from_left, SKIPB), mux(from_top >= from_diag, nw_tuple(from_top,SKIPA), nw_tuple(from_diag, ALIGN)))
+            }
+            previous_result := update
+            if (c >= 0) {score_matrix(r,c) = update}
+            // score_matrix(r,c) = update
           }
-          previous_result := update
-          if (c >= 0) {score_matrix(r,c) = update}
-          // score_matrix(r,c) = update
         }
-      }
-	}
+    }
 
 While it is possible to parallelize the row updates in this algorithm, it is a little tricky because 
 you should not update any entry until you have all of its three adjacent source entries.  See (TODO: 

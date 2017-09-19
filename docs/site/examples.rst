@@ -3,9 +3,4 @@ Examples
 
 This section gives some simple annotated applications for learning Spatial by example.
 
-
-.. toctree::
-    :maxdepth: 2
-
-    examples/dotproduct
-    examples/outerproduct
+Please visit the latest regression branch of the spatial-apps repository: https://github.com/stanford-ppl/spatial-apps/tree/regression 
