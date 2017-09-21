@@ -27,6 +27,7 @@ Vector
 @alias Vector
 @alias VectorX
 @alias Vector2
+@alias Vector3
 @alias Vector4
 @alias Vector8
 @alias Vector16
@@ -39,7 +40,7 @@ This allows Vector to always be allocated as a bus of wires when implemented in 
 Vector is most commonly used for managing parallel accesses to local memories in hardware and for bit-twiddling operations.
 
 To allow static type checking and creation of the @Bits type class, the Vector type is split into subtypes based on the number of elements it contains.
-For example, a **Vector3**[@Int] is composed of 3, 32-bit @Int values, while a **Vector32**[@Bit] is a single bus of 32 @Bit values.
+For example, a Vector3[@Int] is composed of 3, 32-bit @Int values, while a Vector32[@Bit] is a single bus of 32 @Bit values.
 Spatial currently defines Vector types from **Vector1** up to **Vector128**.
 
 To work around :doc:`limitations with Scala's type system <../../faq>` Spatial also includes a VectorN type for when the vector width cannot be type-encoded.
@@ -128,10 +129,10 @@ class Vector[T]
     * Returns a slice of the elements in this Vector as a VectorN.
     * The range must be statically determinable with a stride of 1.
     * The range is inclusive for both the start and end.
-    * The `range` can be big endian (e.g. ``3::0``) or little endian (e.g. ``0::3``).
+    * The `range` can be big endian (e.g. `3::0`) or little endian (e.g. `0::3`).
     * In both cases, element 0 is always the least significant element.
     *
-    * For example, ``x(3::0)`` returns a Vector of the 4 least significant elements of ``x``.
+    * For example, `x(3::0)` returns a Vector of the 4 least significant elements of `x`.
     */
   @api def apply(range: Range)(implicit mT: Type[T], bT: Bits[T]): VectorN[T] = {
   
@@ -140,7 +141,7 @@ class Vector[T]
     * least significant element.
     * To satisfy Scala's static type analysis, each width has a separate method.
     *
-    * For example, ``x.take3(1)`` returns the 3 least significant elements of x after the
+    * For example, `x.take3(1)` returns the 3 least significant elements of x after the
     * least significant as a Vector3[T].
     */
   @api def takeX(offset: scala.Int): VectorX[T]
@@ -155,13 +156,9 @@ class Vector[T]
 @table-end
 
 
-The following additional operations are defined on all VectorX classes, with X from 1 to 128:
 
 @table-start
 class VectorX[T] extends Vector[T]
-
-
-
 
 @table-end
 
@@ -170,6 +167,25 @@ class VectorX[T] extends Vector[T]
 @table-start
 class VectorN[T]
 
+  /** 
+    * Casts this VectorN as a VectorX.
+    * Values of X from 1 to 128 are currently supported. 
+    * 
+    * If the VectorX type has fewer elements than this value's type, the most significant elements will be dropped.
+    * If the VectorX type has more elements than this value's type, the resulting elements will be zeros.
+    **/
+  @api def asVectorX: VectorX[T]
+
+
+  /**
+    * Returns a view of this VectorN's bits as a X-bit Vector.
+    * To satisfy Scala's static analysis, each bit-width has a separate method.
+    * Conversions between 1 and 128 bits are currently supported.
+    * 
+    * If X is smaller than this VectorN's total bits, the MSBs will be dropped.
+    * If X is larger than this VectorN's total bits, the resulting MSBs will be zeros.
+    */
+  @api def asXb: VectorX[Bit]
 
 @table-end
 
