@@ -7,4 +7,6 @@ This subsection lists data structures which are available for use both on the CP
     :maxdepth: 2
 
     range
-    tup2
+    struct
+    tuple2
+    vector

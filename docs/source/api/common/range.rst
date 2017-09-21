@@ -28,7 +28,7 @@ Range
 Range represents a sequence of 32b integer values from a given *start* (inclusive) to *end* (exclusive) with a non-zero step size.
 Range also has an optional parallelization factor, which is used to determine physical unrolling in hardware.
 
-In Accel scopes, Range instances can be implicitly converted to :doc:`Counter <../hw/memories/onchip/counter>`.
+In Accel scopes, Range instances can be implicitly converted to :doc:`Counter <../hw/onchip/counter>`.
 
 Ranges can be created using two different syntax flavors. When unspecified, the default value for `start` is 0, and
 the default value for `step` and `par` are both 1.
@@ -89,9 +89,9 @@ This loop will run for all even integers from \[0, max). Note that this syntax i
 
 **Implicit methods**
 
-+-----------+-------------------------------------------------------------------------------------------------------+
-| |     def   **rangeToCounter**\(range\: :doc:`Range <range>`\)\: :doc:`Counter <../hw/memories/onchip/counter>`   |
-| |             Implicitly creates a hardware :doc:`Counter <../hw/memories/onchip/counter>` from this Range.       |
-+-----------+-------------------------------------------------------------------------------------------------------+
++-----------+----------------------------------------------------------------------------------------------+
+| |     def   **rangeToCounter**\(range\: :doc:`Range <range>`\)\: :doc:`Counter <../hw/onchip/counter>`   |
+| |             Implicitly creates a hardware :doc:`Counter <../hw/onchip/counter>` from this Range.       |
++-----------+----------------------------------------------------------------------------------------------+
 
 

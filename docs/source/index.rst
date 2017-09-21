@@ -4,9 +4,9 @@ Spatial
 
 .. image:: images/spatial_start.png
 
-+------------------------------------------+------------------------------------+
-| :doc:`Get Started <tutorial/starting>`   | :doc:`API Documentation <api>`     |
-+------------------------------------------+------------------------------------+
++------------------------------------------+------------------------------------+-----------------------------------------------------------+
+| :doc:`Get Started <tutorial/starting>`   | :doc:`API Documentation <api>`     | `Source <https://github.com/stanford-ppl/spatial-lang>`_  |
++------------------------------------------+------------------------------------+-----------------------------------------------------------+
 
 Spatial is a domain-specific language for describing hardware accelerators for use on FPGAs and other supported spatial architectures.
 The language is intended to be both higher level than hardware description languages (HDLs) like Verilog, VHDL, and `Chisel <https://chisel.eecs.berkeley.edu/>`_,
@@ -30,6 +30,6 @@ Language features of Spatial include:
    api
    tutorial
    examples
-   .. aws
    theory
-   tutorial/tipsfaq
+   faq
+   contact

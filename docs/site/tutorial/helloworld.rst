@@ -2,6 +2,8 @@
 1. Hello, Spatial!
 ==================
 
+@alias HelloWorld
+
 Catalog of Features
 -------------------
 

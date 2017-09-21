@@ -43,6 +43,9 @@ The type parameters for FltPt are:
 Note that numbers of bits use the underscore prefix as integers cannot be used as type parameters in Scala.
 
 
+--------------
+
+
 **Type Aliases**
 
 Specific types of FltPt values can be managed using type aliases.
@@ -64,6 +67,8 @@ Spatial defines the following type aliases by default:
 Note that the Float and Double types shadow their respective unstaged Scala types.
 In the case where an unstaged type is required, use the full `scala.*` name.
 
+
+--------------
 
 **Infix methods**
 

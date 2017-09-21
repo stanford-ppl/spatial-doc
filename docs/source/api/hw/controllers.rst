@@ -1,5 +1,6 @@
-Controller Templates
+Controllers
 ====================
+
 
 .. toctree::
     controllers/fold

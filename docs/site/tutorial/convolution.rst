@@ -389,7 +389,7 @@ Final Code
 ----------
 
 Below is the final code for a single-file, functionized version of the two convolutions discussed in this
-tutorial.  See the @helloworld page for a refresher on how to compile and test.::
+tutorial.  See the @HelloWorld page for a refresher on how to compile and test.::
 
     import spatial.dsl._
     import org.virtualized._

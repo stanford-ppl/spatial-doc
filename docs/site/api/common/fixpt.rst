@@ -46,6 +46,7 @@ The type parameters for FixPt are:
 
 Note that numbers of bits use the underscore prefix as integers cannot be used as type parameters in Scala.
 
+--------------
 
 **Type Aliases**
 

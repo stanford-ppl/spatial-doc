@@ -6,8 +6,10 @@ This section lists types and methods which are non-acceleratable, i.e. only avai
 .. toctree::
    sw/array
    sw/debug
+   sw/fileio
    sw/hashmap
    sw/matrix
    sw/string
+   sw/tensor
    sw/transfer
 

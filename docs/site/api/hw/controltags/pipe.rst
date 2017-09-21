@@ -34,23 +34,26 @@ coarse-grained pipeline scheduling.
 
 **Static methods**
 
-+---------------------+----------------------------------------------------------------------------------------------------------+
-|      `object`         **Pipe**                                                                                                 |
-+=====================+==========================================================================================================+
-| |               def   **Fold**\: :doc:`../controllers/fold`                                                                    |
-| |                       References the :doc:`../controllers/fold` object with pipelining as the scheduling directive.          |
-+---------------------+----------------------------------------------------------------------------------------------------------+
-| |               def   **Foreach**\: :doc:`../controllers/foreach`                                                              |
-| |                       References the :doc:`../controllers/foreach` object with pipelining as the scheduling directive.       |
-+---------------------+----------------------------------------------------------------------------------------------------------+
-| |               def   **MemFold**\: :doc:`../controllers/memfold`                                                              |
-| |                       References the :doc:`../controllers/memfold` object with pipelining as the scheduling directive.       |
-+---------------------+----------------------------------------------------------------------------------------------------------+
-| |               def   **MemReduce**\: :doc:`../controllers/memreduce`                                                          |
-| |                       References the :doc:`../controllers/memreduce` object with pipelining as the scheduling directive.     |
-+---------------------+----------------------------------------------------------------------------------------------------------+
-| |               def   **Reduce**\: :doc:`../controllers/reduce`                                                                |
-| |                       References the :doc:`../controllers/reduce` object with pipelining as the scheduling directive.        |
-+---------------------+----------------------------------------------------------------------------------------------------------+
+@table-start
+object Pipe
+
+  /** Creates a Unit Pipe, akin to a Foreach with one iteration. **/
+  @api def apply(func: => Unit): Unit
 
 
+  /** References the @Fold object with pipelining specified as the scheduling directive. **/
+  @api def Fold: Fold
+
+  /** References the @Foreach object with pipelining specified as the scheduling directive. **/
+  @api def Foreach: Foreach
+
+  /** References the @MemFold object with pipelining specified as the scheduling directive. **/
+  @api def MemFold: MemFold
+
+  /** References the @MemReduce object with pipelining specified as the scheduling directive. **/
+  @api def MemReduce: MemReduce
+
+  /** References the @Reduce object with pipelining specified as the scheduling directive. **/
+  @api def Reduce: Reduce
+
+@table-end

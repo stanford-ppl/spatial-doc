@@ -32,21 +32,27 @@ This directive is needed primarily when the algorithm contains long loop-carry d
 
 **Static methods**
 
-+---------------------+------------------------------------------------------------------------------------------------------------------+
-|      `object`         **Sequential**                                                                                                   |
-+=====================+==================================================================================================================+
-| |               def   **Fold**\: :doc:`../controllers/fold`                                                                            |
-| |                       References the :doc:`../controllers/fold` object with sequential execution as the scheduling directive.        |
-+---------------------+------------------------------------------------------------------------------------------------------------------+
-| |               def   **Foreach**\: :doc:`../controllers/foreach`                                                                      |
-| |                       References the :doc:`../controllers/foreach` object with sequential execution as the scheduling directive.     |
-+---------------------+------------------------------------------------------------------------------------------------------------------+
-| |               def   **MemFold**\: :doc:`../controllers/memfold`                                                                      |
-| |                       References the :doc:`../controllers/memfold` object with sequential execution as the scheduling directive.     |
-+---------------------+------------------------------------------------------------------------------------------------------------------+
-| |               def   **MemReduce**\: :doc:`../controllers/memreduce`                                                                  |
-| |                       References the :doc:`../controllers/memreduce` object with sequential execution as the scheduling directive.   |
-+---------------------+------------------------------------------------------------------------------------------------------------------+
-| |               def   **Reduce**\: :doc:`../controllers/reduce`                                                                        |
-| |                       References the :doc:`../controllers/reduce` object with sequential execution as the scheduling directive.      |
-+---------------------+------------------------------------------------------------------------------------------------------------------+
+
+@table-start
+object Sequential
+
+  /** Creates a Unit Pipe, akin to a Foreach with one iteration. **/
+  @api def apply(func: => Unit): Unit
+
+
+  /** References the @Fold object with sequential execution specified as the scheduling directive. **/
+  @api def Fold: Fold
+
+  /** References the @Foreach object with sequential execution specified as the scheduling directive. **/
+  @api def Foreach: Foreach
+
+  /** References the @MemFold object with sequential execution specified as the scheduling directive. **/
+  @api def MemFold: MemFold
+
+  /** References the @MemReduce object with sequential execution specified as the scheduling directive. **/
+  @api def MemReduce: MemReduce
+
+  /** References the @Reduce object with sequential execution specified as the scheduling directive. **/
+  @api def Reduce: Reduce
+
+@table-end

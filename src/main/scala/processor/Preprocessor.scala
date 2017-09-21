@@ -23,25 +23,31 @@ object Utils {
     trimmed.drop(i).replace("**/", "").replace("*/", "")
   }
 
-  val DELIMS = List("\\,", "\\<\\:", "\\:", "\\(", "\\)", "\\[", "\\]", "\\*", "\\s+")
-  val RST = List(":", "(", ")", "[", "]", "*")
+  val DELIMS = List("\\,", "\\<\\:", "\\:", "\\(", "\\)", "\\[", "\\]", "\\*", "\\s+", "\"")
+  val RST = List(":", "(", ")", "[", "]", "*", "\"")  // Characters which need to be escaped in restructured text
 
   def WITH_DELIMETER(delim: String): String = String.format("((?<=%1$s)|(?=%1$s))", delim)
 
   def makeRelativePath(from: String, to: String): String = {
+    val verbose = false //to.contains("controllers")
+
     val start = from.split("/").dropRight(1)
     val end   = to.split("/").dropRight(1)
-    //println(start.mkString(" "))
-    //println(end.mkString(" "))
+    if (verbose) println(start.mkString(" "))
+    if (verbose) println(end.mkString(" "))
+
     val diff  = start.zip(end).indexWhere{case (x,y) => x != y }
-    //println("diff: " + diff)
-    val back  = if (diff == -1) 0 else start.length - diff
+    if (verbose) println("diff: " + diff)
+
+    val back  = if (diff == -1) Math.max(0, start.length - end.length) else start.length - diff
     val forw  = if (diff == -1) end.length else diff
     val forward = end.drop(forw)
     val backBrk = if (back > 0) "/" else ""
     val forBrk  = if (forward.nonEmpty) "/" else ""
     val relative = List.fill(back)("..").mkString("/") + backBrk + forward.mkString("/") + forBrk + to.split("/").last
-    //println(relative)
+
+    if (verbose) println(relative)
+
     relative
   }
 
@@ -119,8 +125,8 @@ object Utils {
   }
 
   def subAts(line: String, ctx: Context): String = {
-    val tokens = tokenize(line, List("\\.", "\\s+", "\\,", "\\;", "\\!", "\\?", "\\)", "\\("))
-    val ignore = List("api", "virtualize", "table-start", "table-end", "alias", "disp")
+    val tokens = tokenize(line, List("\\.", "\\s+", "\\,", "\\;", "\\!", "\\?", "\\)", "\\(", "\\[", "\\]"))
+    val ignore = List("api", "virtualize", "table-start", "table-end", "alias", "disp", "struct")
 
     //println(tokens.mkString("_"))
 
@@ -409,7 +415,7 @@ case class TableProcessor(ctx: Context) {
     }
 
     val col1Width = Math.max(10, heading.length + 2)
-    val col2Width = (finalDescriptions.flatMap(descs => descs.map(_.length)) ++ finalSignatures.map(_.length) ++ List(29)).max + 4
+    val col2Width = (finalDescriptions.flatMap(descs => descs.map(_.length)) ++ finalSignatures.map(_.length) ++ List(29, name.length + 2)).max + 4
 
     val rb = "+" + "-"*col1Width + "+" + "-"*col2Width + "+"
     val hb = "+" + "="*col1Width + "+" + "="*col2Width + "+"

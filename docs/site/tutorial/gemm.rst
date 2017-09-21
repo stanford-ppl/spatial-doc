@@ -296,7 +296,7 @@ minimalistic banking scheme that guarantees correctness.
 Final Code
 ----------
 
-Below is the complete GEMM app.  See the @helloworld page for a refresher on how to compile and test an app::
+Below is the complete GEMM app.  See the @HelloWorld page for a refresher on how to compile and test an app::
 
     import spatial.dsl._
     import org.virtualized._

@@ -27,49 +27,42 @@ Num
 
 Combination of :doc:`arith`, :doc:`bits`, and :doc:`order` type classes
 
+------------------------
+
 **Abstract Methods**
 
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-|      `trait`         **Num**\[T\] `extends` :doc:`arith`\[T\] `with` :doc:`bits`\[T\] `with` :doc:`order`\[T\]                             |
-+=====================+======================================================================================================================+
-| |               def   **negate**\(x: T): T                                                                                                 |
-| |                       Returns a negated version of the given value                                                                       |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **plus**\(x: T, y: T): T                                                                                             |
-| |                       Returns the result of adding x and y                                                                               |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **minus**\(x: T, y: T): T                                                                                            |
-| |                       Returns the result of subtracting y from x                                                                         |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **times**\(x: T, y: T): T                                                                                            |
-| |                       Returns the result of multiplying x and y                                                                          |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **divide**\(x: T, y: T): T                                                                                           |
-| |                       Returns the result of dividing x by y                                                                              |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **zero**\: T                                                                                                         |
-| |                       Creates the zero value for type T                                                                                  |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **one**\: T                                                                                                          |
-| |                       Creates the one value for type T                                                                                   |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **random**\(max: Option[T]): T                                                                                       |
-| |                       Generates a pseudorandom value uniformly distributed between 0 and max.                                            |
-| |                       If max is unspecified, type T's default maximum is used instead.                                                   |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **length**\(x: T, y: T): T                                                                                           |
-| |                       Returns the number of bits required to represent this type.                                                        |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **lessThan**\(x: T, y: T): :doc:`../common/bit`                                                                      |
-| |                       Returns `true` if x is less than y, `false` otherwise                                                              |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **lessThanOrEqual**\(x: T, y: T): :doc:`../common/bit`                                                               |
-| |                       Returns `true` if x is less than or equal to y, `false` otherwise                                                  |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-| |               def   **equal**\(x: T, y: T): :doc:`../common/bit`                                                                         |
-| |                       Returns `true` if x and y are equal, `false` otherwise                                                             |
-+---------------------+----------------------------------------------------------------------------------------------------------------------+
-
-
-
++----------+-------------------------------------------------------------------------------------------+
+| trait      **Num**\[T\] extends Arith\[T\] with Bits\[T\] with Order\[T\]                            |
++==========+===========================================================================================+
+| |    def   **toFixPt**\[S\:BOOL,I\:INT,F\:INT\]\(x\: T\)\: :doc:`FixPt <../common/fixpt>`\[S,I,F\]   |
+| |            Converts **x** to a :doc:`FixPt <../common/fixpt>` value.                               |
++----------+-------------------------------------------------------------------------------------------+
+| |    def   **toFltPt**\[G\:INT,E\:INT\]\(x\: T\)\: :doc:`FltPt <../common/fltpt>`\[G,E\]             |
+| |            Converts **x** to a :doc:`FltPt <../common/fltpt>` value.                               |
++----------+-------------------------------------------------------------------------------------------+
+| |    def   **fromInt**\(x\: scala.Int, force\: :doc:`Boolean <../common/bit>` = true\)\: T           |
+| |            Returns the closest representable value of type T to **x**.                             |
+| |            If **force** is true, gives a warning when the conversion is not exact.                 |
++----------+-------------------------------------------------------------------------------------------+
+| |    def   **fromLong**\(x\: scala.Long, force\: :doc:`Boolean <../common/bit>` = true\)\: T         |
+| |            Returns the closest representable value of type T to **x**.                             |
+| |            If **force** is true, gives a warning when the conversion is not exact.                 |
++----------+-------------------------------------------------------------------------------------------+
+| |    def   **fromFloat**\(x\: scala.Float, force\: :doc:`Boolean <../common/bit>` = true\)\: T       |
+| |            Returns the closest representable value of type T to **x**.                             |
+| |            If **force** is true, gives a warning when the conversion is not exact.                 |
++----------+-------------------------------------------------------------------------------------------+
+| |    def   **fromDouble**\(x\: scala.Double, force\: :doc:`Boolean <../common/bit>` = true\)\: T     |
+| |            Returns the closest representable value of type T to **x**.                             |
+| |            If **force** is true, gives a warning when the conversion is not exact.                 |
++----------+-------------------------------------------------------------------------------------------+
+| |    def   **maxValue**\: T                                                                          |
+| |            Returns the largest, finite, positive value representable by type T.                    |
++----------+-------------------------------------------------------------------------------------------+
+| |    def   **minValue**\: T                                                                          |
+| |            Returns the most negative, finite value representable by type T.                        |
++----------+-------------------------------------------------------------------------------------------+
+| |    def   **minPositiveValue**\: T                                                                  |
+| |            Returns the smallest positive (nonzero) value representable by type T.                  |
++----------+-------------------------------------------------------------------------------------------+
 
