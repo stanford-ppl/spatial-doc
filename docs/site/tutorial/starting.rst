@@ -6,7 +6,7 @@ Prerequisites
 
 First, make sure to download and install the following prerequisites:
 
-- `Scala SBT <http://www.scala-sbt.org>`_ ** NOTE: You must use version 0.13.15 **
+- `Scala SBT <http://www.scala-sbt.org>`_ 
 - `Java JDK <http://www.oracle.com/technetwork/java/javase/downloads/index.html>`_
 - `VCS <https://www.synopsys.com/verification/simulation/vcs.html>`_ ** NOTE: License is required **
 
