@@ -50,9 +50,9 @@ These flags are primarily for use in development of the Spatial compiler.
 +----------------+---------------------------------------------------------------------------------------------+
 | `--cheapFifos` | Uses "cheap" FIFOs if there are no FIFOs with lane-dependent enqueues or dequeues.          | 
 +----------------+---------------------------------------------------------------------------------------------+
-| `--multifile`  | TBA                                                                                         |
+| `--multifile`  | 0-6, default = 4                                                                            |
 +----------------+---------------------------------------------------------------------------------------------+
-| `--naming`     | TBA                                                                                         |
+| `--naming`     | Turns on useful naming for assistance in debugging generated chisel                         |
 +----------------+---------------------------------------------------------------------------------------------+
 | `--dse`        | Run compiler design space exploration.                                                      |
 |                |                                                                                             |
