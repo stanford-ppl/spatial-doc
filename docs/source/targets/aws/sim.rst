@@ -26,9 +26,9 @@ The first step is the same as compiling a Spatial application for any other targ
     cd ${SPATIAL_HOME}
     bin/spatial SimpleTileLoadStore --synth
 
-You can replace ``SimpleTileLoadStore`` with any application, as described in :doc:`the previous tutorial<../tutorial/helloworld>`.
-Note however that the XSIM simulation seems to have a default timeout and that applications which require too many cycles will not finish.
-We recommend trying a smaller version of your application for now.
+You can replace ``SimpleTileLoadStore`` with any application, as described in :doc:`the previous tutorial<../../tutorial/helloworld>`.
+Note however that the XSIM simulation seems to have a default timeout and that applications which run for too many cycles will not finish.
+When possible we recommend selecting input arguments which allow your design to complete more quickly in simulation.
 
 Now generate the simulation binary ``Top``::
 
@@ -42,7 +42,7 @@ The simulation typically takes ten minutes or longer to complete.
 
 If the simulation is successful, the following output will be seen::
 
-    PASS: 1 (App Name)
+    PASS: 1
 
 If your application completed successfully, next you can run it in :doc:`hardware<F1>`.
 

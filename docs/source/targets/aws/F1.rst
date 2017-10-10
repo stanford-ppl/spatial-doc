@@ -4,7 +4,7 @@
 Summary of Steps
 ----------------
 
-Unlike simulation, running on the F1 requires a few simple manual steps in the initial Spatial release. 
+Unlike simulation, running on the F1 requires a few simple manual steps. 
 These depend on your personal AWS account (EC2 and S3). Specifically, 
 following synthesis Amazon requires the bitstream to be uploaded to your S3 account, and an EC2
 account is needed to launch an F1 instance to run the spatial application in hardware.
@@ -37,7 +37,7 @@ The first step is the same as compiling a Spatial application for any other targ
     cd ${SPATIAL_HOME}
     bin/spatial MatMult_outer --synth
 
-You can replace ``MatMult_outer`` with any application, as described in :doc:`the previous tutorial<../tutorial/helloworld>`.
+You can replace ``MatMult_outer`` with any application, as described in :doc:`the previous tutorial<../../tutorial/helloworld>`.
 
 Now generate the F1 design and run synthesis/place/route to begin creating the Amazon FPGA Image (AFI)::
 
@@ -56,6 +56,9 @@ Step 3: Creating the AFI
 ------------------------
 
 See the generated file ``create_spatial_AFI_instructions.txt``, which guides the user step-by-step on how to upload the DCP to S3 and then run the ``create-fpga-image`` command.
+
+Running these commands will require the `AWS Command Line Interface <http://docs.aws.amazon.com/cli/latest/userguide/installing.html>`_.
+We tested with version 1.11.78.
 
 Once ``create-fpga-image`` has been run, wait for the ``logs`` directory in S3 to be filled, and ensure that the AFI state in the file called ``State`` is "available".
 
