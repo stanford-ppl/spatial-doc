@@ -20,7 +20,7 @@ Language features of Spatial include:
    * Automatic memory banking and buffering
 
 
-To run Spatial on the new Amazon EC2 FPGA instances, see :doc:`the AWS Tutorial <aws/intro>`.
+To run Spatial on the new Amazon EC2 FPGA instances, see :doc:`the AWS Tutorial <targets/aws/intro>`.
 
 .. toctree::
    :maxdepth: 1
