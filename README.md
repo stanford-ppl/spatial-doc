@@ -1,15 +1,15 @@
 # spatial-doc
 Documentation repository for spatial
 
-##Editing instructions for changing the documentation website
-
-Directory structure:
+# Directory structure:
 ```
 docs/site   - files for site
 docs/source - preprocessed files (cleared before every build)
 docs/build  - built html files
 src/...     - preprocessor
 ```
+
+# Updating Website
 
 1. Make edits to `docs/site` ONLY - not to `docs/source`
 2. Run `make` locally
