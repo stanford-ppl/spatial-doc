@@ -2,7 +2,12 @@
 Spatial
 =======
 
+For a brief introduction to Spatial and its purpose, see `this presentation <https://github.com/stanford-ppl/spatial-doc/tree/master/docs/site/slides/WhatIsSpatial.pdf>`_.
+
+For a brief rundown of the language and its constructs, see `this presentation <https://github.com/stanford-ppl/spatial-doc/tree/master/docs/site/slides/Rundown.pdf>`_ and the :doc:`in-depth tutorials <tutorial/starting>` on this website.
+
 .. image:: images/spatial_start.png
+
 
 +------------------------------------------+------------------------------------+-----------------------------------------------------------+
 | :doc:`Get Started <tutorial/starting>`   | :doc:`API Documentation <api>`     | `Source <https://github.com/stanford-ppl/spatial-lang>`_  |
