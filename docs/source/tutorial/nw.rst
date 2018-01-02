@@ -227,7 +227,7 @@ exit the application early and report which breakpoint triggered the exit, if an
 
 In this example, we will demonstrate how to use breakpoints in Spatial by
 assuming the app writer wants to halt the NW algorithm the first time a character in either string A, string B, or neither is
-skipped and wants to know which of these conditions caused the exit:
+skipped and wants to know which of these conditions caused the exit::
 
       if (score_matrix(b_addr,a_addr).ptr == ALIGN.to[Int16]) {
         ...
@@ -245,7 +245,7 @@ the entire app to quit, rather than allowing the user to step through code manua
 switch from the FPGA's built in clock to a manual clock to let the user manually step through cycles may be implemented 
 in the future, there are no current plans to support this.
 
-The above code may generate output that looks like this if the third breakpoint was reached first (breakpoints are 0-indexed):
+The above code may generate output that looks like this if the third breakpoint was reached first (breakpoints are 0-indexed)::
 
       ===================
         Breakpoint 2 triggered!
@@ -254,7 +254,7 @@ The above code may generate output that looks like this if the third breakpoint 
 
 In apps that interact with real external systems, such as pixel buffers, audio devices, and sensors, it may be very useful to
 make the FPGA stall for a period of time so that it interacts properly with these systems.  It can also be useful in debugging, to slow
-down the speed at which a piece of code executes.   While grad students may not get much sleep, Spatial makes it easy to put your FPGA to sleep:
+down the speed at which a piece of code executes.   While grad students may not get much sleep, Spatial makes it easy to put your FPGA to sleep::
 
       sleep(1000000) // Sleep for ~1000000 cycles, or 8ms for a 125MHz clock
 
