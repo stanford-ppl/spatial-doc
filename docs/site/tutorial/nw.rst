@@ -16,6 +16,8 @@ In this section, you will learn about the following components in Spatial:
  
  - File IO and text management
 
+ - Breakpoints and Sleep
+
 
 
 Application Overview
@@ -219,6 +221,52 @@ we can use if/then/else to arbitrarily execute parts of the hardware.::
 
 Generally, an FSM is a hardware version of a while loop.  It allows you to arbitrarily branch between
 control structures and selectively execute code until some breaking state condition is reached.
+
+Breakpoints and Sleep
+---------------------
+
+There are sometimes cases where the app writer wants to escape the app early or pause the app for a period of time.  In this
+subsection we will explore how to implement the breakpoint/exit and sleep functions in Spatial.  
+
+Firstly, we will discuss breakpoints.  These could be for debugging purposes,
+such as determining why a non-deterministic app is hanging on the FPGA, or for practical purposes, such as handling errors
+when decompressing a faulty JPEG header.  Spatial allows the user to insert breakpoints arbitrarily in the code and will 
+exit the application early and report which breakpoint triggered the exit, if any, at runtime.  
+
+In this example, we will demonstrate how to use breakpoints in Spatial by
+assuming the app writer wants to halt the NW algorithm the first time a character in either string A, string B, or neither is
+skipped and wants to know which of these conditions caused the exit:
+
+      if (score_matrix(b_addr,a_addr).ptr == ALIGN.to[Int16]) {
+        ...
+        breakpoint() // Or exit()
+      } else if (score_matrix(b_addr,a_addr).ptr == SKIPA.to[Int16]) {
+        ...
+        breakpoint() // Or exit()
+      } else {
+        ...
+        breakpoint() // Or exit()
+      }
+
+Note that "breakpoint()" in this case is not the same as a breakpoint in software.  A breakpoint here causes
+the entire app to quit, rather than allowing the user to step through code manually.  While functionality to 
+switch from the FPGA's built in clock to a manual clock to let the user manually step through cycles may be implemented 
+in the future, there are no current plans to support this.
+
+The above code may generate output that looks like this if the third breakpoint was reached first (breakpoints are 0-indexed):
+
+      ===================
+        Breakpoint 2 triggered!
+          tutorial.scala:100:23 
+      ===================
+
+In apps that interact with real external systems, such as pixel buffers, audio devices, and sensors, it may be very useful to
+make the FPGA stall for a period of time so that it interacts properly with these systems.  It can also be useful in debugging, to slow
+down the speed at which a piece of code executes.   While grad students may not get much sleep, Spatial makes it easy to put your FPGA to sleep:
+
+      sleep(1000000) // Sleep for ~1000000 cycles, or 8ms for a 125MHz clock
+
+
 
 Final Code
 ----------

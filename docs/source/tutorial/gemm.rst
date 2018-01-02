@@ -400,7 +400,7 @@ If you play around with this screen, you will see that this shows you the contro
 back to the original source code.  To make this a more useful tool, we will now inject the instrumentation results into this
 page.  Run the script::
 
-	bash instrument.sh
+	bash scripts/instrument.sh
 
 Now refresh the controller tree page.  There should be a lot of red text, similar to the image shown below:
 
