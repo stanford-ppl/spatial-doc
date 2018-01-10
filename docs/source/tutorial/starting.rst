@@ -148,5 +148,5 @@ you find convenient:
  
  - File IO and text management
 
- - Breakpoints and Sleep
+ - Asserts, Breakpoints, and Sleep
  

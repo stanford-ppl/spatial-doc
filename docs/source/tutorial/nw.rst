@@ -16,7 +16,7 @@ In this section, you will learn about the following components in Spatial:
  
  - File IO and text management
 
- - Breakpoints and Sleep
+ - Asserts, Breakpoints, and Sleep
 
 
 
@@ -214,7 +214,7 @@ we can use if/then/else to arbitrarily execute parts of the hardware.::
 Generally, an FSM is a hardware version of a while loop.  It allows you to arbitrarily branch between
 control structures and selectively execute code until some breaking state condition is reached.
 
-Breakpoints and Sleep
+Asserts, Breakpoints, and Sleep
 ---------------------
 
 There are sometimes cases where the app writer wants to escape the app early or pause the app for a period of time.  In this
@@ -231,13 +231,13 @@ skipped and wants to know which of these conditions caused the exit::
 
       if (score_matrix(b_addr,a_addr).ptr == ALIGN.to[Int16]) {
         ...
-        breakpoint() // Or exit()
+        breakpoint()
       } else if (score_matrix(b_addr,a_addr).ptr == SKIPA.to[Int16]) {
         ...
-        breakpoint() // Or exit()
+        assert(score_matrix(b_addr,a_addr).ptr != SKIPA.to[Int16], "This is an assert example")
       } else {
         ...
-        breakpoint() // Or exit()
+        exit()
       }
 
 Note that "breakpoint()" in this case is not the same as a breakpoint in software.  A breakpoint here causes
@@ -245,11 +245,11 @@ the entire app to quit, rather than allowing the user to step through code manua
 switch from the FPGA's built in clock to a manual clock to let the user manually step through cycles may be implemented 
 in the future, there are no current plans to support this.
 
-The above code may generate output that looks like this if the third breakpoint was reached first (breakpoints are 0-indexed)::
+The above code may generate output that looks like this if the second breakpoint were reached first (breakpoints are 0-indexed)::
 
       ===================
-        Breakpoint 2 triggered!
-          tutorial.scala:100:23 
+        Breakpoint 1 triggered!
+          tutorial.scala:100:23 - This is an assert example
       ===================
 
 In apps that interact with real external systems, such as pixel buffers, audio devices, and sensors, it may be very useful to
