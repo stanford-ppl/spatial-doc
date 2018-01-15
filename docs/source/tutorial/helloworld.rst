@@ -155,6 +155,7 @@ In order to finally test this code, you must compile the backend code itself. In
     make vcs # Cycle-accurate RTL simulation
     make aws-F1 # Synthesize for Amazon F1
     make zynq # Synthesize for Xilinx Zynq ZC706 or ZC702
+    make zcu # Synthesize for Xilinx ZCU102
     make de1soc # Synthesize for Altera DE1SoC
 
     # Run simulation executable if one of the first two options were chosen
@@ -163,6 +164,10 @@ In order to finally test this code, you must compile the backend code itself. In
 NOTE: The "<arguments>" should be a space-separated list, fully enclosed in quotes.  For example, an app that takes arguments 192 96 should be run with::
 
     bash run.sh "192 96"
+
+If you've forgotten what the command line arguments are, you can always run::
+
+    bash run.sh --help
 
 After running an RTL simulation, you can see the waveforms generated in the ``test_run_dir/app.Launcher####`` folder, with the `.vcd` extension for further debugging
 
