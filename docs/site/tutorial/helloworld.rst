@@ -166,7 +166,7 @@ NOTE: The "<arguments>" should be a space-separated list, fully enclosed in quot
 
     bash run.sh "192 96"
 
-If you've forgotten what the command line arguments are, you can always run::
+If you've forgotten what the command line arguments are for this app, you can always run::
 
     bash run.sh --help
 
