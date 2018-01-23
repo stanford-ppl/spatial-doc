@@ -207,6 +207,7 @@ object Preprocessor {
 
       Files.copy(Paths.get(origPath), Paths.get(path), StandardCopyOption.REPLACE_EXISTING)
     }
+    Files.move(Paths.get(out + "/conf"), Paths.get(out + "/conf.py"))
 
     var displ: Map[String, String] = Map.empty   // Map from alias to display name
     var paths: Map[String, String] = Map.empty   // Map from type name to absolute path to filename (without .rst)
