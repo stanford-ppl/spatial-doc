@@ -223,7 +223,7 @@ Generally, an FSM is a hardware version of a while loop.  It allows you to arbit
 control structures and selectively execute code until some breaking state condition is reached.
 
 Asserts, Breakpoints, and Sleep
----------------------
+-------------------------------
 
 There are sometimes cases where the app writer wants to escape the app early or pause the app for a period of time.  In this
 subsection we will explore how to implement the breakpoint/exit and sleep functions in Spatial.  
