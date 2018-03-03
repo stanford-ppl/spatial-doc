@@ -86,39 +86,8 @@ While this template is empty, you can use this same flow freely as you build you
 Currently, you should edit and place apps inside of your `spatial-lang/apps/src/` directory.  Copy-paste the above
 template into a new file in this directory and you are ready to compile.
 
-There are currently two backend targets that you can compile to: Scala and RTL.  
-
-The Scala backend is the fastest way to check the correctness of your application.  
-It does not simulate parallelization and pipelining as they would
-execute in hardware so any race conditions or loop-carry dependency issues will not be caught in this backend, but
-it is a very useful tool for early and rapid development. 
-
-The RTL backend can be both simulated on a cycle-accurate simulator and synthesized to generate a bitstream
-for an FPGA.  The RTL simulation is the most accurate way to test your design, but takes on the order of minutes
-to compile.
-
-**Compiling to Scala**
-
-Targetting Scala is the quickest way to simulate your app and test for basic functional correctness.
-You should use this backend if you are debugging things at the algorithm level.
-In order to compile and simulate for the Scala backend, run::
-
-    cd spatial-lang/ # Navigate to Spatial base directory
-    bin/spatial <app name> --sim # + :doc:`other options <../compiler>`
-
-The "<app name>" refers to the name of the ``object``. In our app above, for example, the app name is "HelloSpatial".
-See the "Running" section below for a guide on how to test the generated app
-
-
-
-**Compiling to RTL**
-
-Targeting Chisel will let you compile your app down into Berkeley's Chisel language, which eventually compiles down to Verilog.
-It also allows you to debug your app at the clock-cycle resolution. In order to compile with the Chisel backend, run the following::
-
-    cd spatial-lang/ # Navigate to Spatial base directory
-    bin/spatial <app name> --synth # + :doc:`other options <../compiler>`
-
+For information on how to compile your app to a specific target, see the :targets:`targets <../targets>` page.
+We recommend beginnig with either the Scala or VCS backends.
 
 
 Synthesizing and Testing

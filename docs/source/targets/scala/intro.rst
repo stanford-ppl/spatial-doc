@@ -4,43 +4,59 @@
 Prerequisites
 -------------
 
-Running on EC2 FPGAs requires the following prerequisites:
+Running the Scala backend requires... Scala to be installed on your machine. 
 
-- An installation of Spatial as described in the :doc:`previous tutorial <../../tutorial/starting>`
-- Vivado and a license to run on the desired Amazon FPGA. We tested this tutorial both on Amazon's `FPGA Developer AMI <https://aws.amazon.com/marketplace/pp/B06VVYBLZZ#>`_ which contains all the required software tools,
-  as well as locally by following `these instructions <https://github.com/aws/aws-fpga/blob/master/hdk/docs/on_premise_licensing_help.md>`_.
+- `Scala SBT <http://www.scala-sbt.org>`_ 
+
+You must have Scala installed to compile Spatial applications, so if you can compile the app successfully then you
+already have what you need to run the Scala backend.
+
+Notes
+-----
+
+The Scala backend is a useful tool for debugging at the algorithm level. It has a few advantages and disadvantages, however:
+
+- Advantages
+- - `println` statements in the `Accel` will actually print while the app simulates
+- - Fastest way to go from source code to execution
+
+- Disadvantages
+- - Not cycle accurate.  The Scala backend will not expose bugs related to things like loop-carry dependencies in coarse-grain pipelines 
+	or unprotected parallelized writes to memories.
+- - Cannot target any devices from generated code.
+- - Execution can be slow
 
 Spatial Compile
 -----
 
-.. highlight:: bash
+To compile the Spatial app, do the following steps:
 
-Clone Amazon's `EC2 FPGA Hardware and Software Development Kit <https://github.com/aws/aws-fpga/>`_ to any location::
+    cd spatial-lang/ # Navigate to Spatial base directory
+    bin/spatial <app name> --sim # + :doc:`other options <../../compiler>`
 
-    git clone https://github.com/aws/aws-fpga.git
+The "<app name>" refers to the name of the ``object``. In our app above, for example, the app name is "HelloSpatial".
+See the "Running" section below for a guide on how to test the generated app
 
-Spatial was most recently tested with version 1.3.3 of this repository (git commit 934000f9a57c0cde8786441864d5c6e0cf42fef9).
-
-Set the ``AWS_HOME`` environment variable to point to the cloned directory.
-Also source the AWS setup scripts. The HDK script is needed for simulation and synthesis, and the SDK is needed to create the host binary::
-
-    export AWS_HOME=/path/to/aws-fpga
-    cd /path/to/aws-fpga/
-    source /path/to/aws-fpga/hdk_setup.sh
-    source /path/to/aws-fpga/sdk_setup.sh
-
-For example, you can add the 4 commands above to your ``.bashrc`` and source that.
-
-Finally, applications targeting the F1 board (in hardware or simulation) need to set the ``target`` variable. For example,
-make the following change in the very top of the ``apps/src/MatMult_outer.scala`` application::
-
-    object MatMult_outer extends SpatialApp {
-      override val target = spatial.targets.AWS_F1  // <---- new line
-      ...
-
-The next tutorial sections describe how to generate and run applications for :doc:`simulation <sim>` and :doc:`for the FPGAs on the F1 instances<F1>`.
 
 Backend Compile
+-----
 
+For the Scala backend, compiling the generated code is optional since the execution script will
+call SBT, which will compile the code anyway. If you want to just compile the Scala, run the following::
+
+    cd gen/<app name> # Navigate to generated directory
+    
+    make sim # If you chose the Scala backend
+ 
 
 Execute
+-----
+
+To execute the generated code, run:
+
+    # Run simulation executable if one of the first two options were chosen
+    bash run.sh "<arguments>"
+
+NOTE: The "<arguments>" should be a space-separated list, fully enclosed in quotes.  For example, an app that takes arguments 192 96 should be run with::
+
+    bash run.sh "192 96"

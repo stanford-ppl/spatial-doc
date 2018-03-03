@@ -7,3 +7,4 @@ This section provides details on the hardware Spatial can target.
     :maxdepth: 2
 
     targets/aws
+    targets/scala
