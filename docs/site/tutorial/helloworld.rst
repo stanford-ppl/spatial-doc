@@ -75,8 +75,8 @@ an application that is called `HelloSpatial`::
       }
     }
 
-Compiling
----------
+Compiling and Testing
+---------------------
 
 We will use the above template to learn the process for compiling, simulating, and synthesizing a design.  
 While this template is empty, you can use this same flow freely as you build your applications in the tutorials below.
@@ -89,59 +89,6 @@ template into a new file in this directory and you are ready to compile.
 For information on how to compile your app to a specific target, see the :targets:`targets <../targets>` page.
 We recommend beginnig with either the Scala or VCS backends.
 
-
-Synthesizing and Testing
-------------------------
-
-After you have used the ``bin/spatial`` script to compile the app, navigate to the generated code
-directory to test the app.  By default, this is ``spatial-lang/gen/<app name>``.  You will see some
-files and directories in this folder that correspond to the code that Spatial created for the various
-target platforms.
-For the RTL backend, here is a rough breakdown of what the important files are:
-
-+------------------------------+---------------------------------------------------------------------------+
-| chisel/RootController.scala  | Main trait where all of the controller and dataflow connections are made  |
-+------------------------------+---------------------------------------------------------------------------+
-| chisel/x###.scala            | Nested traits where more controller and dataflow connections are made     |
-+------------------------------+---------------------------------------------------------------------------+
-| chisel/IOModule.scala        | Interface between FPGA accelerator and CPU                                |
-+------------------------------+---------------------------------------------------------------------------+
-| chisel/BufferControlCxns     | Connections for all N-buffered memories in the design                     |
-+------------------------------+---------------------------------------------------------------------------+
-| chisel/resources/\*.scala    | Files for all of the fundamental building blocks of a Spatial app         |
-+------------------------------+---------------------------------------------------------------------------+
-| cpp/TopHost.scala            | Contains the Application method where all CPU code is generated           |
-+------------------------------+---------------------------------------------------------------------------+
-| controller_tree.html         | Helpful diagram for showing the hierarchy of control nodes in your app    |
-+------------------------------+---------------------------------------------------------------------------+
-   
-
-In order to finally test this code, you must compile the backend code itself. In order to do so, run the following::
-
-    cd gen/<app name>
-    
-    # Choose ONE of the following
-    make sim # If you chose the Scala backend
-    make vcs # Cycle-accurate RTL simulation
-    make aws-F1 # Synthesize for Amazon F1
-    make zynq # Synthesize for Xilinx Zynq ZC706 or ZC702
-    make zcu # Synthesize for Xilinx ZCU102
-    make de1soc # Synthesize for Altera DE1SoC
-
-    # Run simulation executable if one of the first two options were chosen
-    bash run.sh "<arguments>"
-
-NOTE: The "<arguments>" should be a space-separated list, fully enclosed in quotes.  For example, an app that takes arguments 192 96 should be run with::
-
-    bash run.sh "192 96"
-
-If you've forgotten what the command line arguments are for this app, you can always run::
-
-    bash run.sh --help
-
-After running an RTL simulation, you can see the waveforms generated in the ``test_run_dir/app.Launcher####`` folder, with the `.vcd` extension for further debugging
-
-** Synthesized bitstream process TBA **
 
 
 DRAM Transfers

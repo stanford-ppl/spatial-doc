@@ -17,14 +17,14 @@ Notes
 The Scala backend is a useful tool for debugging at the algorithm level. It has a few advantages and disadvantages, however:
 
 - Advantages
-- - `println` statements in the `Accel` will actually print while the app simulates
-- - Fastest way to go from source code to execution
+  - `println` statements in the `Accel` will actually print while the app simulates
+  - Fastest way to go from source code to execution
 
 - Disadvantages
-- - Not cycle accurate.  The Scala backend will not expose bugs related to things like loop-carry dependencies in coarse-grain pipelines 
+  - Not cycle accurate.  The Scala backend will not expose bugs related to things like loop-carry dependencies in coarse-grain pipelines 
 	or unprotected parallelized writes to memories.
-- - Cannot target any devices from generated code.
-- - Execution can be slow
+  - Cannot target any devices from generated code.
+  - Execution can be slow
 
 Spatial Compile
 -----
@@ -34,8 +34,7 @@ To compile the Spatial app, do the following steps:
     cd spatial-lang/ # Navigate to Spatial base directory
     bin/spatial <app name> --sim # + :doc:`other options <../../compiler>`
 
-The "<app name>" refers to the name of the ``object``. In our app above, for example, the app name is "HelloSpatial".
-See the "Running" section below for a guide on how to test the generated app
+The "<app name>" refers to the name of the ``object``. 
 
 
 Backend Compile
