@@ -1,0 +1,99 @@
+Zynq Ultrascale MPSoC
+=====================
+
+Prerequisites
+-------------
+
+You will need a Zynq Ultrascale MPSoC board, such as the ZCU102 Rev 1, and a valid license for Vivado for this target.  
+You will also need the appropriate cross-compiler.
+
+- `ZCU102 <https://www.xilinx.com/products/boards-and-kits/ek-u1-zcu102-g.html>`_ 
+- `aarch64-linux-gnu- toolchain <https://www.howtoinstall.co/en/ubuntu/trusty/gcc-aarch64-linux-gnu>`_
+
+The generated executable for this target assumes you have a Linux OS installed on the board and have an
+executable in you path called ``prog_fpga``.  To create this executable, download `this file <zcu/prog_fpga>`_ and do the following on the Zynq::
+
+    $ mv prog_fpga /usr/bin
+    $ chmod +x /usr/bin/prog_fpga
+
+Notes
+-----
+
+Specifications of the ZCU102 can be `found here <https://www.xilinx.com/support/documentation/boards_and_kits/zcu102/ug1182-zcu102-eval-bd.pdf>`_. 
+
+
+Spatial Compile
+---------------
+
+When writing your app, you should make the following modifications to bring in board-specific
+knowledge into the spatial compiler, such as DSE models::
+
+    import spatial.targets._
+
+    ...
+
+    object <app name> extends SpatialApp {
+      override val target = ZCU102
+
+      ...
+
+    }
+
+Then, compile the Spatial app with the following steps::
+
+    $ cd spatial-lang/ # Navigate to Spatial base directory
+    $ bin/spatial <app name> --synth # + other options
+
+The ``<app name>`` refers to the name of the ``object`` that extends ``SpatialApp``.
+For the other options, see `here <../../compiler>`_
+
+
+
+Backend Compile
+---------------
+
+In the generated directory, you will notice the following structure.  By default, this directory is ``spatial-lang/gen/<app name>``.  
+Here is a rough breakdown of what the important files are:
+
++------------------------------------+-------------------------------------------------------------+
+| chisel/template-level/fringeZynq/  | Contains tcl scripts for stitching together all of the IPs  |
++------------------------------------+-------------------------------------------------------------+
+| cpp/fringeZCU/                     | Contains board specific C++ code                            |
++------------------------------------+-------------------------------------------------------------+
+| verilog-zcu/                       | Will appear after synthesis, contains log files and verilog |
++------------------------------------+-------------------------------------------------------------+
+
+To compile the VCS target and prepare for simulation, run the following::
+
+    $ cd gen/<app name> # Navigate to generated directory
+    $ make zcu # Alternatively, you can run make zcu-hw && make zcu-sw
+
+This will first convert the Chisel to verilog, then use vivado to synthesize that verilog and
+stitch it to the other IPs.  Finally, it enters the ``cpp/`` directory and compiles the host code
+drops a ``<app name>.tar.gz`` in the generated app directory that
+binds the verilog to the host when executed.
+
+
+Execute
+-------
+
+To execute the generated code, scp the generated ``.tar.gz`` file to the ZCU, export APPNAME as appropriate, and run::
+
+    $ mkdir $APPNAME
+    $ tar -xvf $APPNAME.tar.gz -C $APPNAME
+    $ cd $APPNAME
+    $ mkdir verilog && mv accel.bit.bin verilog
+    $ sudo ./Top <arguments>
+
+It is very important to use the directory structure above or else it may cause the board to hang.  
+The "<arguments>" should be a space-separated list.  For example, an app that takes arguments 192 96 should be run with::
+
+    $ sudo ./Top 192 96
+
+If you've forgotten what input arguments are required for a given app, you can run::
+
+    $ sudo ./Top -h
+    
+Sudo is required if you are not logged in as root because the executable will attempt to program the fpga, which requires root permissions
+
+

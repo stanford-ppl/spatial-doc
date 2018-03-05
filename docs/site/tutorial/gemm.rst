@@ -396,6 +396,7 @@ You will get a screen that looks like this.
 .. raw:: html
 	:file: controller_tree.html
 
+
 If you play around with this screen, you will see that this shows you the control hierarchy in your app, and points each box
 back to the original source code.  To make this a more useful tool, we will now inject the instrumentation results into this
 page.  Run the script::
@@ -407,6 +408,7 @@ Now refresh the controller tree page.  There should be a lot of red text, simila
 
 .. raw:: html
 	:file: instrumented_tree.html
+
 
 You can now play around with this page and look at how the various stages in your pipelines are performing.  We leave it up
 to the user to figure out how to use parallelizations and rewrite portions of the app to figure out how to balance the pipelines

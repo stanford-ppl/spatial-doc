@@ -1,0 +1,16 @@
+#!/bin/bash
+# $1 = bitfile
+if [[ ! -f $1 ]]; then
+  echo "File $1 not found!!"
+    exit 1
+    fi
+    if [[ $1 != "/lib/firmware"* ]]; then
+      sudo cp $1 /lib/firmware
+      fi
+      pushd /lib/firmware
+      bit=$(basename $1)
+	echo "Flashing bitstream..."
+	sudo echo $bit > /sys/class/fpga_manager/fpga0/firmware
+	sleep 0.5
+	popd
+	echo "$bit bitstream loaded onto fpga!" 

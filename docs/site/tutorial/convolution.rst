@@ -1,3 +1,4 @@
+
 3. Differentiator & Sobel Filter
 ================================
 
@@ -60,7 +61,7 @@ Data Setup and Validation
 
 Let's start by creating the data structures above the Accel that we will set up the image and
 filters and compute the gold check. We will expose the rows of the images as command-line arguments.::
-	
+
     import spatial.dsl._
     import org.virtualized._
 
@@ -106,7 +107,7 @@ filters and compute the gold check. We will expose the rows of the images as com
         val Y_2D = DRAM[T](ROWS, COLS)
         setMem(X_2D, image)
 
-	      Accel{}
+        Accel{}
 
         // Get data
         val Y_1D_result = getMem(Y_1D)
@@ -142,8 +143,8 @@ filters and compute the gold check. We will expose the rows of the images as com
         val cksum_1D = Y_1D_result.zip(Y_1D_gold){(a,b) => abs(a - b) < margin}.reduce{_&&_}
         val cksum_2D = Y_2D_result.zip(Y_2D_gold){(a,b) => abs(a - b) < margin}.reduce{_&&_}
         println("1D Pass? " + cksum_1D + ", 2D Pass? " + cksum_2D)
-	  }
-	}
+    }
+  }
 
 Note that there is a val called "maxcols."  In the `2D Convolution`_ section, we will demonstrate how the line buffer works
 and it will become clear why we must constrain the maximum number of columns in our image for the app to work.
@@ -157,27 +158,27 @@ is to load one tile at a time, and the second is to shift data through a window 
 a dot product between this window and the filter.  We must also do a one-time load of the 
 filter kernel.  The snippet below shows this code::
 
-		Accel{
-		  val filter_data = RegFile[T](window)
-		  filter_data load H_1D
-		  Foreach(LEN by vec_tile){i => 
-		    val numel = min(vec_tile.to[Int], LEN-i)
-		    val x_tile = SRAM[T](vec_tile)
-		    val y_tile = SRAM[T](vec_tile)
-		    x_tile load X_1D(i::i+numel)
-		  
-		    val sr1D = RegFile[T](1,window)
-		    Foreach(numel by 1){j =>
-		      sr1D(0,*) <<= x_tile(j) // Shift new point into sr1D
-		      y_tile(j) = Reduce(Reg[T])(window by 1){k => 
-		        val data = mux(i + j - k < 0, 0.to[T], sr1D(0,k)) // Handle edge case
-		        data * filter_data(k)
-		      }{_+_}
-		    }
-		
-		    Y_1D(i::i+numel) store y_tile
-		  }
-		}
+    Accel{
+      val filter_data = RegFile[T](window)
+      filter_data load H_1D
+      Foreach(LEN by vec_tile){i => 
+        val numel = min(vec_tile.to[Int], LEN-i)
+        val x_tile = SRAM[T](vec_tile)
+        val y_tile = SRAM[T](vec_tile)
+        x_tile load X_1D(i::i+numel)
+      
+        val sr1D = RegFile[T](1,window)
+        Foreach(numel by 1){j =>
+          sr1D(0,*) <<= x_tile(j) // Shift new point into sr1D
+          y_tile(j) = Reduce(Reg[T])(window by 1){k => 
+            val data = mux(i + j - k < 0, 0.to[T], sr1D(0,k)) // Handle edge case
+            data * filter_data(k)
+          }{_+_}
+        }
+    
+        Y_1D(i::i+numel) store y_tile
+      }
+    }
 
 The app above uses familiar concepts described in previous parts of this tutorial, except for
 the RegFiles.  The first RegFile, ``filter_data``, is created to hold the filter data.  It is
@@ -242,7 +243,7 @@ known at compile time.  It is implemented using registers and muxes to index int
 
 The snippet below shows how to generate an accel that performs the operations shown above::
 
-	Accel {
+  Accel {
       val lb = LineBuffer[T](3, maxcols)
       val sr = RegFile[T](3, 3)
       val kernelH = LUT[T](3,3)(1.to[T], 2.to[T], 1.to[T],
@@ -268,7 +269,7 @@ The snippet below shows how to generate an accel that performs the operations sh
         }
         Y_2D(row, 0::COLS) store lineout
       }
-	}
+  }
 
 It is possible to improve the performance of this algorithm using parallelization.  However, we leave this as an exercise to the user
 or direct the user to some example apps written in the spatial-apps repository.  While parallelizing every loop will speed up this
@@ -318,7 +319,6 @@ We can write the functions used above as follows::
         }
     }
 
-
     @virtualize
     def Sobel2D[T:Type:Num](output: DRAM2[T], 
                             input: DRAM2[T], maxcols: scala.Int): Unit = {
@@ -350,13 +350,13 @@ We can write the functions used above as follows::
         }
     }
 
-
 Notice that instead of using the input arguments, ``ROWS``, ``COLS``, and ``LEN``, we can use
 properties defined on the DRAMs directly.
 
 You can place these functions anywhere inside of your DiffAndSobel object.  If you want to place them
 inside of a separate file entirely, then you simply need to make the `trait` that contains the method
 definitions extend SpatialApp, and then have the next file create an `object` that extends the first trait::
+
 
     // File1.scala
     import org.virtualized._

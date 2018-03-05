@@ -246,7 +246,7 @@ Final Code
 ----------
 
 Finally, below is the complete app that includes all of the performance-oriented features outlined in this page of the tutorial.
-Refer back to the `Compiling`_ and `Synthesizing and Testing`_ (TODO: fix links) sections on the previous page for a refresher on how to test your app.::
+Refer back to the `targets <../targets.rst>`_ section for a refresher on how to test your app.::
 
     import spatial.dsl._
     import org.virtualized._
