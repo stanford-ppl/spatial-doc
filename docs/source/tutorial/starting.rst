@@ -40,8 +40,6 @@ Installation From Maven (Recommended)
 
 .. highlight:: bash
 
-NOTE: This does not work right now.  ETA: March 8, 2018
-
 To get started with Spatial, you do not need to clone or build any DSL software yourself. 
 You simply need to create a new SBT project as follows::
 
@@ -74,10 +72,18 @@ In ``spatial-lang/``, create a file called ``build.sbt``::
 
 .. highlight:: bash
 
+NOTE: You will temporarily need to do the following because of resource files that are hardcoded
+into the compiler as of 3/7/2018 and this requirement will be removed shortly or a clean spatial-quickstart
+will be provided for you in future versions::
+
+	git clone git@github.com:stanford-ppl/spatial-lang
+	export SPATIAL_HOME=`pwd`/spatial-lang
+
 Finally, start writing your apps is ``spatial-lang/src/main/<filename>.scala``.  Refer to 
 `targets <../targets.html>`_ to learn how to compile the app.  The command is::
 
 	$ sbt "runMain <app name> <args>"
+
 
 
 Installation From Source
