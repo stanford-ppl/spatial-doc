@@ -18,6 +18,7 @@ If you'd like, check out this `Scala tutorial <https://www.tutorialspoint.com/sc
 Finally, please sign up for the `Spatial users google group <https://groups.google.com/forum/#!forum/spatial-lang-users>`_ if you have any questions. 
 
 
+
 .. Installation (From Binary)
 .. --------------------------
 
@@ -34,7 +35,52 @@ Finally, please sign up for the `Spatial users google group <https://groups.goog
 
 
 
-Installation (From Source)
+Installation From Maven (Recommended)
+--------------------------
+
+.. highlight:: bash
+
+NOTE: This does not work right now.  ETA: March 8, 2018
+
+To get started with Spatial, you do not need to clone or build any DSL software yourself. 
+You simply need to create a new SBT project as follows::
+
+	mkdir -p spatial-lang/src/main && cd spatial-lang
+
+.. highlight:: scala
+
+In ``spatial-lang/``, create a file called ``build.sbt``::
+
+	organization := "org"
+
+	version := "1.0-SNAPSHOT"
+
+	name := "spatial-app"
+
+	scalaVersion := "2.12.1"
+	val paradiseVersion = "2.1.0"
+
+	scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked", "-language:reflectiveCalls")
+
+	libraryDependencies ++= Seq("edu.stanford.cs.dawn" %% "spatial" % "0.1-SNAPSHOT")
+
+	resolvers ++= Seq(
+	  Resolver.sonatypeRepo("snapshots"),
+	  Resolver.sonatypeRepo("releases"),
+	)
+	addCompilerPlugin("org.scalamacros" % "paradise" % paradiseVersion cross CrossVersion.full)
+
+	scalaSource in Compile := baseDirectory.value / "src" 
+
+.. highlight:: bash
+
+Finally, start writing your apps is ``spatial-lang/src/main/<filename>.scala``.  Refer to 
+`targets <../targets.html>`_ to learn how to compile the app.  The command is::
+
+	$ sbt "runMain <app name> <args>"
+
+
+Installation From Source
 --------------------------
 
 .. highlight:: bash

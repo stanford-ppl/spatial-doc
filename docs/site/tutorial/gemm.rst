@@ -35,7 +35,7 @@ Let's start by creating the data structures above the Accel that we will set up 
 gold check. We will expose the dimensions of the matrices as command-line arguments. ::
 	
     import spatial.dsl._
-    import org.virtualized._
+    import virtualized._
 
     object GEMM extends SpatialApp {
 
@@ -299,7 +299,7 @@ Final Code
 Below is the complete GEMM app.  See the @HelloWorld page for a refresher on how to compile and test an app::
 
     import spatial.dsl._
-    import org.virtualized._
+    import virtualized._
 
     object GEMM extends SpatialApp {
 

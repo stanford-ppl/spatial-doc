@@ -41,7 +41,7 @@ between the two, and print out the result back into files called ``alignedA.txt`
 if our alignments are "correct," we will aim to have less than 10% of the entries be in error.::
 
     import spatial.dsl._
-    import org.virtualized._
+    import virtualized._
 
     object NW extends SpatialApp {
 
@@ -274,7 +274,7 @@ Final Code
 Here is the final code for this version of NW::
 
     import spatial.dsl._
-    import org.virtualized._
+    import virtualized._
 
     object NW extends SpatialApp {
       @struct case class nw_tuple(score: Int16, ptr: Int16)

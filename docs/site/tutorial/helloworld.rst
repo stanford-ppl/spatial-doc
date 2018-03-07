@@ -60,7 +60,7 @@ All Spatial programs have a few basic components. The following code example sho
 an application that is called `HelloSpatial`::
 
     import spatial.dsl._
-    import org.virtualized._
+    import virtualized._
 
     object HelloSpatial extends SpatialApp {
 
@@ -86,7 +86,7 @@ While this template is empty, you can use this same flow freely as you build you
 Currently, you should edit and place apps inside of your `spatial-lang/apps/src/` directory.  Copy-paste the above
 template into a new file in this directory and you are ready to compile.
 
-For information on how to compile your app to a specific target, see the `targets <../targets.rst>`_ page.
+For information on how to compile your app to a specific target, see the `targets <../targets.html>`_ page.
 We recommend beginnig with either the Scala or VCS backends.
 
 
@@ -177,12 +177,12 @@ ignored in RTL, since there is no straightforward print for FPGAs::
         println("2D pass? " + cksum_2D)
         println("scatter pass? " + cksum_scattered)
 
-Congratulations!  You have completed the DRAM section of the tutorial.  Refer back to the `targets <../targets.rst>`_ section for a refresher on how to test your app.
+Congratulations!  You have completed the DRAM section of the tutorial.  Refer back to the `targets <../targets.html>`_ section for a refresher on how to test your app.
 
 Below is a copy-pastable version of the code outlined above::
 
     import spatial.dsl._
-    import org.virtualized._
+    import virtualized._
 
     object HelloSpatial extends SpatialApp {
 
@@ -300,7 +300,7 @@ Now we can move outside the Accel and read the arg values::
     val cksum = (result1 == {args(0).to[Int] + args(1).to[Int]}) && (result2 == args(0).to[Int]) // The {} brackets are Scala's way of scoping operations
     println("ArgTest pass? " + cksum)
 
-Congratulations!  You have completed the ArgIn/Out section of the tutorial.  Refer back to the `targets <../targets.rst>`_ section for a refresher on how to test your app.
+Congratulations!  You have completed the ArgIn/Out section of the tutorial.  Refer back to the `targets <../targets.html>`_ section for a refresher on how to test your app.
 
 
 Final Code
@@ -309,7 +309,7 @@ Final Code
 Below is a copy-pastable version of the code outlined above::
 
     import spatial.dsl._
-    import org.virtualized._
+    import virtualized._
 
     object HelloSpatial extends SpatialApp {
 

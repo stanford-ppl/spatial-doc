@@ -63,7 +63,7 @@ Let's start by creating the data structures above the Accel that we will set up 
 filters and compute the gold check. We will expose the rows of the images as command-line arguments.::
 
     import spatial.dsl._
-    import org.virtualized._
+    import virtualized._
 
     object DiffAndSobel extends SpatialApp {
 
@@ -352,7 +352,7 @@ inside of a separate file entirely, then you simply need to make the `trait` tha
 definitions extend SpatialApp, and then have the next file create an `object` that extends the first trait::
 
 
-    import org.virtualized._
+    import virtualized._
     import spatial.dsl._
 
     object AccelFile extends FunctionsFile {
@@ -366,7 +366,7 @@ definitions extend SpatialApp, and then have the next file create an `object` th
 
     --------------------------------
 
-    import org.virtualized._
+    import virtualized._
     import spatial.dsl._
 
     trait FunctionsFile extends SpatialApp{
@@ -384,7 +384,7 @@ Below is the final code for a single-file, functionized version of the two convo
 tutorial.  See the :doc:`HelloWorld <helloworld>` page for a refresher on how to compile and test.::
 
     import spatial.dsl._
-    import org.virtualized._
+    import virtualized._
 
     object DiffAndSobel extends SpatialApp {
 

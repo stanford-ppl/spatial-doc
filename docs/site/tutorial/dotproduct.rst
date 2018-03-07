@@ -36,7 +36,7 @@ the length of these vectors as a command-line argument. We will also write the c
 the correct result::
   
     import spatial.dsl._
-    import org.virtualized._
+    import virtualized._
 
     object DotProduct extends SpatialApp {
 
@@ -246,10 +246,10 @@ Final Code
 ----------
 
 Finally, below is the complete app that includes all of the performance-oriented features outlined in this page of the tutorial.
-Refer back to the `targets <../targets.rst>`_ section for a refresher on how to test your app.::
+Refer back to the `targets <../targets.html>`_ section for a refresher on how to test your app.::
 
     import spatial.dsl._
-    import org.virtualized._
+    import virtualized._
 
     object DotProduct extends SpatialApp {
 
