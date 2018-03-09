@@ -35,54 +35,25 @@ Finally, please sign up for the `Spatial users google group <https://groups.goog
 
 
 
-Installation From Maven (Recommended)
+Installation via Quickstart (Recommended)
 --------------------------
 
 .. highlight:: bash
 
-To get started with Spatial, you do not need to clone or build any DSL software yourself. 
-You simply need to create a new SBT project as follows::
+To get started with Spatial, you simply need to clone the spatial-quickstart repo and set your environment::
 
-	mkdir -p spatial-lang/src/main && cd spatial-lang
+	$ git clone git@github.com:stanford-ppl/spatial-quickstart
+	$ cd spatial-quickstart
+	$ export SPATIAL_HOME=`pwd`
 
-.. highlight:: scala
+You can start writing your apps directly in ``spatial-lang/src/<filename>.scala``.  To run a quick test, you can
+run the following::
 
-In ``spatial-lang/``, create a file called ``build.sbt``::
+	$ sbt "runMain Quicktest"
+	$ cd gen/Quicktest && bash run.sh 7
 
-	organization := "org"
-
-	version := "1.0-SNAPSHOT"
-
-	name := "spatial-app"
-
-	scalaVersion := "2.12.1"
-	val paradiseVersion = "2.1.0"
-
-	scalacOptions ++= Seq("-deprecation", "-feature", "-unchecked", "-language:reflectiveCalls")
-
-	libraryDependencies ++= Seq("edu.stanford.cs.dawn" %% "spatial" % "0.1-SNAPSHOT")
-
-	resolvers ++= Seq(
-	  Resolver.sonatypeRepo("snapshots"),
-	  Resolver.sonatypeRepo("releases"),
-	)
-	addCompilerPlugin("org.scalamacros" % "paradise" % paradiseVersion cross CrossVersion.full)
-
-	scalaSource in Compile := baseDirectory.value / "src" 
-
-.. highlight:: bash
-
-NOTE: You will temporarily need to do the following because of resource files that are hardcoded
-into the compiler as of 3/7/2018 and this requirement will be removed shortly or a clean spatial-quickstart
-will be provided for you in future versions::
-
-	git clone git@github.com:stanford-ppl/spatial-lang
-	export SPATIAL_HOME=`pwd`/spatial-lang
-
-Finally, start writing your apps is ``spatial-lang/src/main/<filename>.scala``.  Refer to 
-`targets <../targets.html>`_ to learn how to compile the app.  The command is::
-
-	$ sbt "runMain <app name> <args>"
+The app called "Quicktest" is in ``spatial-lang/src/Applications.scala``.  It takes one input argument, adds 4 to it,
+and writes to to an output register.
 
 
 
