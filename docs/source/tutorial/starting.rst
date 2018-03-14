@@ -52,7 +52,7 @@ run the following::
 	$ sbt "runMain Quicktest"
 	$ cd gen/Quicktest && bash run.sh 7
 
-The app called "Quicktest" is in ``spatial-lang/src/Applications.scala``.  It has one input register, reads and 
+The app called "Quicktest" is in ``spatial-quicktest/src/Applications.scala``.  It has one input register, reads and 
 adds 4 to it in the ``Accel``, and then writes this to an output register.
 
 
@@ -68,7 +68,7 @@ Run the following (bash) commands to clone and update the spatial-lang repositor
     $ cd spatial-lang
     $ git submodule update --init
 
-This will pull Spatial's submodules `argon`, `apps`, and `scala-virtualized`.
+This will pull Spatial's submodules ``argon``, ``apps``, and ``scala-virtualized``.
 
 You may need to export your JAVA_HOME environment variable to point to your Java installation (usually /usr/bin)
 
@@ -93,6 +93,13 @@ You are now ready to compile the language.  Run the following::
 
 A good habit would be to pull from these repositories often and run ``sbt compile`` in your spatial-lang directory.
 
+To run a quick test, you can run the following::
+
+	$ bin/spatial InOutArg
+	$ cd gen/InOutArg && bash run.sh 7
+
+The app called "InOutArg" is in ``spatial-lang/apps/src/UnitTests.scala``.  It has one input register, reads and 
+adds 4 to it in the ``Accel``, and then writes this to an output register.
 
 That's it! Up next, you will learn how to use the language by working through a series of examples.
 The concepts you will learn in these tutorials are listed below.  Feel free to skip around the apps as

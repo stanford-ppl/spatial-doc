@@ -21,13 +21,17 @@ happen with the real DRAM peripherals.
 Spatial Compile
 ---------------
 
+.. highlight:: bash
+
 Then, compile the Spatial app with the following steps::
 
     $ cd spatial-lang/ # Navigate to Spatial base directory
-    $ bin/spatial <app name> --synth # + other options
+    $ sbt "runMain <app name> --synth <other options>"
 
 The ``<app name>`` refers to the name of the ``object`` that extends ``SpatialApp``.
 For the other options, see `here <../../compiler>`_
+
+If you are using the 
 
 
 Backend Compile

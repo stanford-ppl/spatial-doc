@@ -14,10 +14,12 @@ TBD...
 Spatial Compile
 ---------------
 
-Compile the Spatial app with the following steps::
+.. highlight:: bash
 
-    $ cd spatial-lang/ # Navigate to Spatial base directory
-    $ bin/spatial <app name> --synth # + other options
+Then, compile the Spatial app with the following steps::
+
+    $ cd spatial-quickstart/ # Navigate to Spatial base directory
+    $ sbt "runMain <app name> --synth <other options>"
 
 The ``<app name>`` refers to the name of the ``object`` that extends ``SpatialApp``.
 For the other options, see `here <../../compiler>`_

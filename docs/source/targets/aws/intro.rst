@@ -17,19 +17,21 @@ Setup
 
 Clone Amazon's `EC2 FPGA Hardware and Software Development Kit <https://github.com/aws/aws-fpga/>`_ to any location::
 
-    git clone https://github.com/aws/aws-fpga.git
+    $ git clone https://github.com/aws/aws-fpga.git
 
 Spatial was most recently tested with version 1.3.3 of this repository (git commit 934000f9a57c0cde8786441864d5c6e0cf42fef9).
 
 Set the ``AWS_HOME`` environment variable to point to the cloned directory.
 Also source the AWS setup scripts. The HDK script is needed for simulation and synthesis, and the SDK is needed to create the host binary::
 
-    export AWS_HOME=/path/to/aws-fpga
-    cd /path/to/aws-fpga/
-    source /path/to/aws-fpga/hdk_setup.sh
-    source /path/to/aws-fpga/sdk_setup.sh
+    $ export AWS_HOME=/path/to/aws-fpga
+    $ cd /path/to/aws-fpga/
+    $ source /path/to/aws-fpga/hdk_setup.sh
+    $ source /path/to/aws-fpga/sdk_setup.sh
 
 For example, you can add the 4 commands above to your ``.bashrc`` and source that.
+
+.. highlight:: scala
 
 Finally, applications targeting the F1 board (in hardware or simulation) need to set the ``target`` variable. For example,
 make the following change in the very top of the ``apps/src/MatMult_outer.scala`` application::

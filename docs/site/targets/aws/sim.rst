@@ -23,8 +23,8 @@ Generating the Application for Simulation
 
 The first step is the same as compiling a Spatial application for any other target, shown here for the ``SimpleTileLoadStore`` example::
 
-    cd ${SPATIAL_HOME}
-    bin/spatial SimpleTileLoadStore --synth
+    $ cd ${SPATIAL_HOME}
+    $ sbt "runMain SimpleTileLoadStore --synth"
 
 You can replace ``SimpleTileLoadStore`` with any application, as described in :doc:`the previous tutorial<../../tutorial/helloworld>`.
 Note however that the XSIM simulation seems to have a default timeout and that applications which run for too many cycles will not finish.
@@ -32,9 +32,9 @@ When possible we recommend selecting input arguments which allow your design to 
 
 Now generate the simulation binary ``Top``::
 
-    cd ${SPATIAL_HOME}/gen/SimpleTileLoadStore
-    make aws-sim
-    ./Top 100
+    $ cd ${SPATIAL_HOME}/gen/SimpleTileLoadStore
+    $ make aws-sim
+    $ ./Top 100
 
 Notice that the final two steps above both need the Vivado XSim simulator. Other simulators can be used with the Amazon Development Kit but this has not been tested with Spatial.
 
