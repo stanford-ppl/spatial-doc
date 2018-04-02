@@ -24,7 +24,7 @@ Generating the Application for Simulation
 The first step is the same as compiling a Spatial application for any other target, shown here for the ``SimpleTileLoadStore`` example::
 
     $ cd ${SPATIAL_HOME}
-    $ sbt "runMain SimpleTileLoadStore --synth"
+    $ bin/spatial SimpleTileLoadStore --synth
 
 You can replace ``SimpleTileLoadStore`` with any application, as described in :doc:`the previous tutorial<../../tutorial/helloworld>`.
 Note however that the XSIM simulation seems to have a default timeout and that applications which run for too many cycles will not finish.

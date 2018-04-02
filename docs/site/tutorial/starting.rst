@@ -49,7 +49,7 @@ To get started with Spatial, you simply need to clone the spatial-quickstart rep
 You can start writing your apps directly in ``spatial-lang/src/<filename>.scala``.  To run a quick test, you can
 run the following::
 
-	$ sbt "runMain Quicktest"
+	$ bin/spatial Quicktest
 	$ cd gen/Quicktest && bash run.sh 7
 
 The app called "Quicktest" is in ``spatial-quicktest/src/Applications.scala``.  It has one input register, reads and 

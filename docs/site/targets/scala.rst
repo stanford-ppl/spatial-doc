@@ -36,7 +36,7 @@ Spatial Compile
 Then, compile the Spatial app with the following steps::
 
     $ cd spatial-lang/ # Navigate to Spatial base directory
-    $ sbt "runMain <app name> --sim <other options>"
+    $ bin/spatial <app name> --sim <other options>
 
 The ``<app name>`` refers to the name of the ``object`` that extends ``SpatialApp``.
 For the other options, see `here <../../compiler>`_
