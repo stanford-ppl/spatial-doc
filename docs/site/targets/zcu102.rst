@@ -11,7 +11,7 @@ You will also need the appropriate cross-compiler.
 - `aarch64-linux-gnu- toolchain <https://www.howtoinstall.co/en/ubuntu/trusty/gcc-aarch64-linux-gnu>`_
 
 The generated executable for this target assumes you have a Linux OS installed on the board and have an
-executable in you path called ``prog_fpga``.  To create this executable, download `this file <zcu/prog_fpga>`_ and do the following on the Zynq::
+executable in you path called ``prog_fpga``.  To create this executable, download `this file <https://github.com/stanford-ppl/spatial-doc/blob/master/docs/site/targets/zcu/prog_fpga>`_ and do the following on the Zynq::
 
     $ mv prog_fpga /usr/bin
     $ chmod +x /usr/bin/prog_fpga
