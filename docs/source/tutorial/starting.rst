@@ -162,6 +162,8 @@ you find convenient:
  
  - LUT
 
+ - Metaprogramming
+
  - Spatial Functions and Multifile Projects
 
 

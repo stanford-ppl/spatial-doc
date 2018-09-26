@@ -14,6 +14,8 @@ In this section, you will learn about the following components in Spatial:
  
  - LUT
 
+ - Meta-programming
+ 
  - Spatial Functions and Multifile Projects
 
 Application Overview
