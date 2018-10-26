@@ -209,7 +209,7 @@
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><span class="extype" name="argon.DSLApp">DSLApp</span>, <a href="Spatial.html" class="extype" name="spatial.Spatial">Spatial</a>, <span class="extype" name="argon.Compiler">Compiler</span>, <span class="extype" name="argon.DSLRunnable">DSLRunnable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="argon.DSLApp">DSLApp</span>, <a href="Spatial.html" class="extype" name="spatial.Spatial">Spatial</a>, <a href="util/ParamLoader.html" class="extype" name="spatial.util.ParamLoader">ParamLoader</a>, <span class="extype" name="argon.Compiler">Compiler</span>, <span class="extype" name="argon.DSLRunnable">DSLRunnable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block diagram-container" id="inheritance-diagram-container">
                 <span class="toggle diagram-link">
                   Type Hierarchy
@@ -245,7 +245,7 @@
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="spatial.SpatialApp"><span>SpatialApp</span></li><li class="in" name="argon.DSLApp"><span>DSLApp</span></li><li class="in" name="spatial.Spatial"><span>Spatial</span></li><li class="in" name="argon.Compiler"><span>Compiler</span></li><li class="in" name="argon.DSLRunnable"><span>DSLRunnable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="spatial.SpatialApp"><span>SpatialApp</span></li><li class="in" name="argon.DSLApp"><span>DSLApp</span></li><li class="in" name="spatial.Spatial"><span>Spatial</span></li><li class="in" name="spatial.util.ParamLoader"><span>ParamLoader</span></li><li class="in" name="argon.Compiler"><span>Compiler</span></li><li class="in" name="argon.DSLRunnable"><span>DSLRunnable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -810,6 +810,38 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="spatial.util.ParamLoader#loadParam" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="loadParam(name:String,default:spatial.lang.Int32):spatial.lang.I32"></a><a id="loadParam(String,lang.Int32):lang.I32"></a>
+      <span class="permalink">
+      <a href="../spatial/SpatialApp.html#loadParam(name:String,default:spatial.lang.Int32):spatial.lang.I32" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">loadParam</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="default">default: <a href="lang/index.html#Int32=InternalAliases.this.I32" class="extmbr" name="spatial.lang.Int32">lang.Int32</a></span>)</span><span class="result">: <a href="lang/index.html#I32=InternalAliases.this.FixPt[InternalAliases.this.TRUE,InternalAliases.this._32,InternalAliases.this._0]" class="extmbr" name="spatial.lang.I32">lang.I32</a></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="util/ParamLoader.html" class="extype" name="spatial.util.ParamLoader">ParamLoader</a></dd></dl></div>
+    </li><li name="spatial.util.ParamLoader#loadParams" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="loadParams(paramPath:String):Any"></a><a id="loadParams(String):Any"></a>
+      <span class="permalink">
+      <a href="../spatial/SpatialApp.html#loadParams(paramPath:String):Any" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">loadParams</span><span class="params">(<span name="paramPath">paramPath: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Any">Any</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="util/ParamLoader.html" class="extype" name="spatial.util.ParamLoader">ParamLoader</a></dd></dl></div>
     </li><li name="argon.DSLApp#main" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="main(args:Array[String]):Unit"></a><a id="main(Array[String]):Unit"></a>
       <span class="permalink">
@@ -912,7 +944,23 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>Compiler</dd></dl></div>
-    </li><li name="argon.Compiler#postprocess" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="spatial.util.ParamLoader#params" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="params:scala.collection.mutable.Map[String,spatial.lang.I32]"></a><a id="params:Map[String,lang.I32]"></a>
+      <span class="permalink">
+      <a href="../spatial/SpatialApp.html#params:scala.collection.mutable.Map[String,spatial.lang.I32]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">params</span><span class="result">: <span class="extype" name="scala.collection.mutable.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <a href="lang/index.html#I32=InternalAliases.this.FixPt[InternalAliases.this.TRUE,InternalAliases.this._32,InternalAliases.this._0]" class="extmbr" name="spatial.lang.I32">lang.I32</a>]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="util/ParamLoader.html" class="extype" name="spatial.util.ParamLoader">ParamLoader</a></dd></dl></div>
+    </li><li name="spatial.Spatial#postprocess" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="postprocess(block:argon.Block[_]):Unit"></a><a id="postprocess(Block[_]):Unit"></a>
       <span class="permalink">
       <a href="../spatial/SpatialApp.html#postprocess(block:argon.Block[_]):Unit" title="Permalink">
@@ -927,7 +975,7 @@
         <span class="name">postprocess</span><span class="params">(<span name="block">block: <span class="extype" name="argon.Block">Block</span>[_]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Compiler</dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Spatial.html" class="extype" name="spatial.Spatial">Spatial</a> → Compiler</dd></dl></div>
     </li><li name="spatial.Spatial#rewrites" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="rewrites():Unit"></a>
       <span class="permalink">
@@ -976,6 +1024,22 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="Spatial.html" class="extype" name="spatial.Spatial">Spatial</a> → Compiler</dd></dl></div>
+    </li><li name="spatial.util.ParamLoader#saveParams" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="saveParams(path:String):Unit"></a><a id="saveParams(String):Unit"></a>
+      <span class="permalink">
+      <a href="../spatial/SpatialApp.html#saveParams(path:String):Unit" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">saveParams</span><span class="params">(<span name="path">path: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="util/ParamLoader.html" class="extype" name="spatial.util.ParamLoader">ParamLoader</a></dd></dl></div>
     </li><li name="spatial.Spatial#script" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="script:String"></a>
       <span class="permalink">
@@ -1170,6 +1234,8 @@
               <h3>Inherited from <span class="extype" name="argon.DSLApp">DSLApp</span></h3>
             </div><div class="parent" name="spatial.Spatial">
               <h3>Inherited from <a href="Spatial.html" class="extype" name="spatial.Spatial">Spatial</a></h3>
+            </div><div class="parent" name="spatial.util.ParamLoader">
+              <h3>Inherited from <a href="util/ParamLoader.html" class="extype" name="spatial.util.ParamLoader">ParamLoader</a></h3>
             </div><div class="parent" name="argon.Compiler">
               <h3>Inherited from <span class="extype" name="argon.Compiler">Compiler</span></h3>
             </div><div class="parent" name="argon.DSLRunnable">
