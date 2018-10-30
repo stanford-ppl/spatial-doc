@@ -1,0 +1,709 @@
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  </head><body>
+
+    <div data-role="main" class="ui-content" style="overflow-x:scroll;">
+      <h2>Controller Diagram for MatMult (Options: SyncMem, Retimed)</h2><h2><font color="red">Instrumentation Annotations (ArgIns:64 128 128, ArgIOs: ) </font></h2>
+  <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+<!--Begin x120 -->
+  <TD><font size = "6">Sequenced <font size = "4"> (OuterControl)</font>
+  <br><font size = "2">tutorial.scala:27:11</font>
+  <br><font size = "2">    Accel {</font>
+<br><font color="red"> 1477692 cycles/iter<br><font size="2">(1477692 total cycles, 0 total iters)<br>[0 iters/parent execution]</font></font>
+  <br><font size = "1"><b>x120 = AccelScope(Block(Const(())))</b></font>
+  
+  <div data-role="collapsible">
+  <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+  <!--Begin x819 -->
+    <TD><font size = "6">Pipelined <font size = "4"> (OuterControl)</font>
+    <br><font size = "2">tutorial.scala:28:56</font>
+    <br><font size = "2">      'MAINPIPE.Foreach(M by bm par pM, N by bn par pN){(i,j) =></font>
+<br><font color="red"> 1477688 cycles/iter<br><font size="2">(1477688 total cycles, 1 total iters)<br>[1 iters/parent execution]</font></font>
+    <br><font size = "1"><b>x819_MAINPIPE = UnrolledForeach(Set(),x319,Block(Const(())),List(List(b320), List(b321)),List(List(b322), List(b323)))</b></font>
+    <br><font size = "1">Counter: x319</font>
+    
+    <div data-role="collapsible">
+    <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+    <!--Begin x496 -->
+      <TD><font size = "6">Streaming <font size = "4"> (OuterControl)</font>
+      <br><font size = "2">tutorial.scala:31:15</font>
+      <br><font size = "2">        tileC load C(i::i+bm, j::j+bn par loadPar)</font>
+<br><font color="red"> 2163 cycles/iter<br><font size="2">(17304 total cycles, 8 total iters)<br>[8 iters/parent execution]</font></font>
+      <br><font size = "1"><b>x496 = UnrolledForeach(Set(b322, b323),x327,Block(Const(())),List(List(b328)),List(List(b329)))</b></font>
+      <br><font size = "1">Counter: x327</font>
+      
+      <div data-role="collapsible">
+      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+      <!--Begin x343 -->
+        <TD><font size = "6">Sequenced <font size = "4"> (InnerControl)</font>
+        <br><font size = "2">tutorial.scala:31:15</font>
+        <br><font size = "2">        tileC load C(i::i+bm, j::j+bn par loadPar)</font>
+        <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+<br><font color="red"> 18 cycles/iter<br><font size="2">(2304 total cycles, 128 total iters)<br>[16 iters/parent execution]</font></font>
+        <br><font size = "1"><b>x343 = UnitPipe(Set(b329, b322, b323),Block(Const(())))</b></font>
+        
+        <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+        <p align="right">Set(x330)----->
+        </font></div>
+      </TD><!-- Close TreeGen -->
+      <!--Begin x495 -->
+        <TD><font size = "6">Pipelined <font size = "4"> (InnerControl)</font>
+        <br><font size = "2">tutorial.scala:31:15</font>
+        <br><font size = "2">        tileC load C(i::i+bm, j::j+bn par loadPar)</font>
+        <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=7,  II=1</font></mark></p>
+<br><font color="red"> 8 cycles/iter<br><font size="2">(1144 total cycles, 128 total iters)<br>[16 iters/parent execution]</font></font>
+        <br><font size = "1"><b>x495 = UnrolledForeach(Set(b329, b322, b323),x346,Block(Const(())),List(List(b347, b348, b349, b350, b351, b352, b353, b354, b355, b356, b357, b358, b359, b360, b361, b362)),List(List(b363, b364, b365, b366, b367, b368, b369, b370, b371, b372, b373, b374, b375, b376, b377, b378)))</b></font>
+        <br><font size = "1">Counter: x346</font>
+        
+        <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+        <p align="left">----->Set(x331)
+        </font></div>
+      </TD><!-- Close TreeGen -->
+      </TABLE></div>
+    </TD><!-- Close TreeGen -->
+    <!--Begin x628 -->
+      <TD><font size = "6">Pipelined <font size = "4"> (OuterControl)</font>
+      <br><font size = "2">tutorial.scala:33:25</font>
+      <br><font size = "2">        Foreach(P by bp){k =></font>
+<br><font color="red"> 184570 cycles/iter<br><font size="2">(1476562 total cycles, 8 total iters)<br>[8 iters/parent execution]</font></font>
+      <br><font size = "1"><b>x628 = UnrolledForeach(Set(b322, b323),x499,Block(Const(())),List(List(b500)),List(List(b501)))</b></font>
+      <br><font size = "1">Counter: x499</font>
+      
+      <div data-role="collapsible">
+      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+      <!--Begin x570 -->
+        <TD><font size = "6">ForkJoin <font size = "4"> (OuterControl)</font>
+        <br><font size = "2">tutorial.scala:36:20</font>
+        <br><font size = "2">          Parallel {</font>
+<br><font color="red"> 6191 cycles/iter<br><font size="2">(99061 total cycles, 16 total iters)<br>[2 iters/parent execution]</font></font>
+        <br><font size = "1"><b>x570 = ParallelPipe(Set(b501, b322, b323),Block(Const(())))</b></font>
+        
+        <div data-role="collapsible">
+        <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+        <!--Begin x536 -->
+          <TD><font size = "6">Streaming <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">tutorial.scala:37:19</font>
+          <br><font size = "2">            tileA load A(i::i+bm, k::k+bp)</font>
+<br><font color="red"> 2054 cycles/iter<br><font size="2">(32877 total cycles, 16 total iters)<br>[1 iters/parent execution]</font></font>
+          <br><font size = "1"><b>x536 = UnrolledForeach(Set(),x505,Block(Const(())),List(List(b506)),List(List(b507)))</b></font>
+          <br><font size = "1">Counter: x505</font>
+          
+          <div data-role="collapsible">
+          <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+          <!--Begin x521 -->
+            <TD><font size = "6">Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">tutorial.scala:37:19</font>
+            <br><font size = "2">            tileA load A(i::i+bm, k::k+bp)</font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+<br><font color="red"> 18 cycles/iter<br><font size="2">(4608 total cycles, 256 total iters)<br>[16 iters/parent execution]</font></font>
+            <br><font size = "1"><b>x521 = UnitPipe(Set(b507),Block(Const(())))</b></font>
+            
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+            <p align="right">Set(x508)----->
+            </font></div>
+          </TD><!-- Close TreeGen -->
+          <!--Begin x535 -->
+            <TD><font size = "6">Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">tutorial.scala:37:19</font>
+            <br><font size = "2">            tileA load A(i::i+bm, k::k+bp)</font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=7,  II=1</font></mark></p>
+<br><font color="red"> 72 cycles/iter<br><font size="2">(18683 total cycles, 256 total iters)<br>[16 iters/parent execution]</font></font>
+            <br><font size = "1"><b>x535 = UnrolledForeach(Set(b507),x524,Block(Const(())),List(List(b525)),List(List(b526)))</b></font>
+            <br><font size = "1">Counter: x524</font>
+            
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+            <p align="left">----->Set(x509)
+            </font></div>
+          </TD><!-- Close TreeGen -->
+          </TABLE></div>
+        </TD><!-- Close TreeGen -->
+        <!--Begin x569 -->
+          <TD><font size = "6">Streaming <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">tutorial.scala:38:19</font>
+          <br><font size = "2">            tileB load B(k::k+bp, j::j+bn)</font>
+<br><font color="red"> 6186 cycles/iter<br><font size="2">(98981 total cycles, 16 total iters)<br>[1 iters/parent execution]</font></font>
+          <br><font size = "1"><b>x569 = UnrolledForeach(Set(),x538,Block(Const(())),List(List(b539)),List(List(b540)))</b></font>
+          <br><font size = "1">Counter: x538</font>
+          
+          <div data-role="collapsible">
+          <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+          <!--Begin x554 -->
+            <TD><font size = "6">Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">tutorial.scala:38:19</font>
+            <br><font size = "2">            tileB load B(k::k+bp, j::j+bn)</font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+<br><font color="red"> 18 cycles/iter<br><font size="2">(18432 total cycles, 1024 total iters)<br>[64 iters/parent execution]</font></font>
+            <br><font size = "1"><b>x554 = UnitPipe(Set(b540),Block(Const(())))</b></font>
+            
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+            <p align="right">Set(x541)----->
+            </font></div>
+          </TD><!-- Close TreeGen -->
+          <!--Begin x568 -->
+            <TD><font size = "6">Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">tutorial.scala:38:19</font>
+            <br><font size = "2">            tileB load B(k::k+bp, j::j+bn)</font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=7,  II=1</font></mark></p>
+<br><font color="red"> 73 cycles/iter<br><font size="2">(75497 total cycles, 1024 total iters)<br>[64 iters/parent execution]</font></font>
+            <br><font size = "1"><b>x568 = UnrolledForeach(Set(b540),x557,Block(Const(())),List(List(b558)),List(List(b559)))</b></font>
+            <br><font size = "1">Counter: x557</font>
+            
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+            <p align="left">----->Set(x542)
+            </font></div>
+          </TD><!-- Close TreeGen -->
+          </TABLE></div>
+        </TD><!-- Close TreeGen -->
+        </TABLE></div>
+      </TD><!-- Close TreeGen -->
+      <!--Begin x627 -->
+        <TD><font size = "6">Pipelined <font size = "4"> (OuterControl)</font>
+        <br><font size = "2">tutorial.scala:40:50</font>
+        <br><font size = "2">          Foreach(bm by 1 par pm, bn by 1 par pn){ (ii,jj) => </font>
+<br><font color="red"> 89106 cycles/iter<br><font size="2">(1425696 total cycles, 16 total iters)<br>[2 iters/parent execution]</font></font>
+        <br><font size = "1"><b>x627 = UnrolledForeach(Set(b501, b322, b323),x573,Block(Const(())),List(List(b574), List(b575)),List(List(b576), List(b577)))</b></font>
+        <br><font size = "1">Counter: x573</font>
+        
+        <div data-role="collapsible">
+        <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+        <!--Begin x610 -->
+          <TD><font size = "6">Pipelined <font size = "4"> (InnerControl)</font>
+          <br><font size = "2">tutorial.scala:41:92</font>
+          <br><font size = "2">            val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font>
+          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=18,  II=1</font></mark></p>
+<br><font color="red"> 85 cycles/iter<br><font size="2">(1392640 total cycles, 16384 total iters)<br>[1024 iters/parent execution]</font></font>
+          <br><font size = "1"><b>x610 = UnrolledReduce(Set(b577, b323, b576, b501, b322),x581,Block((x578) => Const(())),List(List(b582)),List(List(b583)))</b></font>
+          <br><font size = "1">Counter: x581</font>
+          
+        </TD><!-- Close TreeGen -->
+        <!--Begin x626 -->
+          <TD><font size = "6">Sequenced <font size = "4"> (InnerControl)</font>
+          <br><font size = "2">?:0:0</font>
+          <br><font size = "2"><?:?:?></font>
+          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
+<br><font color="red"> 13 cycles/iter<br><font size="2">(212992 total cycles, 16384 total iters)<br>[1024 iters/parent execution]</font></font>
+          <br><font size = "1"><b>x626 = UnitPipe(Set(b577, b323, b576, b501, b322),Block(Const(())))</b></font>
+          
+        </TD><!-- Close TreeGen -->
+        </TABLE></div>
+      </TD><!-- Close TreeGen -->
+      </TABLE></div>
+    </TD><!-- Close TreeGen -->
+    <!--Begin x818 -->
+      <TD><font size = "6">Streaming <font size = "4"> (OuterControl)</font>
+      <br><font size = "2">tutorial.scala:46:42</font>
+      <br><font size = "2">        C(i::i+bm, j::j+bn par storePar) store tileC</font>
+<br><font color="red"> 5609 cycles/iter<br><font size="2">(44878 total cycles, 8 total iters)<br>[8 iters/parent execution]</font></font>
+      <br><font size = "1"><b>x818 = UnrolledForeach(Set(b322, b323),x630,Block(Const(())),List(List(b631)),List(List(b632)))</b></font>
+      <br><font size = "1">Counter: x630</font>
+      
+      <div data-role="collapsible">
+      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+      <!--Begin x647 -->
+        <TD><font size = "6">Sequenced <font size = "4"> (InnerControl)</font>
+        <br><font size = "2">tutorial.scala:46:42</font>
+        <br><font size = "2">        C(i::i+bm, j::j+bn par storePar) store tileC</font>
+        <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+<br><font color="red"> 18 cycles/iter<br><font size="2">(2304 total cycles, 128 total iters)<br>[16 iters/parent execution]</font></font>
+        <br><font size = "1"><b>x647 = UnitPipe(Set(b632, b322, b323),Block(Const(())))</b></font>
+        
+        <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+        <p align="right">Set(x633)----->
+        </font></div>
+      </TD><!-- Close TreeGen -->
+      <!--Begin x813 -->
+        <TD><font size = "6">Pipelined <font size = "4"> (InnerControl)</font>
+        <br><font size = "2">tutorial.scala:46:42</font>
+        <br><font size = "2">        C(i::i+bm, j::j+bn par storePar) store tileC</font>
+        <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=8,  II=1</font></mark></p>
+<br><font color="red"> 15 cycles/iter<br><font size="2">(1920 total cycles, 128 total iters)<br>[16 iters/parent execution]</font></font>
+        <br><font size = "1"><b>x813 = UnrolledForeach(Set(b632, b322, b323),x649,Block(Const(())),List(List(b650, b651, b652, b653, b654, b655, b656, b657, b658, b659, b660, b661, b662, b663, b664, b665)),List(List(b666, b667, b668, b669, b670, b671, b672, b673, b674, b675, b676, b677, b678, b679, b680, b681)))</b></font>
+        <br><font size = "1">Counter: x649</font>
+        
+        <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+        <p align="right">Set(x634)----->
+        </font></div>
+      </TD><!-- Close TreeGen -->
+      <!--Begin x817 -->
+        <TD><font size = "6">Sequenced <font size = "4"> (InnerControl)</font>
+        <br><font size = "2">tutorial.scala:46:42</font>
+        <br><font size = "2">        C(i::i+bm, j::j+bn par storePar) store tileC</font>
+        <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=1,  II=1</font></mark></p>
+<br><font color="red"> 3 cycles/iter<br><font size="2">(444 total cycles, 128 total iters)<br>[16 iters/parent execution]</font></font>
+        <br><font size = "1"><b>x817 = UnitPipe(Set(b632, b322, b323),Block(Const(())))</b></font>
+        
+        <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+        <p align="left">----->Set(x635)
+        </font></div>
+      </TD><!-- Close TreeGen -->
+      </TABLE></div>
+    </TD><!-- Close TreeGen -->
+    </TABLE></div>
+  </TD><!-- Close TreeGen -->
+  </TABLE></div>
+</TD><!-- Close TreeGen -->
+
+  </TABLE>
+  </body>
+  </html>
+
+<p><p><p>
+
+<TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+  <TD><font size = "6">Instrumentation Guide<br><br>
+  <div data-role="collapsible">
+  <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+    <TD><font size = "6">Pipelined (OuterControl)<br>
+    <div data-role="collapsible">
+    <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+
+      <TD><font size = "6">View Sample Waveform:<br>
+      <div data-role="collapsible">
+      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+
+
+
+      <font size = "2"><tt><pre>
+
+    <TD><font size = "6">Sample Waveform:<br><font size = "2"><tt><pre><font color="red">
+  parent_en ____|```````````````````````````````````````````````````````````````````````````````````````````````````````````````````|__
+<br></font>
+parent_done ________________________________________________________________________________________________________________________|__
+<font color="red">
+            5 cycles / iter
+                
+                <----->
+
+  child0_en ____|`````|___|`````|__________|`````|__________|`````|__________|`````|___________________________________________________
+<br>
+  child1_en ______________|`````````````|__|`````````````|__|`````````````|__|`````````````|__|`````````````|__________________________
+<br>
+  child2_en _______________________________|``|_____________|``|_____________|``|_____________|``|_____________|``|____________________
+<br>
+  child3_en ________________________________________________|```````|________|```````|________|```````|________|```````|__|```````|____
+<br></font>
+child0_done __________|_________|________________|________________|________________|___________________________________________________
+<br>
+child1_done ____________________________|________________|________________|________________|________________|__________________________
+<br>
+child2_done __________________________________|________________|________________|________________|________________|____________________
+<br>
+child3_done ________________________________________________________|________________|________________|________________|__________|____
+
+                                                                    ^                ^                ^                ^          ^
+       
+                                                                    |________________|________________|________________|__________|                     
+       
+                                                                                                      |                                      
+       
+                                                                                             5 iters/parent execution                                                                            
+
+</pre></tt>
+
+      </font>
+
+      </TABLE></div>
+      </TD>
+
+      <TD><font size = "6">View Sample Tree:<br>
+      <div data-role="collapsible">
+      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+
+        <!--Begin Parent -->
+        <TD><b>Parent - <font color="red"> 64 cycles/iter<br><font size="2">(115 total cycles, 1 total iters)<br>[# iters/parent execution]</font></font></b></font><br><font size = "1">Counter: </font>
+
+          <div data-role="collapsible">
+          <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+            <!--Begin Child0 -->
+            <TD><b>Child0 - <font color="red"> 5 cycles/iter<br><font size="2">(25 total cycles, 5 total iters)<br>[5 iters/parent execution]</font></font></b></font><br><font size = "1">Counter: </font>
+            </TD>
+
+            <!--Begin Child1 -->
+            <TD><b>Child1 - <font color="red"> 13 cycles/iter<br><font size="2">(65 total cycles, 5 total iters)<br>[5 iters/parent execution]</font></font></b></font><br><font size = "1">Counter: </font>
+            </TD>
+
+            <!--Begin Child2 -->
+            <TD><b>Child2 - <font color="red"> 2 cycles/iter<br><font size="2">(10 total cycles, 5 total iters)<br>[5 iters/parent execution]</font></font></b></font><br><font size = "1">Counter: </font>
+            </TD>
+
+            <!--Begin Child3 -->
+            <TD><b>Child3 - <font color="red"> 7 cycles/iter<br><font size="2">(35 total cycles, 5 total iters)<br>[5 iters/parent execution]</font></font></b></font><br><font size = "1">Counter: </font>
+            </TD>
+
+
+        </TABLE></div>
+        </TD>
+        <!-- Close Parent -->
+
+
+      </TABLE></div>
+      </TD>
+      <!-- Close View Tree -->
+
+    </TABLE></div>
+    </TD>
+    <!-- Close Metapipe -->
+
+    <TD><font size = "6">Sequenced (OuterControl)<br>
+    <div data-role="collapsible">
+    <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+
+      <TD><font size = "6">View Sample Waveform:<br>
+      <div data-role="collapsible">
+      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+
+      <font size = "2"><tt><pre>
+
+    <TD><font size = "6">Sample Waveform:<br><font size = "2"><tt><pre><font color="red">
+  parent_en ____|```````````````````````````````````````````````````````````````````````````````````````````|_
+<br></font>
+parent_done ________________________________________________________________________________________________|_
+<font color="red">
+            5 cycles / iter
+                
+                <----->
+
+  child0_en ____|`````|________________________|`````|________________________|`````|_________________________
+<br>
+  child1_en _____________|`````````````|_______________|`````````````|________________|`````````````|_________
+<br>
+  child2_en ______________________________|``|__________________________|``|__________________________|``|____
+<br></font>
+child0_done __________|______________________________|______________________________|_________________________
+<br>
+child1_done ____________________________|____________________________|______________________________|_________
+<br>
+child2_done _________________________________|_____________________________|_____________________________|____
+
+                                             ^                             ^                             ^                     
+       
+                                             |_____________________________|_____________________________|                     
+       
+                                                               |                                      
+       
+                                                      3 iters/parent execution                                                                            
+
+</pre></tt>
+
+      </font>
+
+      </TABLE></div>
+      </TD>
+
+      <TD><font size = "6">View Sample Tree:<br>
+      <div data-role="collapsible">
+      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+
+        <!--Begin Parent -->
+        <TD><b>Parent - <font color="red"> 91 cycles/iter<br><font size="2">(91 total cycles, 1 total iters)<br>[# iters/parent execution]</font></font></b></font><br><font size = "1">Counter: </font>
+
+          <div data-role="collapsible">
+          <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+            <!--Begin Child0 -->
+            <TD><b>Child0 - <font color="red"> 5 cycles/iter<br><font size="2">(15 total cycles, 3 total iters)<br>[3 iters/parent execution]</font></font></b></font><br><font size = "1">Counter: </font>
+            </TD>
+
+            <!--Begin Child0 -->
+            <TD><b>Child1 - <font color="red"> 13 cycles/iter<br><font size="2">(39 total cycles, 3 total iters)<br>[3 iters/parent execution]</font></font></b></font><br><font size = "1">Counter: </font>
+            </TD>
+
+            <!--Begin Child0 -->
+            <TD><b>Child2 - <font color="red"> 2 cycles/iter<br><font size="2">(6 total cycles, 3 total iters)<br>[3 iters/parent execution]</font></font></b></font><br><font size = "1">Counter: </font>
+            </TD>
+
+
+        </TABLE></div>
+        </TD>
+        <!-- Close Parent -->
+
+
+      </TABLE></div>
+      </TD>
+      <!-- Close View Tree -->
+
+    </TABLE></div>
+    </TD>
+    <!-- Close Sequential -->
+
+
+    <TD><font size = "6">ForkJoin (OuterControl)<br>
+    <div data-role="collapsible">
+    <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+
+
+      <TD><font size = "6">View Sample Waveform:<br>
+      <div data-role="collapsible">
+      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+
+
+
+      <font size = "2"><tt><pre>
+
+    <TD><font size = "6">Sample Waveform:<br><font size = "2"><tt><pre><font color="red">
+  parent_en ____|````````````````|____|````````````````|____|````````````````|_____
+<br></font>
+parent_done _____________________|_____________________|_____________________|_____
+<font color="red">
+            5 cycles / iter
+                
+                <----->
+
+  child0_en ____|`````|________________|`````|_______________|`````|__________
+<br>
+  child1_en ____|`````````````|________|`````````````|_______|`````````````|__
+<br>
+  child2_en ____|``|___________________|``|__________________|``|_____________
+<br></font>
+child0_done __________|______________________|_____________________|__________
+<br>
+child1_done __________________|______________________|_____________________|__
+<br>
+child2_done _______|______________________|_____________________|_____________
+
+                   ^
+       
+                   |
+       
+                   |                                      
+       
+               1 iters/parent execution                                                                            
+
+</pre></tt>
+
+      </font>
+
+      </TABLE></div>
+      </TD>
+
+      <TD><font size = "6">View Sample Tree:<br>
+      <div data-role="collapsible">
+      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+
+        <!--Begin Parent -->
+        <TD><b>Parent - <font color="red"> 16 cycles/iter<br><font size="2">(48 total cycles, 3 total iters)<br>[# iters/parent execution]</font></font></b></font><br><font size = "1">Counter: </font>
+
+          <div data-role="collapsible">
+          <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+            <!--Begin Child0 -->
+            <TD><b>Child0 - <font color="red"> 5 cycles/iter<br><font size="2">(15 total cycles, 3 total iters)<br>[1 iters/parent execution]</font></font></b></font><br><font size = "1">Counter: </font>
+            </TD>
+
+            <!--Begin Child0 -->
+            <TD><b>Child1 - <font color="red"> 13 cycles/iter<br><font size="2">(39 total cycles, 3 total iters)<br>[1 iters/parent execution]</font></font></b></font><br><font size = "1">Counter: </font>
+            </TD>
+
+            <!--Begin Child0 -->
+            <TD><b>Child2 - <font color="red"> 2 cycles/iter<br><font size="2">(6 total cycles, 3 total iters)<br>[1 iters/parent execution]</font></font></b></font><br><font size = "1">Counter: </font>
+            </TD>
+
+
+        </TABLE></div>
+        </TD>
+        <!-- Close Parent -->
+
+
+      </TABLE></div>
+      </TD>
+      <!-- Close View Tree -->
+
+    </TABLE></div>
+    </TD>
+    <!-- Close Parallel -->
+
+
+    <TD><font size = "6">Fork (OuterControl)<br>
+    <div data-role="collapsible">
+    <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+
+
+      <TD><font size = "6">View Sample Waveform:<br>
+      <div data-role="collapsible">
+      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+
+
+
+      <font size = "2"><tt><pre>
+
+    <TD><font size = "6">Sample Waveform:<br><font size = "2"><tt><pre><font color="red">
+  parent_en ____|````````````````|____|````````````````|____|````````|_____________
+<br></font>
+parent_done _____________________|_____________________|_____________|_____________
+<font color="red">
+            5 cycles / iter
+                
+                <----->
+
+  child0_en _________________________________________________|`````|__________
+<br>
+  child1_en ____|`````````````|________|`````````````|________________________
+<br>
+  child2_en __________________________________________________________________
+<br></font>
+child0_done _______________________________________________________|__________
+<br>
+child1_done __________________|______________________|________________________
+<br>
+child2_done __________________________________________________________________
+
+                   ^
+       
+                   |
+       
+                   |                                      
+       
+               1 iters/parent execution                                                                            
+
+</pre></tt>
+
+      </font>
+
+      </TABLE></div>
+      </TD>
+
+      <TD><font size = "6">View Sample Tree:<br>
+      <div data-role="collapsible">
+      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+
+        <!--Begin Parent -->
+        <TD><b>Parent - <font color="red"> 13 cycles/iter<br><font size="2">(40 total cycles, 3 total iters)<br>[# iters/parent execution]</font></font></b></font><br><font size = "1">Counter: </font>
+
+          <div data-role="collapsible">
+          <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+            <!--Begin Child0 -->
+            <TD><b>Child0 - <font color="red"> 5 cycles/iter<br><font size="2">(5 total cycles, 1 total iters)<br>[1 iters/parent execution]</font></font></b></font><br><font size = "1">Counter: </font>
+            </TD>
+
+            <!--Begin Child0 -->
+            <TD><b>Child1 - <font color="red"> 13 cycles/iter<br><font size="2">(26 total cycles, 2 total iters)<br>[1 iters/parent execution]</font></font></b></font><br><font size = "1">Counter: </font>
+            </TD>
+
+            <!--Begin Child0 -->
+            <TD><b>Child2 - <font color="red"> 0 cycles/iter<br><font size="2">(0 total cycles, 0 total iters)<br>[0 iters/parent execution]</font></font></b></font><br><font size = "1">Counter: </font>
+            </TD>
+
+
+        </TABLE></div>
+        </TD>
+        <!-- Close Parent -->
+
+
+      </TABLE></div>
+      </TD>
+      <!-- Close View Tree -->
+
+    </TABLE></div>
+    </TD>
+    <!-- Close Parallel -->
+
+
+    <TD><font size = "6">Streaming (OuterControl)<br>
+    <div data-role="collapsible">
+    <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+      TBD (Complicated to show)<br><font size = 3>  Think of this as a ForkJoin but the enables are only valid when all of a given stage's input/output streams are valid/ready, respectively.
+      The Counters for the Streaming controller are duplicated so that each child has its own copy that runs independently of other siblings.</font>
+    </TABLE></div>
+    </TD>
+    <!-- Close Stream -->
+
+    <TD><font size = "6">*** (InnerControl)<br>
+    <div data-role="collapsible">
+    <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+
+
+      <TD><font size = "6">View Sample Waveform:<br>
+      <div data-role="collapsible">
+      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+
+
+
+      <font size = "2"><tt><pre>
+
+    <TD><font size = "6">Sample Waveform:<br><font size = "2"><tt><pre><font color="red">
+  ctrl_en            ____|```````````````````````````|____|```````````````````````````|___________
+
+                              27 cycles / iter
+                
+                          <------------------------->                                                                
+
+<br> 
+  ctrl_datapath      ____|`|____|`|____|`|________________|`|____|`|____|`|_______________________
+
+
+                          II = 5
+                
+                          <---->                                                                
+
+
+<br></font>
+<font color="gray">
+  datapath (retimed) _____\______\______\__________________\______\______\________________________<br>
+                     ________\______\______\__________________\______\______\_____________________<br>
+                     ___________\______\______\__________________\______\______\__________________<br>
+                     ______________\______\______\__________________\______\______\_______________<br>
+                     _________________\______\______\__________________\______\______\____________<br>
+
+                           Latency = 12
+
+                          <------------>
+
+
+<br></font>
+ctrl_done            _________________________________|________________________________|__________
+
+</pre></tt>
+
+      </font>
+
+      </TABLE></div>
+      </TD>
+
+      <TD><font size = "6">View Sample Tree:<br>
+      <div data-role="collapsible">
+      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+
+
+        <!--Begin Parent -->
+        <TD><b>Ctrl - <font color="red"> 27 cycles/iter<br><font size="2">(54 total cycles, 2 total iters)<br>[# iters/parent execution]</font></font></b></font><br><font size = "1">Counter: </font><br>
+          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=12,  <b>II=5</b></font></mark></p><br>
+          <font size = "3"> cycles/iter ~= Counter * II + latency
+        </TD>
+        <!-- Close Parent -->
+
+
+      </TABLE></div>
+      </TD>
+      <!-- Close View Tree -->
+
+    </TABLE></div>
+    </TD>
+    <!-- Close Parallel -->
+
+  </TABLE></div>
+  </TD>
+
+  </TABLE>

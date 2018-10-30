@@ -1,0 +1,234 @@
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  </head><body>
+
+    <div data-role="main" class="ui-content" style="overflow-x:scroll;">
+      <h2>Controller Diagram for MatMult (Options: SyncMem, Retimed)</h2>
+  <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+<!--Begin x120 -->
+  <TD><font size = "6">Sequenced <font size = "4"> (OuterControl)</font>
+  <br><font size = "2">tutorial.scala:27:11</font>
+  <br><font size = "2">    Accel {</font>
+  <br><font size = "1"><b>x120 = AccelScope(Block(Const(())))</b></font>
+  
+  <div data-role="collapsible">
+  <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+  <!--Begin x819 -->
+    <TD><font size = "6">Pipelined <font size = "4"> (OuterControl)</font>
+    <br><font size = "2">tutorial.scala:28:56</font>
+    <br><font size = "2">      'MAINPIPE.Foreach(M by bm par pM, N by bn par pN){(i,j) =></font>
+    <br><font size = "1"><b>x819_MAINPIPE = UnrolledForeach(Set(),x319,Block(Const(())),List(List(b320), List(b321)),List(List(b322), List(b323)))</b></font>
+    <br><font size = "1">Counter: x319</font>
+    
+    <div data-role="collapsible">
+    <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+    <!--Begin x496 -->
+      <TD><font size = "6">Streaming <font size = "4"> (OuterControl)</font>
+      <br><font size = "2">tutorial.scala:31:15</font>
+      <br><font size = "2">        tileC load C(i::i+bm, j::j+bn par loadPar)</font>
+      <br><font size = "1"><b>x496 = UnrolledForeach(Set(b322, b323),x327,Block(Const(())),List(List(b328)),List(List(b329)))</b></font>
+      <br><font size = "1">Counter: x327</font>
+      
+      <div data-role="collapsible">
+      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+      <!--Begin x343 -->
+        <TD><font size = "6">Sequenced <font size = "4"> (InnerControl)</font>
+        <br><font size = "2">tutorial.scala:31:15</font>
+        <br><font size = "2">        tileC load C(i::i+bm, j::j+bn par loadPar)</font>
+        <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+        <br><font size = "1"><b>x343 = UnitPipe(Set(b329, b322, b323),Block(Const(())))</b></font>
+        
+        <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+        <p align="right">Set(x330)----->
+        </font></div>
+      </TD><!-- Close TreeGen -->
+      <!--Begin x495 -->
+        <TD><font size = "6">Pipelined <font size = "4"> (InnerControl)</font>
+        <br><font size = "2">tutorial.scala:31:15</font>
+        <br><font size = "2">        tileC load C(i::i+bm, j::j+bn par loadPar)</font>
+        <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=7,  II=1</font></mark></p>
+        <br><font size = "1"><b>x495 = UnrolledForeach(Set(b329, b322, b323),x346,Block(Const(())),List(List(b347, b348, b349, b350, b351, b352, b353, b354, b355, b356, b357, b358, b359, b360, b361, b362)),List(List(b363, b364, b365, b366, b367, b368, b369, b370, b371, b372, b373, b374, b375, b376, b377, b378)))</b></font>
+        <br><font size = "1">Counter: x346</font>
+        
+        <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+        <p align="left">----->Set(x331)
+        </font></div>
+      </TD><!-- Close TreeGen -->
+      </TABLE></div>
+    </TD><!-- Close TreeGen -->
+    <!--Begin x628 -->
+      <TD><font size = "6">Pipelined <font size = "4"> (OuterControl)</font>
+      <br><font size = "2">tutorial.scala:33:25</font>
+      <br><font size = "2">        Foreach(P by bp){k =></font>
+      <br><font size = "1"><b>x628 = UnrolledForeach(Set(b322, b323),x499,Block(Const(())),List(List(b500)),List(List(b501)))</b></font>
+      <br><font size = "1">Counter: x499</font>
+      
+      <div data-role="collapsible">
+      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+      <!--Begin x570 -->
+        <TD><font size = "6">ForkJoin <font size = "4"> (OuterControl)</font>
+        <br><font size = "2">tutorial.scala:36:20</font>
+        <br><font size = "2">          Parallel {</font>
+        <br><font size = "1"><b>x570 = ParallelPipe(Set(b501, b322, b323),Block(Const(())))</b></font>
+        
+        <div data-role="collapsible">
+        <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+        <!--Begin x536 -->
+          <TD><font size = "6">Streaming <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">tutorial.scala:37:19</font>
+          <br><font size = "2">            tileA load A(i::i+bm, k::k+bp)</font>
+          <br><font size = "1"><b>x536 = UnrolledForeach(Set(),x505,Block(Const(())),List(List(b506)),List(List(b507)))</b></font>
+          <br><font size = "1">Counter: x505</font>
+          
+          <div data-role="collapsible">
+          <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+          <!--Begin x521 -->
+            <TD><font size = "6">Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">tutorial.scala:37:19</font>
+            <br><font size = "2">            tileA load A(i::i+bm, k::k+bp)</font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+            <br><font size = "1"><b>x521 = UnitPipe(Set(b507),Block(Const(())))</b></font>
+            
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+            <p align="right">Set(x508)----->
+            </font></div>
+          </TD><!-- Close TreeGen -->
+          <!--Begin x535 -->
+            <TD><font size = "6">Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">tutorial.scala:37:19</font>
+            <br><font size = "2">            tileA load A(i::i+bm, k::k+bp)</font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=7,  II=1</font></mark></p>
+            <br><font size = "1"><b>x535 = UnrolledForeach(Set(b507),x524,Block(Const(())),List(List(b525)),List(List(b526)))</b></font>
+            <br><font size = "1">Counter: x524</font>
+            
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+            <p align="left">----->Set(x509)
+            </font></div>
+          </TD><!-- Close TreeGen -->
+          </TABLE></div>
+        </TD><!-- Close TreeGen -->
+        <!--Begin x569 -->
+          <TD><font size = "6">Streaming <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">tutorial.scala:38:19</font>
+          <br><font size = "2">            tileB load B(k::k+bp, j::j+bn)</font>
+          <br><font size = "1"><b>x569 = UnrolledForeach(Set(),x538,Block(Const(())),List(List(b539)),List(List(b540)))</b></font>
+          <br><font size = "1">Counter: x538</font>
+          
+          <div data-role="collapsible">
+          <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+          <!--Begin x554 -->
+            <TD><font size = "6">Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">tutorial.scala:38:19</font>
+            <br><font size = "2">            tileB load B(k::k+bp, j::j+bn)</font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+            <br><font size = "1"><b>x554 = UnitPipe(Set(b540),Block(Const(())))</b></font>
+            
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+            <p align="right">Set(x541)----->
+            </font></div>
+          </TD><!-- Close TreeGen -->
+          <!--Begin x568 -->
+            <TD><font size = "6">Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">tutorial.scala:38:19</font>
+            <br><font size = "2">            tileB load B(k::k+bp, j::j+bn)</font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=7,  II=1</font></mark></p>
+            <br><font size = "1"><b>x568 = UnrolledForeach(Set(b540),x557,Block(Const(())),List(List(b558)),List(List(b559)))</b></font>
+            <br><font size = "1">Counter: x557</font>
+            
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+            <p align="left">----->Set(x542)
+            </font></div>
+          </TD><!-- Close TreeGen -->
+          </TABLE></div>
+        </TD><!-- Close TreeGen -->
+        </TABLE></div>
+      </TD><!-- Close TreeGen -->
+      <!--Begin x627 -->
+        <TD><font size = "6">Pipelined <font size = "4"> (OuterControl)</font>
+        <br><font size = "2">tutorial.scala:40:50</font>
+        <br><font size = "2">          Foreach(bm by 1 par pm, bn by 1 par pn){ (ii,jj) => </font>
+        <br><font size = "1"><b>x627 = UnrolledForeach(Set(b501, b322, b323),x573,Block(Const(())),List(List(b574), List(b575)),List(List(b576), List(b577)))</b></font>
+        <br><font size = "1">Counter: x573</font>
+        
+        <div data-role="collapsible">
+        <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+        <!--Begin x610 -->
+          <TD><font size = "6">Pipelined <font size = "4"> (InnerControl)</font>
+          <br><font size = "2">tutorial.scala:41:92</font>
+          <br><font size = "2">            val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font>
+          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=18,  II=1</font></mark></p>
+          <br><font size = "1"><b>x610 = UnrolledReduce(Set(b577, b323, b576, b501, b322),x581,Block((x578) => Const(())),List(List(b582)),List(List(b583)))</b></font>
+          <br><font size = "1">Counter: x581</font>
+          
+        </TD><!-- Close TreeGen -->
+        <!--Begin x626 -->
+          <TD><font size = "6">Sequenced <font size = "4"> (InnerControl)</font>
+          <br><font size = "2">?:0:0</font>
+          <br><font size = "2"><?:?:?></font>
+          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
+          <br><font size = "1"><b>x626 = UnitPipe(Set(b577, b323, b576, b501, b322),Block(Const(())))</b></font>
+          
+        </TD><!-- Close TreeGen -->
+        </TABLE></div>
+      </TD><!-- Close TreeGen -->
+      </TABLE></div>
+    </TD><!-- Close TreeGen -->
+    <!--Begin x818 -->
+      <TD><font size = "6">Streaming <font size = "4"> (OuterControl)</font>
+      <br><font size = "2">tutorial.scala:46:42</font>
+      <br><font size = "2">        C(i::i+bm, j::j+bn par storePar) store tileC</font>
+      <br><font size = "1"><b>x818 = UnrolledForeach(Set(b322, b323),x630,Block(Const(())),List(List(b631)),List(List(b632)))</b></font>
+      <br><font size = "1">Counter: x630</font>
+      
+      <div data-role="collapsible">
+      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+      <!--Begin x647 -->
+        <TD><font size = "6">Sequenced <font size = "4"> (InnerControl)</font>
+        <br><font size = "2">tutorial.scala:46:42</font>
+        <br><font size = "2">        C(i::i+bm, j::j+bn par storePar) store tileC</font>
+        <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+        <br><font size = "1"><b>x647 = UnitPipe(Set(b632, b322, b323),Block(Const(())))</b></font>
+        
+        <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+        <p align="right">Set(x633)----->
+        </font></div>
+      </TD><!-- Close TreeGen -->
+      <!--Begin x813 -->
+        <TD><font size = "6">Pipelined <font size = "4"> (InnerControl)</font>
+        <br><font size = "2">tutorial.scala:46:42</font>
+        <br><font size = "2">        C(i::i+bm, j::j+bn par storePar) store tileC</font>
+        <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=8,  II=1</font></mark></p>
+        <br><font size = "1"><b>x813 = UnrolledForeach(Set(b632, b322, b323),x649,Block(Const(())),List(List(b650, b651, b652, b653, b654, b655, b656, b657, b658, b659, b660, b661, b662, b663, b664, b665)),List(List(b666, b667, b668, b669, b670, b671, b672, b673, b674, b675, b676, b677, b678, b679, b680, b681)))</b></font>
+        <br><font size = "1">Counter: x649</font>
+        
+        <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+        <p align="right">Set(x634)----->
+        </font></div>
+      </TD><!-- Close TreeGen -->
+      <!--Begin x817 -->
+        <TD><font size = "6">Sequenced <font size = "4"> (InnerControl)</font>
+        <br><font size = "2">tutorial.scala:46:42</font>
+        <br><font size = "2">        C(i::i+bm, j::j+bn par storePar) store tileC</font>
+        <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=1,  II=1</font></mark></p>
+        <br><font size = "1"><b>x817 = UnitPipe(Set(b632, b322, b323),Block(Const(())))</b></font>
+        
+        <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+        <p align="left">----->Set(x635)
+        </font></div>
+      </TD><!-- Close TreeGen -->
+      </TABLE></div>
+    </TD><!-- Close TreeGen -->
+    </TABLE></div>
+  </TD><!-- Close TreeGen -->
+  </TABLE></div>
+</TD><!-- Close TreeGen -->
+
+  </TABLE>
+  </body>
+  </html>
