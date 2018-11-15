@@ -1,4 +1,12 @@
 
+WARNING
+=======
+
+This version of spatial has been deprecated.  For the current version of Spatial, please go to https://github.cmo/stanford-ppl/spatial.
+
+Documentation can be found on the website, spatial-lang.org
+
+
 Spatial
 =======
 
