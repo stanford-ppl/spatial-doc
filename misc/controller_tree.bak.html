@@ -10,225 +10,1477 @@
 
     <div data-role="main" class="ui-content" style="overflow-x:scroll;">
       <h2>Controller Diagram for MatMult (Options: SyncMem, Retimed)</h2>
-  <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
-<!--Begin x120 -->
-  <TD><font size = "6">Sequenced <font size = "4"> (OuterControl)</font>
-  <br><font size = "2">tutorial.scala:27:11</font>
-  <br><font size = "2">    Accel {</font>
-  <br><font size = "1"><b>x120 = AccelScope(Block(Const(())))</b></font>
+      <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
   
-  <div data-role="collapsible">
-  <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
-  <!--Begin x819 -->
-    <TD><font size = "6">Pipelined <font size = "4"> (OuterControl)</font>
-    <br><font size = "2">tutorial.scala:28:56</font>
-    <br><font size = "2">      'MAINPIPE.Foreach(M by bm par pM, N by bn par pN){(i,j) =></font>
-    <br><font size = "1"><b>x819_MAINPIPE = UnrolledForeach(Set(),x319,Block(Const(())),List(List(b320), List(b321)),List(List(b322), List(b323)))</b></font>
-    <br><font size = "1">Counter: x319</font>
-    
-    <div data-role="collapsible">
-    <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
-    <!--Begin x496 -->
-      <TD><font size = "6">Streaming <font size = "4"> (OuterControl)</font>
-      <br><font size = "2">tutorial.scala:31:15</font>
-      <br><font size = "2">        tileC load C(i::i+bm, j::j+bn par loadPar)</font>
-      <br><font size = "1"><b>x496 = UnrolledForeach(Set(b322, b323),x327,Block(Const(())),List(List(b328)),List(List(b329)))</b></font>
-      <br><font size = "1">Counter: x327</font>
-      
-      <div data-role="collapsible">
-      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
-      <!--Begin x343 -->
-        <TD><font size = "6">Sequenced <font size = "4"> (InnerControl)</font>
-        <br><font size = "2">tutorial.scala:31:15</font>
-        <br><font size = "2">        tileC load C(i::i+bm, j::j+bn par loadPar)</font>
-        <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
-        <br><font size = "1"><b>x343 = UnitPipe(Set(b329, b322, b323),Block(Const(())))</b></font>
-        
-        <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
-        <p align="right">Set(x330)----->
-        </font></div>
-      </TD><!-- Close TreeGen -->
-      <!--Begin x495 -->
-        <TD><font size = "6">Pipelined <font size = "4"> (InnerControl)</font>
-        <br><font size = "2">tutorial.scala:31:15</font>
-        <br><font size = "2">        tileC load C(i::i+bm, j::j+bn par loadPar)</font>
-        <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=7,  II=1</font></mark></p>
-        <br><font size = "1"><b>x495 = UnrolledForeach(Set(b329, b322, b323),x346,Block(Const(())),List(List(b347, b348, b349, b350, b351, b352, b353, b354, b355, b356, b357, b358, b359, b360, b361, b362)),List(List(b363, b364, b365, b366, b367, b368, b369, b370, b371, b372, b373, b374, b375, b376, b377, b378)))</b></font>
-        <br><font size = "1">Counter: x346</font>
-        
-        <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
-        <p align="left">----->Set(x331)
-        </font></div>
-      </TD><!-- Close TreeGen -->
-      </TABLE></div>
-    </TD><!-- Close TreeGen -->
-    <!--Begin x628 -->
-      <TD><font size = "6">Pipelined <font size = "4"> (OuterControl)</font>
-      <br><font size = "2">tutorial.scala:33:25</font>
-      <br><font size = "2">        Foreach(P by bp){k =></font>
-      <br><font size = "1"><b>x628 = UnrolledForeach(Set(b322, b323),x499,Block(Const(())),List(List(b500)),List(List(b501)))</b></font>
-      <br><font size = "1">Counter: x499</font>
-      
-      <div data-role="collapsible">
-      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
-      <!--Begin x570 -->
-        <TD><font size = "6">ForkJoin <font size = "4"> (OuterControl)</font>
-        <br><font size = "2">tutorial.scala:36:20</font>
-        <br><font size = "2">          Parallel {</font>
-        <br><font size = "1"><b>x570 = ParallelPipe(Set(b501, b322, b323),Block(Const(())))</b></font>
-        
-        <div data-role="collapsible">
-        <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
-        <!--Begin x536 -->
-          <TD><font size = "6">Streaming <font size = "4"> (OuterControl)</font>
-          <br><font size = "2">tutorial.scala:37:19</font>
-          <br><font size = "2">            tileA load A(i::i+bm, k::k+bp)</font>
-          <br><font size = "1"><b>x536 = UnrolledForeach(Set(),x505,Block(Const(())),List(List(b506)),List(List(b507)))</b></font>
-          <br><font size = "1">Counter: x505</font>
-          
-          <div data-role="collapsible">
-          <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
-          <!--Begin x521 -->
-            <TD><font size = "6">Sequenced <font size = "4"> (InnerControl)</font>
-            <br><font size = "2">tutorial.scala:37:19</font>
-            <br><font size = "2">            tileA load A(i::i+bm, k::k+bp)</font>
-            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
-            <br><font size = "1"><b>x521 = UnitPipe(Set(b507),Block(Const(())))</b></font>
-            
-            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
-            <p align="right">Set(x508)----->
-            </font></div>
-          </TD><!-- Close TreeGen -->
-          <!--Begin x535 -->
-            <TD><font size = "6">Pipelined <font size = "4"> (InnerControl)</font>
-            <br><font size = "2">tutorial.scala:37:19</font>
-            <br><font size = "2">            tileA load A(i::i+bm, k::k+bp)</font>
-            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=7,  II=1</font></mark></p>
-            <br><font size = "1"><b>x535 = UnrolledForeach(Set(b507),x524,Block(Const(())),List(List(b525)),List(List(b526)))</b></font>
-            <br><font size = "1">Counter: x524</font>
-            
-            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
-            <p align="left">----->Set(x509)
-            </font></div>
-          </TD><!-- Close TreeGen -->
-          </TABLE></div>
-        </TD><!-- Close TreeGen -->
-        <!--Begin x569 -->
-          <TD><font size = "6">Streaming <font size = "4"> (OuterControl)</font>
-          <br><font size = "2">tutorial.scala:38:19</font>
-          <br><font size = "2">            tileB load B(k::k+bp, j::j+bn)</font>
-          <br><font size = "1"><b>x569 = UnrolledForeach(Set(),x538,Block(Const(())),List(List(b539)),List(List(b540)))</b></font>
-          <br><font size = "1">Counter: x538</font>
-          
-          <div data-role="collapsible">
-          <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
-          <!--Begin x554 -->
-            <TD><font size = "6">Sequenced <font size = "4"> (InnerControl)</font>
-            <br><font size = "2">tutorial.scala:38:19</font>
-            <br><font size = "2">            tileB load B(k::k+bp, j::j+bn)</font>
-            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
-            <br><font size = "1"><b>x554 = UnitPipe(Set(b540),Block(Const(())))</b></font>
-            
-            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
-            <p align="right">Set(x541)----->
-            </font></div>
-          </TD><!-- Close TreeGen -->
-          <!--Begin x568 -->
-            <TD><font size = "6">Pipelined <font size = "4"> (InnerControl)</font>
-            <br><font size = "2">tutorial.scala:38:19</font>
-            <br><font size = "2">            tileB load B(k::k+bp, j::j+bn)</font>
-            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=7,  II=1</font></mark></p>
-            <br><font size = "1"><b>x568 = UnrolledForeach(Set(b540),x557,Block(Const(())),List(List(b558)),List(List(b559)))</b></font>
-            <br><font size = "1">Counter: x557</font>
-            
-            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
-            <p align="left">----->Set(x542)
-            </font></div>
-          </TD><!-- Close TreeGen -->
-          </TABLE></div>
-        </TD><!-- Close TreeGen -->
-        </TABLE></div>
-      </TD><!-- Close TreeGen -->
-      <!--Begin x627 -->
-        <TD><font size = "6">Pipelined <font size = "4"> (OuterControl)</font>
-        <br><font size = "2">tutorial.scala:40:50</font>
-        <br><font size = "2">          Foreach(bm by 1 par pm, bn by 1 par pn){ (ii,jj) => </font>
-        <br><font size = "1"><b>x627 = UnrolledForeach(Set(b501, b322, b323),x573,Block(Const(())),List(List(b574), List(b575)),List(List(b576), List(b577)))</b></font>
-        <br><font size = "1">Counter: x573</font>
-        
-        <div data-role="collapsible">
-        <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
-        <!--Begin x610 -->
-          <TD><font size = "6">Pipelined <font size = "4"> (InnerControl)</font>
-          <br><font size = "2">tutorial.scala:41:92</font>
-          <br><font size = "2">            val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font>
-          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=18,  II=1</font></mark></p>
-          <br><font size = "1"><b>x610 = UnrolledReduce(Set(b577, b323, b576, b501, b322),x581,Block((x578) => Const(())),List(List(b582)),List(List(b583)))</b></font>
-          <br><font size = "1">Counter: x581</font>
-          
-        </TD><!-- Close TreeGen -->
-        <!--Begin x626 -->
-          <TD><font size = "6">Sequenced <font size = "4"> (InnerControl)</font>
-          <br><font size = "2">?:0:0</font>
-          <br><font size = "2"><?:?:?></font>
-          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
-          <br><font size = "1"><b>x626 = UnitPipe(Set(b577, b323, b576, b501, b322),Block(Const(())))</b></font>
-          
-        </TD><!-- Close TreeGen -->
-        </TABLE></div>
-      </TD><!-- Close TreeGen -->
-      </TABLE></div>
-    </TD><!-- Close TreeGen -->
-    <!--Begin x818 -->
-      <TD><font size = "6">Streaming <font size = "4"> (OuterControl)</font>
-      <br><font size = "2">tutorial.scala:46:42</font>
-      <br><font size = "2">        C(i::i+bm, j::j+bn par storePar) store tileC</font>
-      <br><font size = "1"><b>x818 = UnrolledForeach(Set(b322, b323),x630,Block(Const(())),List(List(b631)),List(List(b632)))</b></font>
-      <br><font size = "1">Counter: x630</font>
-      
-      <div data-role="collapsible">
-      <h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
-      <!--Begin x647 -->
-        <TD><font size = "6">Sequenced <font size = "4"> (InnerControl)</font>
-        <br><font size = "2">tutorial.scala:46:42</font>
-        <br><font size = "2">        C(i::i+bm, j::j+bn par storePar) store tileC</font>
-        <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
-        <br><font size = "1"><b>x647 = UnitPipe(Set(b632, b322, b323),Block(Const(())))</b></font>
-        
-        <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
-        <p align="right">Set(x633)----->
-        </font></div>
-      </TD><!-- Close TreeGen -->
-      <!--Begin x813 -->
-        <TD><font size = "6">Pipelined <font size = "4"> (InnerControl)</font>
-        <br><font size = "2">tutorial.scala:46:42</font>
-        <br><font size = "2">        C(i::i+bm, j::j+bn par storePar) store tileC</font>
-        <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=8,  II=1</font></mark></p>
-        <br><font size = "1"><b>x813 = UnrolledForeach(Set(b632, b322, b323),x649,Block(Const(())),List(List(b650, b651, b652, b653, b654, b655, b656, b657, b658, b659, b660, b661, b662, b663, b664, b665)),List(List(b666, b667, b668, b669, b670, b671, b672, b673, b674, b675, b676, b677, b678, b679, b680, b681)))</b></font>
-        <br><font size = "1">Counter: x649</font>
-        
-        <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
-        <p align="right">Set(x634)----->
-        </font></div>
-      </TD><!-- Close TreeGen -->
-      <!--Begin x817 -->
-        <TD><font size = "6">Sequenced <font size = "4"> (InnerControl)</font>
-        <br><font size = "2">tutorial.scala:46:42</font>
-        <br><font size = "2">        C(i::i+bm, j::j+bn par storePar) store tileC</font>
-        <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=1,  II=1</font></mark></p>
-        <br><font size = "1"><b>x817 = UnitPipe(Set(b632, b322, b323),Block(Const(())))</b></font>
-        
-        <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
-        <p align="left">----->Set(x635)
-        </font></div>
-      </TD><!-- Close TreeGen -->
-      </TABLE></div>
-    </TD><!-- Close TreeGen -->
-    </TABLE></div>
-  </TD><!-- Close TreeGen -->
-  </TABLE></div>
-</TD><!-- Close TreeGen -->
+<!-- Begin x107 -->
+<TD>
+<font size = "6"><a href=IR.html#x107 target=_blank>x107</a>: Sequenced <font size = "4"> (OuterControl)</font>
+<br><font size = "2">HelloSpatial.scala:111:11 <font color="grey">-     Accel {</font></font>
 
-  </TABLE>
-  </body>
-  </html>
+  <div data-role="collapsible"><h4> </h4>
+  <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+  <!-- Begin x3095 -->
+  <TD>
+  <font size = "6"><a href=IR.html#x3095 target=_blank>x3095</a>: Sequenced <font size = "4"> (OuterControl)</font>
+  <br><font size = "2">HelloSpatial.scala:112:23 <font color="grey">-       Foreach(P by bp){k => </font></font>
+  <br><font size = "1">Counter: <a href=IR.html#x339 target=_blank>x339</a></font>
+
+    <div data-role="collapsible"><h4> </h4>
+    <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+    <!-- Begin x3094 -->
+    <TD>
+    <font size = "6"><a href=IR.html#x3094 target=_blank>x3094</a>: Pipelined <font size = "4"> (OuterControl)</font>
+    <br><font size = "2">HelloSpatial.scala:115:58 <font color="grey">-         'MAINPIPE.Foreach(M by bm par pM, N by bn par pN){(i,j) =></font></font>
+    <br><font size = "1">Counter: <a href=IR.html#x354 target=_blank>x354</a></font>
+
+      <div data-role="collapsible"><h4> </h4>
+      <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+      <!-- Begin x675 -->
+      <TD>
+      <font size = "6"><a href=IR.html#x675 target=_blank>x675</a>: ForkJoin <font size = "4"> (OuterControl)</font>
+      <br><font size = "2">HelloSpatial.scala:118:20 <font color="grey">-           Parallel {</font></font>
+<TABLE BORDER="1" CELLPADDING="1" CELLSPACING="0"><td>
+<font size=1>NBuf Connections</font>
+        <div data-role="collapsible"><h4> </h4>
+        <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #ccb6ff"><font size = "1"><a href=IR.html#x369 target=_blank>x369</a> (BankedSRAM "tileB_0")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #f2e6ff"><font size = "1"><a href=IR.html#x368 target=_blank>x368</a> (BankedSRAM "tileB_0")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #128678"><font size = "1"><a href=IR.html#x370 target=_blank>x370</a> (BankedSRAM "tileB_0")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #f4268f"><font size = "1"><a href=IR.html#x367 target=_blank>x367</a> (BankedSRAM "tileB_0")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #99ddff"><font size = "1"><a href=IR.html#x364 target=_blank>x364</a> (BankedSRAM "tileA_0")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #e0b77a"><font size = "1"><a href=IR.html#x363 target=_blank>x363</a> (BankedSRAM "tileA_0")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #ccb6ff"><font size = "1"><a href=IR.html#x366 target=_blank>x366</a> (BankedSRAM "tileA_0")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #14fb82"><font size = "1"><a href=IR.html#x365 target=_blank>x365</a> (BankedSRAM "tileA_0")
+        </font></div></p>
+        </TABLE></div>
+      </TABLE></div>
+
+        <div data-role="collapsible"><h4> </h4>
+        <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+        <!-- Begin x446 -->
+        <TD>
+        <font size = "6"><a href=IR.html#x446 target=_blank>x446</a>: ForkJoin <font size = "4"> (OuterControl)</font>
+        <br><font size = "2">HelloSpatial.scala:118:20 <font color="grey">-           Parallel {</font></font>
+
+          <div data-role="collapsible"><h4> </h4>
+          <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+          <!-- Begin x407 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x407 target=_blank>x407</a>: Streaming <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">HelloSpatial.scala:119:19 <font color="grey">-             tileA load A(i::i+bm, k::k+bp)</font></font>
+          <br><font size = "1">Counter: <a href=IR.html#x372 target=_blank>x372</a></font>
+
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <!-- Begin x388 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x388 target=_blank>x388</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:119:19 <font color="grey">-             tileA load A(i::i+bm, k::k+bp)</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="right">Set(x375)----->
+            </font></div>
+            </TD>
+            <!-- End x388-->
+            <!-- Begin x406 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x406 target=_blank>x406</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:119:19 <font color="grey">-             tileA load A(i::i+bm, k::k+bp)</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=7,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x391 target=_blank>x391</a></font>
+
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="left">----->Set(x376)
+            </font></div>
+            </TD>
+            <!-- End x406-->
+            </TABLE></div>
+          </TD>
+          <!-- End x407-->
+          <!-- Begin x445 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x445 target=_blank>x445</a>: Streaming <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">HelloSpatial.scala:120:19 <font color="grey">-             tileB load B(k::k+bp, j::j+bn)</font></font>
+          <br><font size = "1">Counter: <a href=IR.html#x409 target=_blank>x409</a></font>
+
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <!-- Begin x425 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x425 target=_blank>x425</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:120:19 <font color="grey">-             tileB load B(k::k+bp, j::j+bn)</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="right">Set(x412)----->
+            </font></div>
+            </TD>
+            <!-- End x425-->
+            <!-- Begin x444 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x444 target=_blank>x444</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:120:19 <font color="grey">-             tileB load B(k::k+bp, j::j+bn)</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=7,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x428 target=_blank>x428</a></font>
+
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="left">----->Set(x413)
+            </font></div>
+            </TD>
+            <!-- End x444-->
+            </TABLE></div>
+          </TD>
+          <!-- End x445-->
+          </TABLE></div>
+        </TD>
+        <!-- End x446-->
+        <!-- Begin x522 -->
+        <TD>
+        <font size = "6"><a href=IR.html#x522 target=_blank>x522</a>: ForkJoin <font size = "4"> (OuterControl)</font>
+        <br><font size = "2">HelloSpatial.scala:118:20 <font color="grey">-           Parallel {</font></font>
+
+          <div data-role="collapsible"><h4> </h4>
+          <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+          <!-- Begin x483 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x483 target=_blank>x483</a>: Streaming <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">HelloSpatial.scala:119:19 <font color="grey">-             tileA load A(i::i+bm, k::k+bp)</font></font>
+          <br><font size = "1">Counter: <a href=IR.html#x448 target=_blank>x448</a></font>
+
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <!-- Begin x464 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x464 target=_blank>x464</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:119:19 <font color="grey">-             tileA load A(i::i+bm, k::k+bp)</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="right">Set(x451)----->
+            </font></div>
+            </TD>
+            <!-- End x464-->
+            <!-- Begin x482 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x482 target=_blank>x482</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:119:19 <font color="grey">-             tileA load A(i::i+bm, k::k+bp)</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=7,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x467 target=_blank>x467</a></font>
+
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="left">----->Set(x452)
+            </font></div>
+            </TD>
+            <!-- End x482-->
+            </TABLE></div>
+          </TD>
+          <!-- End x483-->
+          <!-- Begin x521 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x521 target=_blank>x521</a>: Streaming <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">HelloSpatial.scala:120:19 <font color="grey">-             tileB load B(k::k+bp, j::j+bn)</font></font>
+          <br><font size = "1">Counter: <a href=IR.html#x485 target=_blank>x485</a></font>
+
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <!-- Begin x501 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x501 target=_blank>x501</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:120:19 <font color="grey">-             tileB load B(k::k+bp, j::j+bn)</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="right">Set(x488)----->
+            </font></div>
+            </TD>
+            <!-- End x501-->
+            <!-- Begin x520 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x520 target=_blank>x520</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:120:19 <font color="grey">-             tileB load B(k::k+bp, j::j+bn)</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=7,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x504 target=_blank>x504</a></font>
+
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="left">----->Set(x489)
+            </font></div>
+            </TD>
+            <!-- End x520-->
+            </TABLE></div>
+          </TD>
+          <!-- End x521-->
+          </TABLE></div>
+        </TD>
+        <!-- End x522-->
+        <!-- Begin x598 -->
+        <TD>
+        <font size = "6"><a href=IR.html#x598 target=_blank>x598</a>: ForkJoin <font size = "4"> (OuterControl)</font>
+        <br><font size = "2">HelloSpatial.scala:118:20 <font color="grey">-           Parallel {</font></font>
+
+          <div data-role="collapsible"><h4> </h4>
+          <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+          <!-- Begin x559 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x559 target=_blank>x559</a>: Streaming <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">HelloSpatial.scala:119:19 <font color="grey">-             tileA load A(i::i+bm, k::k+bp)</font></font>
+          <br><font size = "1">Counter: <a href=IR.html#x524 target=_blank>x524</a></font>
+
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <!-- Begin x540 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x540 target=_blank>x540</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:119:19 <font color="grey">-             tileA load A(i::i+bm, k::k+bp)</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="right">Set(x527)----->
+            </font></div>
+            </TD>
+            <!-- End x540-->
+            <!-- Begin x558 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x558 target=_blank>x558</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:119:19 <font color="grey">-             tileA load A(i::i+bm, k::k+bp)</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=7,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x543 target=_blank>x543</a></font>
+
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="left">----->Set(x528)
+            </font></div>
+            </TD>
+            <!-- End x558-->
+            </TABLE></div>
+          </TD>
+          <!-- End x559-->
+          <!-- Begin x597 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x597 target=_blank>x597</a>: Streaming <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">HelloSpatial.scala:120:19 <font color="grey">-             tileB load B(k::k+bp, j::j+bn)</font></font>
+          <br><font size = "1">Counter: <a href=IR.html#x561 target=_blank>x561</a></font>
+
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <!-- Begin x577 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x577 target=_blank>x577</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:120:19 <font color="grey">-             tileB load B(k::k+bp, j::j+bn)</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="right">Set(x564)----->
+            </font></div>
+            </TD>
+            <!-- End x577-->
+            <!-- Begin x596 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x596 target=_blank>x596</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:120:19 <font color="grey">-             tileB load B(k::k+bp, j::j+bn)</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=7,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x580 target=_blank>x580</a></font>
+
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="left">----->Set(x565)
+            </font></div>
+            </TD>
+            <!-- End x596-->
+            </TABLE></div>
+          </TD>
+          <!-- End x597-->
+          </TABLE></div>
+        </TD>
+        <!-- End x598-->
+        <!-- Begin x674 -->
+        <TD>
+        <font size = "6"><a href=IR.html#x674 target=_blank>x674</a>: ForkJoin <font size = "4"> (OuterControl)</font>
+        <br><font size = "2">HelloSpatial.scala:118:20 <font color="grey">-           Parallel {</font></font>
+
+          <div data-role="collapsible"><h4> </h4>
+          <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+          <!-- Begin x635 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x635 target=_blank>x635</a>: Streaming <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">HelloSpatial.scala:119:19 <font color="grey">-             tileA load A(i::i+bm, k::k+bp)</font></font>
+          <br><font size = "1">Counter: <a href=IR.html#x600 target=_blank>x600</a></font>
+
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <!-- Begin x616 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x616 target=_blank>x616</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:119:19 <font color="grey">-             tileA load A(i::i+bm, k::k+bp)</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="right">Set(x603)----->
+            </font></div>
+            </TD>
+            <!-- End x616-->
+            <!-- Begin x634 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x634 target=_blank>x634</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:119:19 <font color="grey">-             tileA load A(i::i+bm, k::k+bp)</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=7,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x619 target=_blank>x619</a></font>
+
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="left">----->Set(x604)
+            </font></div>
+            </TD>
+            <!-- End x634-->
+            </TABLE></div>
+          </TD>
+          <!-- End x635-->
+          <!-- Begin x673 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x673 target=_blank>x673</a>: Streaming <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">HelloSpatial.scala:120:19 <font color="grey">-             tileB load B(k::k+bp, j::j+bn)</font></font>
+          <br><font size = "1">Counter: <a href=IR.html#x637 target=_blank>x637</a></font>
+
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <!-- Begin x653 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x653 target=_blank>x653</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:120:19 <font color="grey">-             tileB load B(k::k+bp, j::j+bn)</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="right">Set(x640)----->
+            </font></div>
+            </TD>
+            <!-- End x653-->
+            <!-- Begin x672 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x672 target=_blank>x672</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:120:19 <font color="grey">-             tileB load B(k::k+bp, j::j+bn)</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=7,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x656 target=_blank>x656</a></font>
+
+            <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="left">----->Set(x641)
+            </font></div>
+            </TD>
+            <!-- End x672-->
+            </TABLE></div>
+          </TD>
+          <!-- End x673-->
+          </TABLE></div>
+        </TD>
+        <!-- End x674-->
+        </TABLE></div>
+      </TD>
+      <!-- End x675-->
+      <!-- Begin x2924 -->
+      <TD>
+      <font size = "6"><a href=IR.html#x2924 target=_blank>x2924</a>: ForkJoin <font size = "4"> (OuterControl)</font>
+      <br><font size = "2">HelloSpatial.scala:122:50 <font color="grey">-           Foreach(bm by 1 par pm, bn by 1 par pn){ (ii,jj) => </font></font>
+<TABLE BORDER="1" CELLPADDING="1" CELLSPACING="0"><td>
+<font size=1>NBuf Connections</font>
+        <div data-role="collapsible"><h4> </h4>
+        <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #ccb6ff"><font size = "1"><a href=IR.html#x369 target=_blank>x369</a> (BankedSRAM "tileB_0")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #f2e6ff"><font size = "1"><a href=IR.html#x368 target=_blank>x368</a> (BankedSRAM "tileB_0")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #128678"><font size = "1"><a href=IR.html#x370 target=_blank>x370</a> (BankedSRAM "tileB_0")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #f4268f"><font size = "1"><a href=IR.html#x367 target=_blank>x367</a> (BankedSRAM "tileB_0")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #99ddff"><font size = "1"><a href=IR.html#x364 target=_blank>x364</a> (BankedSRAM "tileA_0")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #f4268f"><font size = "1"><a href=IR.html#x346 target=_blank>x346</a> (BankedSRAM "tileC_4")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #e0b77a"><font size = "1"><a href=IR.html#x363 target=_blank>x363</a> (BankedSRAM "tileA_0")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #14fb82"><font size = "1"><a href=IR.html#x342 target=_blank>x342</a> (BankedSRAM "tileC_0")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #99ff99"><font size = "1"><a href=IR.html#x343 target=_blank>x343</a> (BankedSRAM "tileC_1")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #128678"><font size = "1"><a href=IR.html#x349 target=_blank>x349</a> (BankedSRAM "tileC_7")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #ccb6ff"><font size = "1"><a href=IR.html#x366 target=_blank>x366</a> (BankedSRAM "tileA_0")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #14fb82"><font size = "1"><a href=IR.html#x365 target=_blank>x365</a> (BankedSRAM "tileA_0")
+        </font></div></p>
+        </TABLE></div>
+      </TABLE></div>
+
+        <div data-role="collapsible"><h4> </h4>
+        <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+        <!-- Begin x1246 -->
+        <TD>
+        <font size = "6"><a href=IR.html#x1246 target=_blank>x1246</a>: Pipelined <font size = "4"> (OuterControl)</font>
+        <br><font size = "2">HelloSpatial.scala:122:50 <font color="grey">-           Foreach(bm by 1 par pm, bn by 1 par pn){ (ii,jj) => </font></font>
+        <br><font size = "1">Counter: <a href=IR.html#x684 target=_blank>x684</a></font>
+
+          <div data-role="collapsible"><h4> </h4>
+          <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+          <!-- Begin x1148 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x1148 target=_blank>x1148</a>: ForkJoin <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+<TABLE BORDER="1" CELLPADDING="1" CELLSPACING="0"><td>
+<font size=1>NBuf Connections</font>
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #d9b3ff"><font size = "1"><a href=IR.html#x702 target=_blank>x702</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #e6b3cc"><font size = "1"><a href=IR.html#x700 target=_blank>x700</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #128678"><font size = "1"><a href=IR.html#x698 target=_blank>x698</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #14fb82"><font size = "1"><a href=IR.html#x696 target=_blank>x696</a> (FF "prod_0")
+            </font></div></p>
+            </TABLE></div>
+          </TABLE></div>
+
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <!-- Begin x820 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x820 target=_blank>x820</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=29,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x708 target=_blank>x708</a></font>
+
+            </TD>
+            <!-- End x820-->
+            <!-- Begin x929 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x929 target=_blank>x929</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=29,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x709 target=_blank>x709</a></font>
+
+            </TD>
+            <!-- End x929-->
+            <!-- Begin x1038 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x1038 target=_blank>x1038</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=29,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x710 target=_blank>x710</a></font>
+
+            </TD>
+            <!-- End x1038-->
+            <!-- Begin x1147 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x1147 target=_blank>x1147</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=29,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x711 target=_blank>x711</a></font>
+
+            </TD>
+            <!-- End x1147-->
+            </TABLE></div>
+          </TD>
+          <!-- End x1148-->
+          <!-- Begin x1245 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x1245 target=_blank>x1245</a>: ForkJoin <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+<TABLE BORDER="1" CELLPADDING="1" CELLSPACING="0"><td>
+<font size=1>NBuf Connections</font>
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #d9b3ff"><font size = "1"><a href=IR.html#x702 target=_blank>x702</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #e6b3cc"><font size = "1"><a href=IR.html#x700 target=_blank>x700</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #128678"><font size = "1"><a href=IR.html#x698 target=_blank>x698</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #14fb82"><font size = "1"><a href=IR.html#x696 target=_blank>x696</a> (FF "prod_0")
+            </font></div></p>
+            </TABLE></div>
+          </TABLE></div>
+
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <!-- Begin x1172 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x1172 target=_blank>x1172</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
+
+            </TD>
+            <!-- End x1172-->
+            <!-- Begin x1196 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x1196 target=_blank>x1196</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
+
+            </TD>
+            <!-- End x1196-->
+            <!-- Begin x1220 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x1220 target=_blank>x1220</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
+
+            </TD>
+            <!-- End x1220-->
+            <!-- Begin x1244 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x1244 target=_blank>x1244</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
+
+            </TD>
+            <!-- End x1244-->
+            </TABLE></div>
+          </TD>
+          <!-- End x1245-->
+          </TABLE></div>
+        </TD>
+        <!-- End x1246-->
+        <!-- Begin x1805 -->
+        <TD>
+        <font size = "6"><a href=IR.html#x1805 target=_blank>x1805</a>: Pipelined <font size = "4"> (OuterControl)</font>
+        <br><font size = "2">HelloSpatial.scala:122:50 <font color="grey">-           Foreach(bm by 1 par pm, bn by 1 par pn){ (ii,jj) => </font></font>
+        <br><font size = "1">Counter: <a href=IR.html#x685 target=_blank>x685</a></font>
+
+          <div data-role="collapsible"><h4> </h4>
+          <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+          <!-- Begin x1707 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x1707 target=_blank>x1707</a>: ForkJoin <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+<TABLE BORDER="1" CELLPADDING="1" CELLSPACING="0"><td>
+<font size=1>NBuf Connections</font>
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #e699ff"><font size = "1"><a href=IR.html#x1261 target=_blank>x1261</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #99ff99"><font size = "1"><a href=IR.html#x1259 target=_blank>x1259</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #eefb21"><font size = "1"><a href=IR.html#x1257 target=_blank>x1257</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #ecc6d9"><font size = "1"><a href=IR.html#x1255 target=_blank>x1255</a> (FF "prod_0")
+            </font></div></p>
+            </TABLE></div>
+          </TABLE></div>
+
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <!-- Begin x1379 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x1379 target=_blank>x1379</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=29,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x1267 target=_blank>x1267</a></font>
+
+            </TD>
+            <!-- End x1379-->
+            <!-- Begin x1488 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x1488 target=_blank>x1488</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=29,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x1268 target=_blank>x1268</a></font>
+
+            </TD>
+            <!-- End x1488-->
+            <!-- Begin x1597 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x1597 target=_blank>x1597</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=29,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x1269 target=_blank>x1269</a></font>
+
+            </TD>
+            <!-- End x1597-->
+            <!-- Begin x1706 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x1706 target=_blank>x1706</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=29,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x1270 target=_blank>x1270</a></font>
+
+            </TD>
+            <!-- End x1706-->
+            </TABLE></div>
+          </TD>
+          <!-- End x1707-->
+          <!-- Begin x1804 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x1804 target=_blank>x1804</a>: ForkJoin <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+<TABLE BORDER="1" CELLPADDING="1" CELLSPACING="0"><td>
+<font size=1>NBuf Connections</font>
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #e699ff"><font size = "1"><a href=IR.html#x1261 target=_blank>x1261</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #99ff99"><font size = "1"><a href=IR.html#x1259 target=_blank>x1259</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #eefb21"><font size = "1"><a href=IR.html#x1257 target=_blank>x1257</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #ecc6d9"><font size = "1"><a href=IR.html#x1255 target=_blank>x1255</a> (FF "prod_0")
+            </font></div></p>
+            </TABLE></div>
+          </TABLE></div>
+
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <!-- Begin x1731 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x1731 target=_blank>x1731</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
+
+            </TD>
+            <!-- End x1731-->
+            <!-- Begin x1755 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x1755 target=_blank>x1755</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
+
+            </TD>
+            <!-- End x1755-->
+            <!-- Begin x1779 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x1779 target=_blank>x1779</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
+
+            </TD>
+            <!-- End x1779-->
+            <!-- Begin x1803 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x1803 target=_blank>x1803</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
+
+            </TD>
+            <!-- End x1803-->
+            </TABLE></div>
+          </TD>
+          <!-- End x1804-->
+          </TABLE></div>
+        </TD>
+        <!-- End x1805-->
+        <!-- Begin x2364 -->
+        <TD>
+        <font size = "6"><a href=IR.html#x2364 target=_blank>x2364</a>: Pipelined <font size = "4"> (OuterControl)</font>
+        <br><font size = "2">HelloSpatial.scala:122:50 <font color="grey">-           Foreach(bm by 1 par pm, bn by 1 par pn){ (ii,jj) => </font></font>
+        <br><font size = "1">Counter: <a href=IR.html#x686 target=_blank>x686</a></font>
+
+          <div data-role="collapsible"><h4> </h4>
+          <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+          <!-- Begin x2266 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x2266 target=_blank>x2266</a>: ForkJoin <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+<TABLE BORDER="1" CELLPADDING="1" CELLSPACING="0"><td>
+<font size=1>NBuf Connections</font>
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #e0b77a"><font size = "1"><a href=IR.html#x1820 target=_blank>x1820</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #d1e0e0"><font size = "1"><a href=IR.html#x1818 target=_blank>x1818</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #efc11b"><font size = "1"><a href=IR.html#x1816 target=_blank>x1816</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #d1e0e0"><font size = "1"><a href=IR.html#x1814 target=_blank>x1814</a> (FF "prod_0")
+            </font></div></p>
+            </TABLE></div>
+          </TABLE></div>
+
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <!-- Begin x1938 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x1938 target=_blank>x1938</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=29,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x1826 target=_blank>x1826</a></font>
+
+            </TD>
+            <!-- End x1938-->
+            <!-- Begin x2047 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x2047 target=_blank>x2047</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=29,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x1827 target=_blank>x1827</a></font>
+
+            </TD>
+            <!-- End x2047-->
+            <!-- Begin x2156 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x2156 target=_blank>x2156</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=29,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x1828 target=_blank>x1828</a></font>
+
+            </TD>
+            <!-- End x2156-->
+            <!-- Begin x2265 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x2265 target=_blank>x2265</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=29,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x1829 target=_blank>x1829</a></font>
+
+            </TD>
+            <!-- End x2265-->
+            </TABLE></div>
+          </TD>
+          <!-- End x2266-->
+          <!-- Begin x2363 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x2363 target=_blank>x2363</a>: ForkJoin <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+<TABLE BORDER="1" CELLPADDING="1" CELLSPACING="0"><td>
+<font size=1>NBuf Connections</font>
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #e0b77a"><font size = "1"><a href=IR.html#x1820 target=_blank>x1820</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #d1e0e0"><font size = "1"><a href=IR.html#x1818 target=_blank>x1818</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #efc11b"><font size = "1"><a href=IR.html#x1816 target=_blank>x1816</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #d1e0e0"><font size = "1"><a href=IR.html#x1814 target=_blank>x1814</a> (FF "prod_0")
+            </font></div></p>
+            </TABLE></div>
+          </TABLE></div>
+
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <!-- Begin x2290 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x2290 target=_blank>x2290</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
+
+            </TD>
+            <!-- End x2290-->
+            <!-- Begin x2314 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x2314 target=_blank>x2314</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
+
+            </TD>
+            <!-- End x2314-->
+            <!-- Begin x2338 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x2338 target=_blank>x2338</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
+
+            </TD>
+            <!-- End x2338-->
+            <!-- Begin x2362 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x2362 target=_blank>x2362</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
+
+            </TD>
+            <!-- End x2362-->
+            </TABLE></div>
+          </TD>
+          <!-- End x2363-->
+          </TABLE></div>
+        </TD>
+        <!-- End x2364-->
+        <!-- Begin x2923 -->
+        <TD>
+        <font size = "6"><a href=IR.html#x2923 target=_blank>x2923</a>: Pipelined <font size = "4"> (OuterControl)</font>
+        <br><font size = "2">HelloSpatial.scala:122:50 <font color="grey">-           Foreach(bm by 1 par pm, bn by 1 par pn){ (ii,jj) => </font></font>
+        <br><font size = "1">Counter: <a href=IR.html#x687 target=_blank>x687</a></font>
+
+          <div data-role="collapsible"><h4> </h4>
+          <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+          <!-- Begin x2825 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x2825 target=_blank>x2825</a>: ForkJoin <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+<TABLE BORDER="1" CELLPADDING="1" CELLSPACING="0"><td>
+<font size=1>NBuf Connections</font>
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #ccffcc"><font size = "1"><a href=IR.html#x2379 target=_blank>x2379</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #ffcccc"><font size = "1"><a href=IR.html#x2377 target=_blank>x2377</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #f2e6ff"><font size = "1"><a href=IR.html#x2375 target=_blank>x2375</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #e6b3cc"><font size = "1"><a href=IR.html#x2373 target=_blank>x2373</a> (FF "prod_0")
+            </font></div></p>
+            </TABLE></div>
+          </TABLE></div>
+
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <!-- Begin x2497 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x2497 target=_blank>x2497</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=29,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x2385 target=_blank>x2385</a></font>
+
+            </TD>
+            <!-- End x2497-->
+            <!-- Begin x2606 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x2606 target=_blank>x2606</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=29,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x2386 target=_blank>x2386</a></font>
+
+            </TD>
+            <!-- End x2606-->
+            <!-- Begin x2715 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x2715 target=_blank>x2715</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=29,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x2387 target=_blank>x2387</a></font>
+
+            </TD>
+            <!-- End x2715-->
+            <!-- Begin x2824 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x2824 target=_blank>x2824</a>: Pipelined <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">HelloSpatial.scala:123:92 <font color="grey">-             val prod = Reduce(Reg[T])(bp by 1 par ip){kk => tileA(ii, kk) * tileB(kk, jj) }{_+_}</font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=29,  II=1</font></mark></p>
+            <br><font size = "1">Counter: <a href=IR.html#x2388 target=_blank>x2388</a></font>
+
+            </TD>
+            <!-- End x2824-->
+            </TABLE></div>
+          </TD>
+          <!-- End x2825-->
+          <!-- Begin x2922 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x2922 target=_blank>x2922</a>: ForkJoin <font size = "4"> (OuterControl)</font>
+          <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+<TABLE BORDER="1" CELLPADDING="1" CELLSPACING="0"><td>
+<font size=1>NBuf Connections</font>
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #ccffcc"><font size = "1"><a href=IR.html#x2379 target=_blank>x2379</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #ffcccc"><font size = "1"><a href=IR.html#x2377 target=_blank>x2377</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #f2e6ff"><font size = "1"><a href=IR.html#x2375 target=_blank>x2375</a> (FF "prod_0")
+            </font></div></p>
+            <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #e6b3cc"><font size = "1"><a href=IR.html#x2373 target=_blank>x2373</a> (FF "prod_0")
+            </font></div></p>
+            </TABLE></div>
+          </TABLE></div>
+
+            <div data-role="collapsible"><h4> </h4>
+            <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+            <!-- Begin x2849 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x2849 target=_blank>x2849</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
+
+            </TD>
+            <!-- End x2849-->
+            <!-- Begin x2873 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x2873 target=_blank>x2873</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
+
+            </TD>
+            <!-- End x2873-->
+            <!-- Begin x2897 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x2897 target=_blank>x2897</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
+
+            </TD>
+            <!-- End x2897-->
+            <!-- Begin x2921 -->
+            <TD>
+            <font size = "6"><a href=IR.html#x2921 target=_blank>x2921</a>: Sequenced <font size = "4"> (InnerControl)</font>
+            <br><font size = "2">?:0:0 <font color="grey">- <?:?:?></font></font>
+            <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=10,  <b>II=4</b></font></mark></p>
+
+            </TD>
+            <!-- End x2921-->
+            </TABLE></div>
+          </TD>
+          <!-- End x2922-->
+          </TABLE></div>
+        </TD>
+        <!-- End x2923-->
+        </TABLE></div>
+      </TD>
+      <!-- End x2924-->
+      <!-- Begin x3093 -->
+      <TD>
+      <font size = "6"><a href=IR.html#x3093 target=_blank>x3093</a>: ForkJoin <font size = "4"> (OuterControl)</font>
+      <br><font size = "2">HelloSpatial.scala:127:31 <font color="grey">-           C(i::i+bm, j::j+bn) store tileC</font></font>
+<TABLE BORDER="1" CELLPADDING="1" CELLSPACING="0"><td>
+<font size=1>NBuf Connections</font>
+        <div data-role="collapsible"><h4> </h4>
+        <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #128678"><font size = "1"><a href=IR.html#x349 target=_blank>x349</a> (BankedSRAM "tileC_7")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #f4268f"><font size = "1"><a href=IR.html#x346 target=_blank>x346</a> (BankedSRAM "tileC_4")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #99ff99"><font size = "1"><a href=IR.html#x343 target=_blank>x343</a> (BankedSRAM "tileC_1")
+        </font></div></p>
+        <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #14fb82"><font size = "1"><a href=IR.html#x342 target=_blank>x342</a> (BankedSRAM "tileC_0")
+        </font></div></p>
+        </TABLE></div>
+      </TABLE></div>
+
+        <div data-role="collapsible"><h4> </h4>
+        <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+        <!-- Begin x2972 -->
+        <TD>
+        <font size = "6"><a href=IR.html#x2972 target=_blank>x2972</a>: Streaming <font size = "4"> (OuterControl)</font>
+        <br><font size = "2">HelloSpatial.scala:127:31 <font color="grey">-           C(i::i+bm, j::j+bn) store tileC</font></font>
+        <br><font size = "1">Counter: <a href=IR.html#x2929 target=_blank>x2929</a></font>
+
+          <div data-role="collapsible"><h4> </h4>
+          <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+          <!-- Begin x2949 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x2949 target=_blank>x2949</a>: Sequenced <font size = "4"> (InnerControl)</font>
+          <br><font size = "2">HelloSpatial.scala:127:31 <font color="grey">-           C(i::i+bm, j::j+bn) store tileC</font></font>
+          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+
+          <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="right">Set(x2935)----->
+          </font></div>
+          </TD>
+          <!-- End x2949-->
+          <!-- Begin x2967 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x2967 target=_blank>x2967</a>: Pipelined <font size = "4"> (InnerControl)</font>
+          <br><font size = "2">HelloSpatial.scala:127:31 <font color="grey">-           C(i::i+bm, j::j+bn) store tileC</font></font>
+          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=8,  II=1</font></mark></p>
+          <br><font size = "1">Counter: <a href=IR.html#x2951 target=_blank>x2951</a></font>
+
+          <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="right">Set(x2936)----->
+          </font></div>
+          </TD>
+          <!-- End x2967-->
+          <!-- Begin x2971 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x2971 target=_blank>x2971</a>: Sequenced <font size = "4"> (InnerControl)</font>
+          <br><font size = "2">HelloSpatial.scala:127:31 <font color="grey">-           C(i::i+bm, j::j+bn) store tileC</font></font>
+          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=1,  II=1</font></mark></p>
+
+          <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="left">----->Set(x2937)
+          </font></div>
+          </TD>
+          <!-- End x2971-->
+          </TABLE></div>
+        </TD>
+        <!-- End x2972-->
+        <!-- Begin x3012 -->
+        <TD>
+        <font size = "6"><a href=IR.html#x3012 target=_blank>x3012</a>: Streaming <font size = "4"> (OuterControl)</font>
+        <br><font size = "2">HelloSpatial.scala:127:31 <font color="grey">-           C(i::i+bm, j::j+bn) store tileC</font></font>
+        <br><font size = "1">Counter: <a href=IR.html#x2930 target=_blank>x2930</a></font>
+
+          <div data-role="collapsible"><h4> </h4>
+          <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+          <!-- Begin x2989 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x2989 target=_blank>x2989</a>: Sequenced <font size = "4"> (InnerControl)</font>
+          <br><font size = "2">HelloSpatial.scala:127:31 <font color="grey">-           C(i::i+bm, j::j+bn) store tileC</font></font>
+          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+
+          <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="right">Set(x2975)----->
+          </font></div>
+          </TD>
+          <!-- End x2989-->
+          <!-- Begin x3007 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x3007 target=_blank>x3007</a>: Pipelined <font size = "4"> (InnerControl)</font>
+          <br><font size = "2">HelloSpatial.scala:127:31 <font color="grey">-           C(i::i+bm, j::j+bn) store tileC</font></font>
+          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=8,  II=1</font></mark></p>
+          <br><font size = "1">Counter: <a href=IR.html#x2991 target=_blank>x2991</a></font>
+
+          <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="right">Set(x2976)----->
+          </font></div>
+          </TD>
+          <!-- End x3007-->
+          <!-- Begin x3011 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x3011 target=_blank>x3011</a>: Sequenced <font size = "4"> (InnerControl)</font>
+          <br><font size = "2">HelloSpatial.scala:127:31 <font color="grey">-           C(i::i+bm, j::j+bn) store tileC</font></font>
+          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=1,  II=1</font></mark></p>
+
+          <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="left">----->Set(x2977)
+          </font></div>
+          </TD>
+          <!-- End x3011-->
+          </TABLE></div>
+        </TD>
+        <!-- End x3012-->
+        <!-- Begin x3052 -->
+        <TD>
+        <font size = "6"><a href=IR.html#x3052 target=_blank>x3052</a>: Streaming <font size = "4"> (OuterControl)</font>
+        <br><font size = "2">HelloSpatial.scala:127:31 <font color="grey">-           C(i::i+bm, j::j+bn) store tileC</font></font>
+        <br><font size = "1">Counter: <a href=IR.html#x2931 target=_blank>x2931</a></font>
+
+          <div data-role="collapsible"><h4> </h4>
+          <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+          <!-- Begin x3029 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x3029 target=_blank>x3029</a>: Sequenced <font size = "4"> (InnerControl)</font>
+          <br><font size = "2">HelloSpatial.scala:127:31 <font color="grey">-           C(i::i+bm, j::j+bn) store tileC</font></font>
+          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+
+          <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="right">Set(x3015)----->
+          </font></div>
+          </TD>
+          <!-- End x3029-->
+          <!-- Begin x3047 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x3047 target=_blank>x3047</a>: Pipelined <font size = "4"> (InnerControl)</font>
+          <br><font size = "2">HelloSpatial.scala:127:31 <font color="grey">-           C(i::i+bm, j::j+bn) store tileC</font></font>
+          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=8,  II=1</font></mark></p>
+          <br><font size = "1">Counter: <a href=IR.html#x3031 target=_blank>x3031</a></font>
+
+          <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="right">Set(x3016)----->
+          </font></div>
+          </TD>
+          <!-- End x3047-->
+          <!-- Begin x3051 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x3051 target=_blank>x3051</a>: Sequenced <font size = "4"> (InnerControl)</font>
+          <br><font size = "2">HelloSpatial.scala:127:31 <font color="grey">-           C(i::i+bm, j::j+bn) store tileC</font></font>
+          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=1,  II=1</font></mark></p>
+
+          <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="left">----->Set(x3017)
+          </font></div>
+          </TD>
+          <!-- End x3051-->
+          </TABLE></div>
+        </TD>
+        <!-- End x3052-->
+        <!-- Begin x3092 -->
+        <TD>
+        <font size = "6"><a href=IR.html#x3092 target=_blank>x3092</a>: Streaming <font size = "4"> (OuterControl)</font>
+        <br><font size = "2">HelloSpatial.scala:127:31 <font color="grey">-           C(i::i+bm, j::j+bn) store tileC</font></font>
+        <br><font size = "1">Counter: <a href=IR.html#x2932 target=_blank>x2932</a></font>
+
+          <div data-role="collapsible"><h4> </h4>
+          <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+          <!-- Begin x3069 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x3069 target=_blank>x3069</a>: Sequenced <font size = "4"> (InnerControl)</font>
+          <br><font size = "2">HelloSpatial.scala:127:31 <font color="grey">-           C(i::i+bm, j::j+bn) store tileC</font></font>
+          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=15,  II=1</font></mark></p>
+
+          <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="right">Set(x3055)----->
+          </font></div>
+          </TD>
+          <!-- End x3069-->
+          <!-- Begin x3087 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x3087 target=_blank>x3087</a>: Pipelined <font size = "4"> (InnerControl)</font>
+          <br><font size = "2">HelloSpatial.scala:127:31 <font color="grey">-           C(i::i+bm, j::j+bn) store tileC</font></font>
+          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=8,  II=1</font></mark></p>
+          <br><font size = "1">Counter: <a href=IR.html#x3071 target=_blank>x3071</a></font>
+
+          <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="right">Set(x3056)----->
+          </font></div>
+          </TD>
+          <!-- End x3087-->
+          <!-- Begin x3091 -->
+          <TD>
+          <font size = "6"><a href=IR.html#x3091 target=_blank>x3091</a>: Sequenced <font size = "4"> (InnerControl)</font>
+          <br><font size = "2">HelloSpatial.scala:127:31 <font color="grey">-           C(i::i+bm, j::j+bn) store tileC</font></font>
+          <p><mark style="border:1px; border-style:solid; border-color:black; padding: 1px; background: #ccc"><font size = "2">Latency=1,  II=1</font></mark></p>
+
+          <div style="border:1px solid black"><font size = "2">Stream Info</font><br><font size = "1"> 
+<p align="left">----->Set(x3057)
+          </font></div>
+          </TD>
+          <!-- End x3091-->
+          </TABLE></div>
+        </TD>
+        <!-- End x3092-->
+        </TABLE></div>
+      </TD>
+      <!-- End x3093-->
+      </TABLE></div>
+    </TD>
+    <!-- End x3094-->
+    </TABLE></div>
+  </TD>
+  <!-- End x3095-->
+  </TABLE></div>
+</TD>
+<!-- End x107-->
+</TABLE>
+<h4> </h4><TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+<!-- Begin NBuf Mems -->
+<TD>
+NBuf Mems
+  <div data-role="collapsible"><h4> </h4>
+  <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #ccb6ff"><font size = "1"><a href=IR.html#x369 target=_blank>x369</a> (BankedSRAM "tileB_0")
+<br>lca = <a href=IR.html#x3094 target=_blank>x3094</a>
+<br>nBufs = 2
+<br>volume = 4096 (dims List(64, 64) + pads List(0, 0))
+<br>nBufs*volume = 8192
+<br>nBanks = List(8), a = List(1, 4), p = List(4, 2)
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #f2e6ff"><font size = "1"><a href=IR.html#x368 target=_blank>x368</a> (BankedSRAM "tileB_0")
+<br>lca = <a href=IR.html#x3094 target=_blank>x3094</a>
+<br>nBufs = 2
+<br>volume = 4096 (dims List(64, 64) + pads List(0, 0))
+<br>nBufs*volume = 8192
+<br>nBanks = List(8), a = List(1, 4), p = List(4, 2)
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #128678"><font size = "1"><a href=IR.html#x370 target=_blank>x370</a> (BankedSRAM "tileB_0")
+<br>lca = <a href=IR.html#x3094 target=_blank>x3094</a>
+<br>nBufs = 2
+<br>volume = 4096 (dims List(64, 64) + pads List(0, 0))
+<br>nBufs*volume = 8192
+<br>nBanks = List(8), a = List(1, 4), p = List(4, 2)
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #f4268f"><font size = "1"><a href=IR.html#x367 target=_blank>x367</a> (BankedSRAM "tileB_0")
+<br>lca = <a href=IR.html#x3094 target=_blank>x3094</a>
+<br>nBufs = 2
+<br>volume = 4096 (dims List(64, 64) + pads List(0, 0))
+<br>nBufs*volume = 8192
+<br>nBanks = List(8), a = List(1, 4), p = List(4, 2)
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #99ddff"><font size = "1"><a href=IR.html#x364 target=_blank>x364</a> (BankedSRAM "tileA_0")
+<br>lca = <a href=IR.html#x3094 target=_blank>x3094</a>
+<br>nBufs = 2
+<br>volume = 1024 (dims List(16, 64) + pads List(0, 0))
+<br>nBufs*volume = 2048
+<br>nBanks = List(2, 4), a = List(1, 1), p = List(2, 4)
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #f4268f"><font size = "1"><a href=IR.html#x346 target=_blank>x346</a> (BankedSRAM "tileC_4")
+<br>lca = <a href=IR.html#x3094 target=_blank>x3094</a>
+<br>nBufs = 2
+<br>volume = 1024 (dims List(16, 64) + pads List(0, 0))
+<br>nBufs*volume = 2048
+<br>nBanks = List(2, 2), a = List(1, 1), p = List(2, 2)
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #e0b77a"><font size = "1"><a href=IR.html#x363 target=_blank>x363</a> (BankedSRAM "tileA_0")
+<br>lca = <a href=IR.html#x3094 target=_blank>x3094</a>
+<br>nBufs = 2
+<br>volume = 1024 (dims List(16, 64) + pads List(0, 0))
+<br>nBufs*volume = 2048
+<br>nBanks = List(2, 4), a = List(1, 1), p = List(2, 4)
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #14fb82"><font size = "1"><a href=IR.html#x342 target=_blank>x342</a> (BankedSRAM "tileC_0")
+<br>lca = <a href=IR.html#x3094 target=_blank>x3094</a>
+<br>nBufs = 2
+<br>volume = 1024 (dims List(16, 64) + pads List(0, 0))
+<br>nBufs*volume = 2048
+<br>nBanks = List(2, 2), a = List(1, 1), p = List(2, 2)
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #99ff99"><font size = "1"><a href=IR.html#x343 target=_blank>x343</a> (BankedSRAM "tileC_1")
+<br>lca = <a href=IR.html#x3094 target=_blank>x3094</a>
+<br>nBufs = 2
+<br>volume = 1024 (dims List(16, 64) + pads List(0, 0))
+<br>nBufs*volume = 2048
+<br>nBanks = List(2, 2), a = List(1, 1), p = List(2, 2)
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #128678"><font size = "1"><a href=IR.html#x349 target=_blank>x349</a> (BankedSRAM "tileC_7")
+<br>lca = <a href=IR.html#x3094 target=_blank>x3094</a>
+<br>nBufs = 2
+<br>volume = 1024 (dims List(16, 64) + pads List(0, 0))
+<br>nBufs*volume = 2048
+<br>nBanks = List(2, 2), a = List(1, 1), p = List(2, 2)
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #ccb6ff"><font size = "1"><a href=IR.html#x366 target=_blank>x366</a> (BankedSRAM "tileA_0")
+<br>lca = <a href=IR.html#x3094 target=_blank>x3094</a>
+<br>nBufs = 2
+<br>volume = 1024 (dims List(16, 64) + pads List(0, 0))
+<br>nBufs*volume = 2048
+<br>nBanks = List(2, 4), a = List(1, 1), p = List(2, 4)
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #14fb82"><font size = "1"><a href=IR.html#x365 target=_blank>x365</a> (BankedSRAM "tileA_0")
+<br>lca = <a href=IR.html#x3094 target=_blank>x3094</a>
+<br>nBufs = 2
+<br>volume = 1024 (dims List(16, 64) + pads List(0, 0))
+<br>nBufs*volume = 2048
+<br>nBanks = List(2, 4), a = List(1, 1), p = List(2, 4)
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #d9b3ff"><font size = "1"><a href=IR.html#x702 target=_blank>x702</a> (FF "prod_0")
+<br>lca = <a href=IR.html#x1246 target=_blank>x1246</a>
+<br>nBufs = 2
+<br>volume = 1 (dims List() + pads List())
+<br>nBufs*volume = 2
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #e6b3cc"><font size = "1"><a href=IR.html#x700 target=_blank>x700</a> (FF "prod_0")
+<br>lca = <a href=IR.html#x1246 target=_blank>x1246</a>
+<br>nBufs = 2
+<br>volume = 1 (dims List() + pads List())
+<br>nBufs*volume = 2
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #128678"><font size = "1"><a href=IR.html#x698 target=_blank>x698</a> (FF "prod_0")
+<br>lca = <a href=IR.html#x1246 target=_blank>x1246</a>
+<br>nBufs = 2
+<br>volume = 1 (dims List() + pads List())
+<br>nBufs*volume = 2
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #14fb82"><font size = "1"><a href=IR.html#x696 target=_blank>x696</a> (FF "prod_0")
+<br>lca = <a href=IR.html#x1246 target=_blank>x1246</a>
+<br>nBufs = 2
+<br>volume = 1 (dims List() + pads List())
+<br>nBufs*volume = 2
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #ccffcc"><font size = "1"><a href=IR.html#x2379 target=_blank>x2379</a> (FF "prod_0")
+<br>lca = <a href=IR.html#x2923 target=_blank>x2923</a>
+<br>nBufs = 2
+<br>volume = 1 (dims List() + pads List())
+<br>nBufs*volume = 2
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #ffcccc"><font size = "1"><a href=IR.html#x2377 target=_blank>x2377</a> (FF "prod_0")
+<br>lca = <a href=IR.html#x2923 target=_blank>x2923</a>
+<br>nBufs = 2
+<br>volume = 1 (dims List() + pads List())
+<br>nBufs*volume = 2
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #f2e6ff"><font size = "1"><a href=IR.html#x2375 target=_blank>x2375</a> (FF "prod_0")
+<br>lca = <a href=IR.html#x2923 target=_blank>x2923</a>
+<br>nBufs = 2
+<br>volume = 1 (dims List() + pads List())
+<br>nBufs*volume = 2
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #e6b3cc"><font size = "1"><a href=IR.html#x2373 target=_blank>x2373</a> (FF "prod_0")
+<br>lca = <a href=IR.html#x2923 target=_blank>x2923</a>
+<br>nBufs = 2
+<br>volume = 1 (dims List() + pads List())
+<br>nBufs*volume = 2
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #e0b77a"><font size = "1"><a href=IR.html#x1820 target=_blank>x1820</a> (FF "prod_0")
+<br>lca = <a href=IR.html#x2364 target=_blank>x2364</a>
+<br>nBufs = 2
+<br>volume = 1 (dims List() + pads List())
+<br>nBufs*volume = 2
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #d1e0e0"><font size = "1"><a href=IR.html#x1818 target=_blank>x1818</a> (FF "prod_0")
+<br>lca = <a href=IR.html#x2364 target=_blank>x2364</a>
+<br>nBufs = 2
+<br>volume = 1 (dims List() + pads List())
+<br>nBufs*volume = 2
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #efc11b"><font size = "1"><a href=IR.html#x1816 target=_blank>x1816</a> (FF "prod_0")
+<br>lca = <a href=IR.html#x2364 target=_blank>x2364</a>
+<br>nBufs = 2
+<br>volume = 1 (dims List() + pads List())
+<br>nBufs*volume = 2
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #d1e0e0"><font size = "1"><a href=IR.html#x1814 target=_blank>x1814</a> (FF "prod_0")
+<br>lca = <a href=IR.html#x2364 target=_blank>x2364</a>
+<br>nBufs = 2
+<br>volume = 1 (dims List() + pads List())
+<br>nBufs*volume = 2
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #e699ff"><font size = "1"><a href=IR.html#x1261 target=_blank>x1261</a> (FF "prod_0")
+<br>lca = <a href=IR.html#x1805 target=_blank>x1805</a>
+<br>nBufs = 2
+<br>volume = 1 (dims List() + pads List())
+<br>nBufs*volume = 2
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #99ff99"><font size = "1"><a href=IR.html#x1259 target=_blank>x1259</a> (FF "prod_0")
+<br>lca = <a href=IR.html#x1805 target=_blank>x1805</a>
+<br>nBufs = 2
+<br>volume = 1 (dims List() + pads List())
+<br>nBufs*volume = 2
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #eefb21"><font size = "1"><a href=IR.html#x1257 target=_blank>x1257</a> (FF "prod_0")
+<br>lca = <a href=IR.html#x1805 target=_blank>x1805</a>
+<br>nBufs = 2
+<br>volume = 1 (dims List() + pads List())
+<br>nBufs*volume = 2
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #ecc6d9"><font size = "1"><a href=IR.html#x1255 target=_blank>x1255</a> (FF "prod_0")
+<br>lca = <a href=IR.html#x1805 target=_blank>x1805</a>
+<br>nBufs = 2
+<br>volume = 1 (dims List() + pads List())
+<br>nBufs*volume = 2
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  </TABLE></div>
+</TD>
+<!-- End NBuf Mems-->
+<!-- Begin Single-Buffered Mems -->
+<TD>
+Single-Buffered Mems
+  <div data-role="collapsible"><h4> </h4>
+  <TABLE BORDER="3" CELLPADDING="10" CELLSPACING="10">
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x348 target=_blank>x348</a> (BankedSRAM "tileC_6")
+<br>volume = 1024 (dims List(16, 64) + pads List(0, 0))
+<br>nBanks = List(2, 2), a = List(1, 1), p = List(2, 2)
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x347 target=_blank>x347</a> (BankedSRAM "tileC_5")
+<br>volume = 1024 (dims List(16, 64) + pads List(0, 0))
+<br>nBanks = List(2, 2), a = List(1, 1), p = List(2, 2)
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x345 target=_blank>x345</a> (BankedSRAM "tileC_3")
+<br>volume = 1024 (dims List(16, 64) + pads List(0, 0))
+<br>nBanks = List(2, 2), a = List(1, 1), p = List(2, 2)
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x344 target=_blank>x344</a> (BankedSRAM "tileC_2")
+<br>volume = 1024 (dims List(16, 64) + pads List(0, 0))
+<br>nBanks = List(2, 2), a = List(1, 1), p = List(2, 2)
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x1815 target=_blank>x1815</a> (FF "prod_1")
+<br>volume = 1 (dims List() + pads List())
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x2374 target=_blank>x2374</a> (FF "prod_1")
+<br>volume = 1 (dims List() + pads List())
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x697 target=_blank>x697</a> (FF "prod_1")
+<br>volume = 1 (dims List() + pads List())
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x1262 target=_blank>x1262</a> (FF "prod_1")
+<br>volume = 1 (dims List() + pads List())
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x703 target=_blank>x703</a> (FF "prod_1")
+<br>volume = 1 (dims List() + pads List())
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x1821 target=_blank>x1821</a> (FF "prod_1")
+<br>volume = 1 (dims List() + pads List())
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x2380 target=_blank>x2380</a> (FF "prod_1")
+<br>volume = 1 (dims List() + pads List())
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x1819 target=_blank>x1819</a> (FF "prod_1")
+<br>volume = 1 (dims List() + pads List())
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x2378 target=_blank>x2378</a> (FF "prod_1")
+<br>volume = 1 (dims List() + pads List())
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x1260 target=_blank>x1260</a> (FF "prod_1")
+<br>volume = 1 (dims List() + pads List())
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x701 target=_blank>x701</a> (FF "prod_1")
+<br>volume = 1 (dims List() + pads List())
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x699 target=_blank>x699</a> (FF "prod_1")
+<br>volume = 1 (dims List() + pads List())
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x1258 target=_blank>x1258</a> (FF "prod_1")
+<br>volume = 1 (dims List() + pads List())
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x1817 target=_blank>x1817</a> (FF "prod_1")
+<br>volume = 1 (dims List() + pads List())
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x2376 target=_blank>x2376</a> (FF "prod_1")
+<br>volume = 1 (dims List() + pads List())
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  <p><div style="padding: 10px; border: 1px;display:inline-block;background-color: #cce6ff"><font size = "1"><a href=IR.html#x1256 target=_blank>x1256</a> (FF "prod_1")
+<br>volume = 1 (dims List() + pads List())
+<br>nBanks = List(1), a = List(), p = List()
+<br>has XBarR, has XBarW
+  </font></div></p>
+  </TABLE></div>
+</TD>
+<!-- End Single-Buffered Mems-->
+</body>
+</html>
