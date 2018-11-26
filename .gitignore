@@ -3,6 +3,7 @@ build/
 prepped/
 make.bat
 target/
+project/
 .idea/
 
 
