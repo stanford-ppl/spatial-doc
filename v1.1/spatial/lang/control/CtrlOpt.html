@@ -240,7 +240,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">CtrlOpt</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">None</span></span>, <span name="sched">sched: <span class="extype" name="scala.Option">Option</span>[<a href="../../metadata/control/CtrlSchedule.html" class="extype" name="spatial.metadata.control.CtrlSchedule">CtrlSchedule</a>] = <span class="symbol">None</span></span>, <span name="ii">ii: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Int">Int</span>] = <span class="symbol">None</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">CtrlOpt</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">None</span></span>, <span name="sched">sched: <span class="extype" name="scala.Option">Option</span>[<a href="../../metadata/control/CtrlSchedule.html" class="extype" name="spatial.metadata.control.CtrlSchedule">CtrlSchedule</a>] = <span class="symbol">None</span></span>, <span name="ii">ii: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Int">Int</span>] = <span class="symbol">None</span></span>, <span name="stopWhen">stopWhen: <span class="extype" name="scala.Option">Option</span>[<a href="../Reg.html" class="extype" name="spatial.lang.Reg">Reg</a>[<a href="../index.html#Bit=argon.lang.Bit" class="extmbr" name="spatial.lang.Bit">lang.Bit</a>]] = <span class="symbol">None</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
 
@@ -306,9 +306,9 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="spatial.lang.control.CtrlOpt#&lt;init&gt;" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(name:Option[String],sched:Option[spatial.metadata.control.CtrlSchedule],ii:Option[Int]):spatial.lang.control.CtrlOpt"></a><a id="&lt;init&gt;:CtrlOpt"></a>
+      <a id="&lt;init&gt;(name:Option[String],sched:Option[spatial.metadata.control.CtrlSchedule],ii:Option[Int],stopWhen:Option[spatial.lang.Reg[spatial.lang.Bit]]):spatial.lang.control.CtrlOpt"></a><a id="&lt;init&gt;:CtrlOpt"></a>
       <span class="permalink">
-      <a href="../../../spatial/lang/control/CtrlOpt.html#&lt;init&gt;(name:Option[String],sched:Option[spatial.metadata.control.CtrlSchedule],ii:Option[Int]):spatial.lang.control.CtrlOpt" title="Permalink">
+      <a href="../../../spatial/lang/control/CtrlOpt.html#&lt;init&gt;(name:Option[String],sched:Option[spatial.metadata.control.CtrlSchedule],ii:Option[Int],stopWhen:Option[spatial.lang.Reg[spatial.lang.Bit]]):spatial.lang.control.CtrlOpt" title="Permalink">
         <i class="material-icons"></i>
       </a>
     </span>
@@ -317,7 +317,7 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">CtrlOpt</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">None</span></span>, <span name="sched">sched: <span class="extype" name="scala.Option">Option</span>[<a href="../../metadata/control/CtrlSchedule.html" class="extype" name="spatial.metadata.control.CtrlSchedule">CtrlSchedule</a>] = <span class="symbol">None</span></span>, <span name="ii">ii: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Int">Int</span>] = <span class="symbol">None</span></span>)</span>
+        <span class="name">CtrlOpt</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">None</span></span>, <span name="sched">sched: <span class="extype" name="scala.Option">Option</span>[<a href="../../metadata/control/CtrlSchedule.html" class="extype" name="spatial.metadata.control.CtrlSchedule">CtrlSchedule</a>] = <span class="symbol">None</span></span>, <span name="ii">ii: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Int">Int</span>] = <span class="symbol">None</span></span>, <span name="stopWhen">stopWhen: <span class="extype" name="scala.Option">Option</span>[<a href="../Reg.html" class="extype" name="spatial.lang.Reg">Reg</a>[<a href="../index.html#Bit=argon.lang.Bit" class="extmbr" name="spatial.lang.Bit">lang.Bit</a>]] = <span class="symbol">None</span></span>)</span>
       </span>
       
       
@@ -607,6 +607,22 @@
       </span>
       <span class="symbol">
         <span class="name">set</span><span class="tparams">[<span name="A">A</span>]</span><span class="params">(<span name="x">x: <a href="../../../argon/index.html#Sym[+S]=argon.Exp[_,S]" class="extmbr" name="argon.Sym">Sym</a>[<span class="extype" name="spatial.lang.control.CtrlOpt.set.A">A</span>]</span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      
+      
+    </li><li name="spatial.lang.control.CtrlOpt#stopWhen" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="stopWhen:Option[spatial.lang.Reg[spatial.lang.Bit]]"></a><a id="stopWhen:Option[Reg[lang.Bit]]"></a>
+      <span class="permalink">
+      <a href="../../../spatial/lang/control/CtrlOpt.html#stopWhen:Option[spatial.lang.Reg[spatial.lang.Bit]]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">stopWhen</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<a href="../Reg.html" class="extype" name="spatial.lang.Reg">Reg</a>[<a href="../index.html#Bit=argon.lang.Bit" class="extmbr" name="spatial.lang.Bit">lang.Bit</a>]]</span>
       </span>
       
       

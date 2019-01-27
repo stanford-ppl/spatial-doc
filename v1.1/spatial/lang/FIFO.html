@@ -948,6 +948,25 @@
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="spatial.lang.FIFO#conflictable" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="conflictable:spatial.lang.FIFO[A]"></a><a id="conflictable:FIFO[A]"></a>
+      <span class="permalink">
+      <a href="../../spatial/lang/FIFO.html#conflictable:spatial.lang.FIFO[A]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">conflictable</span><span class="result">: <a href="" class="extype" name="spatial.lang.FIFO">FIFO</a>[<span class="extype" name="spatial.lang.FIFO.A">A</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Allow &quot;unsafe&quot; banking, where two enq's can technically happen simultaneously and one will be dropped.</p><div class="fullcomment"><div class="comment cmt"><p>Allow &quot;unsafe&quot; banking, where two enq's can technically happen simultaneously and one will be dropped.
+Use in cases where FIFOs are used in stream controllers and have enq's in multiple places that the user
+knows are mutually exclusive
+</p></div></div>
     </li><li name="spatial.lang.FIFO#deq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="deq(en:spatial.lang.Bit):A"></a><a id="deq(lang.Bit):A"></a>
       <span class="permalink">

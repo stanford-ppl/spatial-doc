@@ -1132,10 +1132,10 @@
       </span>
       
       <p class="shortcomment cmt">Indicate that the memory should be buffered and ignore
-ignore potential situation where result from running sequentially
+potential situation where result from running sequentially
 does not match with resurt from running pipelined
 </p><div class="fullcomment"><div class="comment cmt"><p>Indicate that the memory should be buffered and ignore
-ignore potential situation where result from running sequentially
+potential situation where result from running sequentially
 does not match with resurt from running pipelined
 </p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
     </li><li name="argon.Ref#canEqual" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
@@ -1408,22 +1408,6 @@ does not match with resurt from running pipelined
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="spatial.lang.SRAM#flat" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="flat:C[A]"></a><a id="flat:SRAM3[A]"></a>
-      <span class="permalink">
-      <a href="../../spatial/lang/SRAM3.html#flat:C[A]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">flat</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM3">SRAM3</a>[<span class="extype" name="spatial.lang.SRAM3.A">A</span>]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Only attempt to bank memory in a flattened manner</p><div class="fullcomment"><div class="comment cmt"><p>Only attempt to bank memory in a flattened manner</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
     </li><li name="spatial.lang.SRAM3#fresh" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="fresh:spatial.lang.SRAM3[A]"></a><a id="fresh:SRAM3[A]"></a>
       <span class="permalink">
@@ -1507,22 +1491,6 @@ does not match with resurt from running pipelined
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Ref → AnyRef → Any</dd></dl></div>
-    </li><li name="spatial.lang.SRAM#hierarchical" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="hierarchical:C[A]"></a><a id="hierarchical:SRAM3[A]"></a>
-      <span class="permalink">
-      <a href="../../spatial/lang/SRAM3.html#hierarchical:C[A]" title="Permalink">
-        <i class="material-icons"></i>
-      </a>
-    </span>
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">hierarchical</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM3">SRAM3</a>[<span class="extype" name="spatial.lang.SRAM3.A">A</span>]</span>
-      </span>
-      
-      <p class="shortcomment cmt">Only attempt to bank memory hierarchically</p><div class="fullcomment"><div class="comment cmt"><p>Only attempt to bank memory hierarchically</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
     </li><li name="argon.lang.Top#infix_!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="infix_!=(that:Any):argon.lang.Bit"></a><a id="infix_!=(Any)(SrcCtx,State):argon.lang.Bit"></a>
       <span class="permalink">
@@ -1650,7 +1618,55 @@ does not match with resurt from running pipelined
         <span class="name">nobank</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM3">SRAM3</a>[<span class="extype" name="spatial.lang.SRAM3.A">A</span>]</span>
       </span>
       
-      <p class="shortcomment cmt">Bank memory by duplication only</p><div class="fullcomment"><div class="comment cmt"><p>Bank memory by duplication only</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
+      <p class="shortcomment cmt">Do not attempt to bank memory at all, and only use bank-by-duplication</p><div class="fullcomment"><div class="comment cmt"><p>Do not attempt to bank memory at all, and only use bank-by-duplication</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
+    </li><li name="spatial.lang.SRAM#noduplicate" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="noduplicate:C[A]"></a><a id="noduplicate:SRAM3[A]"></a>
+      <span class="permalink">
+      <a href="../../spatial/lang/SRAM3.html#noduplicate:C[A]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">noduplicate</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM3">SRAM3</a>[<span class="extype" name="spatial.lang.SRAM3.A">A</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Do not attempt to bank memory by duplication</p><div class="fullcomment"><div class="comment cmt"><p>Do not attempt to bank memory by duplication</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
+    </li><li name="spatial.lang.SRAM#noflat" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="noflat:C[A]"></a><a id="noflat:SRAM3[A]"></a>
+      <span class="permalink">
+      <a href="../../spatial/lang/SRAM3.html#noflat:C[A]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">noflat</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM3">SRAM3</a>[<span class="extype" name="spatial.lang.SRAM3.A">A</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Do not attempt to bank memory in a flattened manner</p><div class="fullcomment"><div class="comment cmt"><p>Do not attempt to bank memory in a flattened manner</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
+    </li><li name="spatial.lang.SRAM#nohierarchical" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="nohierarchical:C[A]"></a><a id="nohierarchical:SRAM3[A]"></a>
+      <span class="permalink">
+      <a href="../../spatial/lang/SRAM3.html#nohierarchical:C[A]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">nohierarchical</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM3">SRAM3</a>[<span class="extype" name="spatial.lang.SRAM3.A">A</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Do not attempt to bank memory hierarchically</p><div class="fullcomment"><div class="comment cmt"><p>Do not attempt to bank memory hierarchically</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
     </li><li name="spatial.lang.SRAM#nonbuffer" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="nonbuffer:C[A]"></a><a id="nonbuffer:SRAM3[A]"></a>
       <span class="permalink">
