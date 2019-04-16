@@ -225,7 +225,7 @@
           <span class="toggle">
             Linear Supertypes
           </span>
-          <div class="superTypes hiddenContent"><span class="extype" name="argon.lang.api.Implicits">argon.lang.api.Implicits</span>, <span class="extype" name="argon.lang.api.ImplicitsPriority1">ImplicitsPriority1</span>, <span class="extype" name="argon.lang.api.ImplicitsPriority2">ImplicitsPriority2</span>, <span class="extype" name="argon.lang.api.ImplicitsPriority3">ImplicitsPriority3</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="argon.lang.api.Implicits">argon.lang.api.Implicits</span>, <span class="extype" name="argon.lang.api.ImplicitsPriority1">ImplicitsPriority1</span>, <span class="extype" name="argon.lang.api.ImplicitsPriority2">ImplicitsPriority2</span>, <span class="extype" name="argon.lang.api.ImplicitsPriority3">ImplicitsPriority3</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">
             <span class="toggle">
               Known Subclasses
@@ -266,7 +266,7 @@
                   <span class="filtertype">Inherited<br />
                   </span>
                   <ol id="linearization">
-                    <li class="in" name="spatial.lang.api.Implicits"><span>Implicits</span></li><li class="in" name="argon.lang.api.Implicits"><span>Implicits</span></li><li class="in" name="argon.lang.api.ImplicitsPriority1"><span>ImplicitsPriority1</span></li><li class="in" name="argon.lang.api.ImplicitsPriority2"><span>ImplicitsPriority2</span></li><li class="in" name="argon.lang.api.ImplicitsPriority3"><span>ImplicitsPriority3</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                    <li class="in" name="spatial.lang.api.Implicits"><span>Implicits</span></li><li class="in" name="argon.lang.api.Implicits"><span>Implicits</span></li><li class="in" name="argon.lang.api.ImplicitsPriority1"><span>ImplicitsPriority1</span></li><li class="in" name="argon.lang.api.ImplicitsPriority2"><span>ImplicitsPriority2</span></li><li class="in" name="argon.lang.api.ImplicitsPriority3"><span>ImplicitsPriority3</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                   </ol>
                 </div><div class="ancestors">
               <span class="filtertype"></span>
@@ -316,7 +316,7 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">BoxSym</span><span class="tparams">[<span name="A">A</span>]</span><span class="result"> extends <a href="../../../argon/index.html#ExpMiscOps[C&lt;:&lt;?&gt;,A&lt;:&lt;?&gt;]extendsAnyRef" class="extmbr" name="argon.ExpMiscOps">argon.ExpMiscOps</a>[<span class="extype" name="scala.Any">Any</span>, <span class="extype" name="argon.lang.api.Implicits.BoxSym.A">A</span>]</span>
+        <span class="name">BoxSym</span><span class="tparams">[<span name="A">A</span>]</span><span class="result"> extends <a href="../../../argon/index.html#ExpMiscOps[C&lt;:&lt;?&gt;,A&lt;:&lt;?&gt;]extendsSerializable" class="extmbr" name="argon.ExpMiscOps">argon.ExpMiscOps</a>[<span class="extype" name="scala.Any">Any</span>, <span class="extype" name="argon.lang.api.Implicits.BoxSym.A">A</span>]</span>
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Implicits</dd></dl></div>
@@ -2097,6 +2097,22 @@
               
         </dd></dl></div>
     </li><li name="spatial.lang.api.Implicits#createParam" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="createParam(default:Int,possible:Seq[Int]):spatial.lang.api.I32"></a><a id="createParam(Int,Seq[Int])(SrcCtx,State):api.I32"></a>
+      <span class="permalink">
+      <a href="../../../spatial/lang/api/Implicits.html#createParam(default:Int,possible:Seq[Int]):spatial.lang.api.I32" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">createParam</span><span class="params">(<span name="default">default: <span class="extype" name="scala.Int">Int</span></span>, <span name="possible">possible: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]</span>)</span><span class="params"></span><span class="result">: <a href="index.html#I32=InternalAliases.this.FixPt[InternalAliases.this.TRUE,InternalAliases.this._32,InternalAliases.this._0]" class="extmbr" name="spatial.lang.api.I32">api.I32</a></span>
+      </span>
+      
+      
+    </li><li name="spatial.lang.api.Implicits#createParam" visbl="pub" class="indented0 " data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="createParam(default:Int,start:Int,stride:Int,end:Int):spatial.lang.api.I32"></a><a id="createParam(Int,Int,Int,Int)(SrcCtx,State):api.I32"></a>
       <span class="permalink">
       <a href="../../../spatial/lang/api/Implicits.html#createParam(default:Int,start:Int,stride:Int,end:Int):spatial.lang.api.I32" title="Permalink">
@@ -2872,6 +2888,10 @@
               <h3>Inherited from <span class="extype" name="argon.lang.api.ImplicitsPriority2">ImplicitsPriority2</span></h3>
             </div><div class="parent" name="argon.lang.api.ImplicitsPriority3">
               <h3>Inherited from <span class="extype" name="argon.lang.api.ImplicitsPriority3">ImplicitsPriority3</span></h3>
+            </div><div class="parent" name="scala.Serializable">
+              <h3>Inherited from <span class="extype" name="scala.Serializable">Serializable</span></h3>
+            </div><div class="parent" name="java.io.Serializable">
+              <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
