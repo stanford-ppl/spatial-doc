@@ -179,6 +179,10 @@
                         <a href="BlackBox$.html" title="">BlackBox</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
+                        <a class="class" href="BlackBoxBus.html" title=""></a>
+                        <a href="BlackBoxBus.html" title="">BlackBoxBus</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
                         <a class="class" href="BooleanWrapper.html" title=""></a>
                         <a href="BooleanWrapper.html" title="">BooleanWrapper</a>
                       </li><li class="current-entities indented2">
@@ -309,6 +313,14 @@
                         <a class="object" href="FIFOReg$.html" title=""></a>
                         <a class="class" href="FIFOReg.html" title=""></a>
                         <a href="FIFOReg.html" title="">FIFOReg</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="FileBus.html" title=""></a>
+                        <a href="FileBus.html" title="">FileBus</a>
+                      </li><li class="current-entities indented2">
+                        <span class="separator"></span>
+                        <a class="class" href="FileEOFBus.html" title=""></a>
+                        <a href="FileEOFBus.html" title="">FileEOFBus</a>
                       </li><li class="current-entities indented2">
                         <span class="separator"></span>
                         <a class="class" href="FloatWrapper.html" title=""></a>
@@ -1052,6 +1064,38 @@
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="spatial.lang.SRAM#bank" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="bank(N:Seq[Int],B:Seq[Int],alpha:Seq[Int]):C[A]"></a><a id="bank(Seq[Int],Seq[Int],Seq[Int]):SRAM2[A]"></a>
+      <span class="permalink">
+      <a href="../../spatial/lang/SRAM2.html#bank(N:Seq[Int],B:Seq[Int],alpha:Seq[Int]):C[A]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">bank</span><span class="params">(<span name="N">N: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]</span>, <span name="B">B: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]</span>, <span name="alpha">alpha: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]</span>)</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM2">SRAM2</a>[<span class="extype" name="spatial.lang.SRAM2.A">A</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Provide explicit banking scheme that you want to use.</p><div class="fullcomment"><div class="comment cmt"><p>Provide explicit banking scheme that you want to use.  If this scheme is unsafe, it will crash. It will also assume only one duplicate</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
+    </li><li name="spatial.lang.SRAM#blockcyclic_Bs" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="blockcyclic_Bs(bs:Seq[Int]):C[A]"></a><a id="blockcyclic_Bs(Seq[Int]):SRAM2[A]"></a>
+      <span class="permalink">
+      <a href="../../spatial/lang/SRAM2.html#blockcyclic_Bs(bs:Seq[Int]):C[A]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">blockcyclic_Bs</span><span class="params">(<span name="bs">bs: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]</span>)</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM2">SRAM2</a>[<span class="extype" name="spatial.lang.SRAM2.A">A</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Set search range bs to search for</p><div class="fullcomment"><div class="comment cmt"><p>Set search range bs to search for</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
     </li><li name="spatial.lang.SRAM#buffer" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="buffer:C[A]"></a><a id="buffer:SRAM2[A]"></a>
       <span class="permalink">
@@ -1146,6 +1190,25 @@ does not match with resurt from running pipelined
       </span>
       
       
+    </li><li name="spatial.lang.SRAM#conflictable" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="conflictable:C[A]"></a><a id="conflictable:SRAM2[A]"></a>
+      <span class="permalink">
+      <a href="../../spatial/lang/SRAM2.html#conflictable:C[A]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">conflictable</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM2">SRAM2</a>[<span class="extype" name="spatial.lang.SRAM2.A">A</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Allow &quot;unsafe&quot; banking, where two writes can technically happen simultaneously and one will be dropped.</p><div class="fullcomment"><div class="comment cmt"><p>Allow &quot;unsafe&quot; banking, where two writes can technically happen simultaneously and one will be dropped.
+Use in cases where writes may happen in parallel but you are either sure that two writes won't happen simultaneously
+due to data-dependent control flow or that you don't care if one write gets dropped
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
     </li><li name="spatial.lang.SRAM#dim0" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="dim0:spatial.lang.I32"></a><a id="dim0:lang.I32"></a>
       <span class="permalink">
@@ -1242,6 +1305,38 @@ does not match with resurt from running pipelined
       </span>
       
       <p class="shortcomment cmt">Returns the dimensions of this SRAM as a Sequence.</p><div class="fullcomment"><div class="comment cmt"><p>Returns the dimensions of this SRAM as a Sequence.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
+    </li><li name="spatial.lang.SRAM#duplicateaxes" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="duplicateaxes(opts:Seq[Seq[Int]])(implicitstate:argon.State):C[A]"></a><a id="duplicateaxes(Seq[Seq[Int]])(State):SRAM2[A]"></a>
+      <span class="permalink">
+      <a href="../../spatial/lang/SRAM2.html#duplicateaxes(opts:Seq[Seq[Int]])(implicitstate:argon.State):C[A]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">duplicateaxes</span><span class="params">(<span name="opts">opts: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="state">state: <span class="extype" name="argon.State">State</span></span>)</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM2">SRAM2</a>[<span class="extype" name="spatial.lang.SRAM2.A">A</span>]</span>
+      </span>
+      
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
+    </li><li name="spatial.lang.SRAM#effort" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="effort(e:Int):C[A]"></a><a id="effort(Int):SRAM2[A]"></a>
+      <span class="permalink">
+      <a href="../../spatial/lang/SRAM2.html#effort(e:Int):C[A]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">effort</span><span class="params">(<span name="e">e: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM2">SRAM2</a>[<span class="extype" name="spatial.lang.SRAM2.A">A</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Specify banking search effort for this memory</p><div class="fullcomment"><div class="comment cmt"><p>Specify banking search effort for this memory</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a><a id="eq(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -1360,6 +1455,38 @@ does not match with resurt from running pipelined
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="spatial.lang.SRAM#flat" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="flat:C[A]"></a><a id="flat:SRAM2[A]"></a>
+      <span class="permalink">
+      <a href="../../spatial/lang/SRAM2.html#flat:C[A]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">flat</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM2">SRAM2</a>[<span class="extype" name="spatial.lang.SRAM2.A">A</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Only attempt to bank memory in a flattened manner</p><div class="fullcomment"><div class="comment cmt"><p>Only attempt to bank memory in a flattened manner</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
+    </li><li name="spatial.lang.SRAM#forcebank" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="forcebank(N:Seq[Int],B:Seq[Int],alpha:Seq[Int]):C[A]"></a><a id="forcebank(Seq[Int],Seq[Int],Seq[Int]):SRAM2[A]"></a>
+      <span class="permalink">
+      <a href="../../spatial/lang/SRAM2.html#forcebank(N:Seq[Int],B:Seq[Int],alpha:Seq[Int]):C[A]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">forcebank</span><span class="params">(<span name="N">N: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]</span>, <span name="B">B: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]</span>, <span name="alpha">alpha: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Int">Int</span>]</span>)</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM2">SRAM2</a>[<span class="extype" name="spatial.lang.SRAM2.A">A</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Provide explicit banking scheme that you want to use.</p><div class="fullcomment"><div class="comment cmt"><p>Provide explicit banking scheme that you want to use.  If this scheme is unsafe, it will NOT crash. It will also assume only one duplicate</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
     </li><li name="spatial.lang.SRAM2#fresh" visbl="prt" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="fresh:spatial.lang.SRAM2[A]"></a><a id="fresh:SRAM2[A]"></a>
       <span class="permalink">
@@ -1443,6 +1570,22 @@ does not match with resurt from running pipelined
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Ref → AnyRef → Any</dd></dl></div>
+    </li><li name="spatial.lang.SRAM#hierarchical" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="hierarchical:C[A]"></a><a id="hierarchical:SRAM2[A]"></a>
+      <span class="permalink">
+      <a href="../../spatial/lang/SRAM2.html#hierarchical:C[A]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">hierarchical</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM2">SRAM2</a>[<span class="extype" name="spatial.lang.SRAM2.A">A</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Only attempt to bank memory hierarchically</p><div class="fullcomment"><div class="comment cmt"><p>Only attempt to bank memory hierarchically</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
     </li><li name="argon.lang.Top#infix_!=" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="infix_!=(that:Any):argon.lang.Bit"></a><a id="infix_!=(Any)(SrcCtx,State):argon.lang.Bit"></a>
       <span class="permalink">
@@ -1523,6 +1666,24 @@ does not match with resurt from running pipelined
       </span>
       
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd>ExpType</dd></dl></div>
+    </li><li name="spatial.lang.SRAM#mustmerge" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="mustmerge:C[A]"></a><a id="mustmerge:SRAM2[A]"></a>
+      <span class="permalink">
+      <a href="../../spatial/lang/SRAM2.html#mustmerge:C[A]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mustmerge</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM2">SRAM2</a>[<span class="extype" name="spatial.lang.SRAM2.A">A</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Guarantee that it is safe to merge different duplicates.</p><div class="fullcomment"><div class="comment cmt"><p>Guarantee that it is safe to merge different duplicates.
+Only use this if you know exactly what you are doing!
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a><a id="ne(AnyRef):Boolean"></a>
       <span class="permalink">
@@ -1570,7 +1731,7 @@ does not match with resurt from running pipelined
         <span class="name">nobank</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM2">SRAM2</a>[<span class="extype" name="spatial.lang.SRAM2.A">A</span>]</span>
       </span>
       
-      <p class="shortcomment cmt">Do not attempt to bank memory at all, and only use bank-by-duplication</p><div class="fullcomment"><div class="comment cmt"><p>Do not attempt to bank memory at all, and only use bank-by-duplication</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
     </li><li name="spatial.lang.SRAM#noblockcyclic" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="noblockcyclic:C[A]"></a><a id="noblockcyclic:SRAM2[A]"></a>
       <span class="permalink">
@@ -1618,7 +1779,7 @@ does not match with resurt from running pipelined
         <span class="name">noflat</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM2">SRAM2</a>[<span class="extype" name="spatial.lang.SRAM2.A">A</span>]</span>
       </span>
       
-      <p class="shortcomment cmt">Do not attempt to bank memory in a flattened manner</p><div class="fullcomment"><div class="comment cmt"><p>Do not attempt to bank memory in a flattened manner</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
     </li><li name="spatial.lang.SRAM#nohierarchical" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="nohierarchical:C[A]"></a><a id="nohierarchical:SRAM2[A]"></a>
       <span class="permalink">
@@ -1634,7 +1795,7 @@ does not match with resurt from running pipelined
         <span class="name">nohierarchical</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM2">SRAM2</a>[<span class="extype" name="spatial.lang.SRAM2.A">A</span>]</span>
       </span>
       
-      <p class="shortcomment cmt">Do not attempt to bank memory hierarchically</p><div class="fullcomment"><div class="comment cmt"><p>Do not attempt to bank memory hierarchically</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
     </li><li name="spatial.lang.SRAM#nonbuffer" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="nonbuffer:C[A]"></a><a id="nonbuffer:SRAM2[A]"></a>
       <span class="permalink">
@@ -1689,6 +1850,38 @@ does not match with resurt from running pipelined
                 <span class="name">@native</span><span class="args">()</span>
               
         </dd></dl></div>
+    </li><li name="spatial.lang.SRAM#onlyblockcyclic" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onlyblockcyclic:C[A]"></a><a id="onlyblockcyclic:SRAM2[A]"></a>
+      <span class="permalink">
+      <a href="../../spatial/lang/SRAM2.html#onlyblockcyclic:C[A]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onlyblockcyclic</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM2">SRAM2</a>[<span class="extype" name="spatial.lang.SRAM2.A">A</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Only attempt to bank memory with block-cyclic schemes</p><div class="fullcomment"><div class="comment cmt"><p>Only attempt to bank memory with block-cyclic schemes</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
+    </li><li name="spatial.lang.SRAM#onlyduplicate" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="onlyduplicate:C[A]"></a><a id="onlyduplicate:SRAM2[A]"></a>
+      <span class="permalink">
+      <a href="../../spatial/lang/SRAM2.html#onlyduplicate:C[A]" title="Permalink">
+        <i class="material-icons"></i>
+      </a>
+    </span>
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">onlyduplicate</span><span class="result">: <a href="" class="extype" name="spatial.lang.SRAM2">SRAM2</a>[<span class="extype" name="spatial.lang.SRAM2.A">A</span>]</span>
+      </span>
+      
+      <p class="shortcomment cmt">Do not attempt to bank memory at all, and only use bank-by-duplication for all lanes of all readers</p><div class="fullcomment"><div class="comment cmt"><p>Do not attempt to bank memory at all, and only use bank-by-duplication for all lanes of all readers</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="SRAM.html" class="extype" name="spatial.lang.SRAM">SRAM</a></dd></dl></div>
     </li><li name="spatial.lang.SRAM#par" visbl="pub" class="indented0 " data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="par(p:spatial.lang.I32):C[A]"></a><a id="par(lang.I32):SRAM2[A]"></a>
       <span class="permalink">
